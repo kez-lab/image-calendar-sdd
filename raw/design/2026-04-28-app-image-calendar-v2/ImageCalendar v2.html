@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Calendar v2 · App Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="ios-frame.jsx"></script>
+<script type="text/babel" src="design-canvas.jsx"></script>
+<style>* { margin:0; padding:0; box-sizing:border-box; } body { background:#F0EDE8; font-family:'DM Sans',sans-serif; }</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+// ─── Design Tokens ────────────────────────────────────────────────
+const T = {
+  bg:      '#FAFAF7',
+  bg2:     '#F3F0EB',
+  bg3:     '#EAE6DF',
+  card:    '#FFFFFF',
+  border:  '#E8E4DD',
+  text:    '#2C2825',
+  text2:   '#7A746C',
+  text3:   '#B0A99F',
+  accent:  '#7C6FC4',
+  accentL: '#EAE7F8',
+  warm:    '#C8815A',
+  warmL:   '#F5EBE4',
+  teal:    '#5A9EA0',
+  tealL:   '#E4F2F2',
+  good:    '#6BAE8C',
+  goodL:   '#E4F2EB',
+  danger:  '#D94F3D',
+  dangerL: '#FDECEA',
+};
+
+// ─── Icons ───────────────────────────────────────────────────────
+const Icon = ({ name, size = 20, color = T.text2 }) => {
+  const s = { width: size, height: size, display: 'block', flexShrink: 0 };
+  const paths = {
+    calendar:  <svg style={s} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>,
+    plus:      <svg style={s} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>,
+    archive:   <svg style={s} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="5" rx="1"/><path d="M4 9v10a1 1 0 001 1h14a1 1 0 001-1V9"/><line x1="9" y1="13" x2="15" y2="13"/></svg>,
+    settings:  <svg style={s} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>,
+    chevLeft:  <svg style={s} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>,
+    chevRight: <svg style={s} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>,
+    search:    <svg style={s} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.7" strokeLinecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>,
+    camera:    <svg style={s} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>,
+    image:     <svg style={s} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>,
+    lock:      <svg style={s} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>,
+    edit:      <svg style={s} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>,
+    trash:     <svg style={s} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>,
+    download:  <svg style={s} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>,
+    info:      <svg style={s} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>,
+    check:     <svg style={s} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>,
+    back:      <svg style={s} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>,
+    warn:      <svg style={s} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>,
+  };
+  return paths[name] || null;
+};
+
+// ─── Image Placeholder ───────────────────────────────────────────
+const ImgPlaceholder = ({ w, h, label = '', style = {}, tone = 'warm' }) => {
+  const tones = {
+    warm:    { bg: '#E8D5C8', stripe: '#D4BFB0', text: '#A08070' },
+    cool:    { bg: '#C8D5E8', stripe: '#B0C0D4', text: '#607090' },
+    sage:    { bg: '#C8D8C8', stripe: '#B0C8B0', text: '#607060' },
+    lavender:{ bg: '#D5C8E8', stripe: '#C0B0D4', text: '#706090' },
+    peach:   { bg: '#E8D0C0', stripe: '#D4BAA8', text: '#A07060' },
+  };
+  const c = tones[tone] || tones.warm;
+  const sw = 10;
+  const numW = typeof w === 'number' ? w : 300;
+  return (
+    <div style={{ width: w, height: h, borderRadius: 10, overflow: 'hidden', position: 'relative', flexShrink: 0, background: c.bg, ...style }}>
+      <svg width={numW} height={h} style={{ position: 'absolute', top: 0, left: 0 }}>
+        {Array.from({ length: Math.ceil(numW / sw) * 2 }).map((_, i) => (
+          <line key={i} x1={i * sw - h} y1={0} x2={i * sw} y2={h} stroke={c.stripe} strokeWidth="1" opacity="0.5" />
+        ))}
+      </svg>
+      {label && (
+        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 9, color: c.text, fontFamily: 'monospace', textAlign: 'center', padding: 4, lineHeight: 1.4 }}>{label}</div>
+      )}
+    </div>
+  );
+};
+
+// ─── Local Badge ─────────────────────────────────────────────────
+const LocalBadge = () => (
+  <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, background: T.goodL, border: `1px solid ${T.good}33`, borderRadius: 20, padding: '4px 10px' }}>
+    <Icon name="lock" size={11} color={T.good} />
+    <span style={{ fontSize: 10, color: T.good, fontWeight: 500 }}>내 폰에만 저장됨</span>
+  </div>
+);
+
+// ─── Tab Bar ────────────────────────────────────────────────────
+const TabBar = ({ active = 'calendar' }) => {
+  const tabs = [
+    { id: 'calendar', label: '캘린더' },
+    { id: 'plus',     label: '추가' },
+    { id: 'archive',  label: '아카이브' },
+    { id: 'settings', label: '설정' },
+  ];
+  return (
+    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'rgba(250,250,247,0.96)', backdropFilter: 'blur(12px)', borderTop: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', paddingBottom: 20, paddingTop: 10 }}>
+      {tabs.map(t => {
+        const isActive = t.id === active;
+        const color = isActive ? T.accent : T.text3;
+        return (
+          <div key={t.id} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+            {t.id === 'plus' ? (
+              <div style={{ width: 46, height: 46, borderRadius: 23, background: T.accent, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 4px 14px ${T.accent}55`, marginTop: -20 }}>
+                <Icon name="plus" size={22} color="#fff" />
+              </div>
+            ) : (
+              <>
+                <Icon name={t.id} size={22} color={color} />
+                <span style={{ fontSize: 10, color, fontWeight: isActive ? 500 : 400 }}>{t.label}</span>
+              </>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// Screen 1 — Onboarding (v2: CTA copy updated)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const OnboardingScreen = () => (
+  <div style={{ width: '100%', height: '100%', background: T.bg, display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
+    {/* Progress dots */}
+    <div style={{ position: 'absolute', top: 60, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 6 }}>
+      {[0,1,2].map(i => (
+        <div key={i} style={{ width: i === 2 ? 20 : 6, height: 6, borderRadius: 3, background: i === 2 ? T.accent : T.border }} />
+      ))}
+    </div>
+
+    {/* Illustration */}
+    <div style={{ marginTop: 90, position: 'relative' }}>
+      <ImgPlaceholder w={220} h={240} label="illustr.\n기기 안의 기록" tone="sage" style={{ borderRadius: 24 }} />
+      <div style={{ position: 'absolute', bottom: -14, right: -14, width: 44, height: 44, borderRadius: 22, background: T.good, boxShadow: '0 4px 12px #6BAE8C44', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Icon name="lock" size={20} color="#fff" />
+      </div>
+    </div>
+
+    {/* Text */}
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '0 36px', textAlign: 'center', marginTop: 28 }}>
+      <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 26, lineHeight: 1.3, color: T.text, whiteSpace: 'pre-line', marginBottom: 14 }}>{'내 폰 안에만 쌓이는\n하루 사진 캘린더'}</h2>
+      <p style={{ fontSize: 14, color: T.text2, lineHeight: 1.7 }}>계정 없이 사용할 수 있어요.<br/>이 기기에만 저장돼요.</p>
+      <div style={{ marginTop: 20 }}><LocalBadge /></div>
+    </div>
+
+    {/* CTA — v2 updated */}
+    <div style={{ padding: '0 28px 50px', width: '100%', display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <button style={{ width: '100%', height: 52, borderRadius: 16, background: T.accent, border: 'none', color: '#fff', fontSize: 16, fontWeight: 600, fontFamily: 'inherit', boxShadow: `0 6px 20px ${T.accent}44`, cursor: 'pointer' }}>
+        첫 기록 만들기
+      </button>
+      <button style={{ background: 'none', border: 'none', fontSize: 13, color: T.text3, fontFamily: 'inherit', cursor: 'pointer', padding: '6px 0' }}>
+        건너뛰고 캘린더 보기
+      </button>
+    </div>
+  </div>
+);
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// Screen 2 — Home Calendar (v2: dots/mini-stack instead of thumbnails)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const CalendarScreen = () => {
+  const days = ['일','월','화','수','목','금','토'];
+  const today = 27;
+  const startDay = 3;
+  const totalDays = 30;
+  // counts per day: some have multiple photos
+  const entryCounts = { 3:1, 7:2, 10:1, 12:3, 15:1, 18:2, 21:1, 22:1, 24:2, 27:3 };
+  const tones = { 3:'warm', 7:'cool', 10:'sage', 12:'peach', 15:'lavender', 18:'warm', 21:'cool', 22:'sage', 24:'peach', 27:'warm' };
+
+  const cells = [];
+  for (let i = 0; i < startDay; i++) cells.push(null);
+  for (let d = 1; d <= totalDays; d++) cells.push(d);
+
+  // Dot marker: shows up to 3 dots for entry count
+  const DotMarker = ({ count, isToday }) => (
+    <div style={{ display: 'flex', gap: 2, justifyContent: 'center', marginTop: 2 }}>
+      {Array.from({ length: Math.min(count, 3) }).map((_, i) => (
+        <div key={i} style={{ width: 4, height: 4, borderRadius: 2, background: isToday ? T.accent : T.warm, opacity: i === 2 && count > 3 ? 0.5 : 1 }} />
+      ))}
+    </div>
+  );
+
+  return (
+    <div style={{ width: '100%', height: '100%', background: T.bg, display: 'flex', flexDirection: 'column' }}>
+      {/* Header */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '56px 20px 10px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+          <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4 }}><Icon name="chevLeft" size={20} color={T.text2} /></button>
+          <span style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: T.text }}>2026년 4월</span>
+          <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4 }}><Icon name="chevRight" size={20} color={T.text2} /></button>
+        </div>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <button style={{ background: 'none', border: 'none', cursor: 'pointer' }}><Icon name="search" size={20} color={T.text2} /></button>
+        </div>
+      </div>
+
+      <div style={{ paddingLeft: 20, paddingBottom: 8 }}><LocalBadge /></div>
+
+      {/* Day headers */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', padding: '0 10px', marginBottom: 4 }}>
+        {days.map((d, i) => (
+          <div key={d} style={{ textAlign: 'center', fontSize: 11, color: i === 0 ? '#E57373' : i === 6 ? T.accent : T.text3, fontWeight: 500, padding: '4px 0' }}>{d}</div>
+        ))}
+      </div>
+
+      {/* Calendar grid — v2: dots, not thumbnails */}
+      <div style={{ flex: 1, padding: '0 10px', overflowY: 'auto' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '2px' }}>
+          {cells.map((d, i) => {
+            if (!d) return <div key={`e${i}`} style={{ aspectRatio: '1', minHeight: 44 }} />;
+            const isToday = d === today;
+            const count = entryCounts[d] || 0;
+            const isSun = (i % 7) === 0;
+            const isSat = (i % 7) === 6;
+            return (
+              <div key={d} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 50, borderRadius: 12, padding: '6px 2px', background: isToday ? T.accentL : 'transparent', position: 'relative' }}>
+                <span style={{ fontSize: 14, fontWeight: isToday ? 700 : count > 0 ? 500 : 400, color: isToday ? T.accent : isSun ? '#E57373' : isSat ? '#9B8FE0' : T.text, lineHeight: 1 }}>{d}</span>
+                {count > 0 && <DotMarker count={count} isToday={isToday} />}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Today preview strip */}
+        <div style={{ margin: '14px 0 90px', background: T.card, borderRadius: 16, padding: 14, boxShadow: '0 2px 12px #00000008', border: `1px solid ${T.border}` }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+            <div>
+              <span style={{ fontSize: 13, fontWeight: 600, color: T.text }}>오늘 · 4월 27일</span>
+              <span style={{ fontSize: 11, color: T.text3, marginLeft: 8 }}>기록 3개</span>
+            </div>
+            <span style={{ fontSize: 11, color: T.accent }}>모두 보기 →</span>
+          </div>
+          <div style={{ display: 'flex', gap: 8 }}>
+            {['warm','cool','sage'].map((t, i) => (
+              <ImgPlaceholder key={i} w={72} h={72} tone={t} style={{ borderRadius: 12, flexShrink: 0 }} />
+            ))}
+            <div style={{ width: 72, height: 72, borderRadius: 12, border: `1.5px dashed ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <Icon name="plus" size={18} color={T.text3} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <TabBar active="calendar" />
+    </div>
+  );
+};
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// Screen 3 — Date Detail (unchanged structure, thumbnails central)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const DetailScreen = () => {
+  const records = [
+    { time: '07:42', memo: '아침 산책 중에 발견한 벚꽃 골목. 오늘도 여기서 하루를 시작했다.', emotion: '😌 평온', tone: 'sage' },
+    { time: '12:30', memo: '동네 카페에서 혼자 점심. 오늘의 라떼는 유독 맛있었다 ☕', emotion: '😊 행복', tone: 'warm' },
+    { time: '19:58', memo: '저녁 노을이 너무 예뻐서 그냥 찍었다.', emotion: '🥰 감사', tone: 'peach' },
+  ];
+
+  const emotionStyle = { '😌 평온': { bg: T.tealL, color: T.teal }, '😊 행복': { bg: '#FFF8E1', color: '#F59E0B' }, '🥰 감사': { bg: T.warmL, color: T.warm } };
+
+  return (
+    <div style={{ width: '100%', height: '100%', background: T.bg2, display: 'flex', flexDirection: 'column' }}>
+      <div style={{ background: T.bg, display: 'flex', alignItems: 'center', padding: '52px 20px 14px', gap: 12, boxShadow: '0 1px 0 #E8E4DD' }}>
+        <button style={{ background: 'none', border: 'none', cursor: 'pointer' }}><Icon name="back" size={22} color={T.text} /></button>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontFamily: "'DM Serif Display', serif", fontSize: 20, color: T.text }}>4월 27일 월요일</div>
+          <div style={{ fontSize: 11, color: T.text2, marginTop: 2 }}>기록 3개</div>
+        </div>
+        <button style={{ display: 'flex', alignItems: 'center', gap: 5, background: T.accent, border: 'none', borderRadius: 20, padding: '7px 14px', color: '#fff', fontSize: 12, fontWeight: 600, fontFamily: 'inherit', cursor: 'pointer' }}>
+          <Icon name="plus" size={14} color="#fff" />추가
+        </button>
+      </div>
+
+      <div style={{ flex: 1, overflowY: 'auto', padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 12, paddingBottom: 88 }}>
+        {records.map((r, i) => {
+          const es = emotionStyle[r.emotion] || { bg: T.bg2, color: T.text2 };
+          return (
+            <div key={i} style={{ background: T.card, borderRadius: 18, overflow: 'hidden', boxShadow: '0 2px 12px #00000008', border: `1px solid ${T.border}` }}>
+              <ImgPlaceholder w="100%" h={180} label={`photo · ${r.time}`} tone={r.tone} style={{ borderRadius: 0, width: '100%' }} />
+              <div style={{ padding: '12px 14px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+                  <span style={{ fontSize: 11, color: T.text3, fontWeight: 500 }}>{r.time}</span>
+                  <div style={{ display: 'flex', gap: 10 }}>
+                    <button style={{ background: 'none', border: 'none', cursor: 'pointer' }}><Icon name="edit" size={15} color={T.text3} /></button>
+                    <button style={{ background: 'none', border: 'none', cursor: 'pointer' }}><Icon name="trash" size={15} color={T.danger} /></button>
+                  </div>
+                </div>
+                <p style={{ fontSize: 13, color: T.text, lineHeight: 1.6, marginBottom: 10 }}>{r.memo}</p>
+                <span style={{ display: 'inline-flex', alignItems: 'center', padding: '3px 10px', borderRadius: 20, fontSize: 11, background: es.bg, color: es.color, border: `1px solid ${es.color}33`, fontWeight: 500 }}>{r.emotion}</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <TabBar active="calendar" />
+    </div>
+  );
+};
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// Screen 4 — Add Record (v2: photo required, memo/emotion optional)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const AddScreen = () => {
+  const emotionList = ['😊 행복', '😌 평온', '🥰 감사', '😢 슬픔', '😤 힘듦', '🤔 생각중'];
+  const [selEmotion, setSelEmotion] = React.useState(null); // v2: no default
+
+  return (
+    <div style={{ width: '100%', height: '100%', background: T.bg, display: 'flex', flexDirection: 'column' }}>
+      <div style={{ display: 'flex', alignItems: 'center', padding: '52px 20px 14px', gap: 12 }}>
+        <button style={{ background: 'none', border: 'none', cursor: 'pointer' }}><Icon name="back" size={22} color={T.text} /></button>
+        <span style={{ flex: 1, fontFamily: "'DM Serif Display', serif", fontSize: 20, color: T.text }}>기록 추가</span>
+        <button style={{ background: T.accent, border: 'none', borderRadius: 20, padding: '7px 18px', color: '#fff', fontSize: 13, fontWeight: 600, fontFamily: 'inherit', cursor: 'pointer' }}>저장</button>
+      </div>
+
+      <div style={{ flex: 1, overflowY: 'auto', padding: '0 20px 100px', display: 'flex', flexDirection: 'column', gap: 22 }}>
+
+        {/* Photo — required */}
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
+            <label style={{ fontSize: 12, fontWeight: 600, color: T.text2, letterSpacing: '0.04em', textTransform: 'uppercase' }}>사진</label>
+            <span style={{ fontSize: 10, background: T.accentL, color: T.accent, borderRadius: 10, padding: '2px 7px', fontWeight: 600 }}>필수</span>
+          </div>
+          <div style={{ display: 'flex', gap: 10 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <button style={{ width: 74, height: 74, borderRadius: 14, border: `1.5px dashed ${T.border}`, background: T.bg2, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 4, cursor: 'pointer' }}>
+                <Icon name="camera" size={18} color={T.text3} />
+                <span style={{ fontSize: 9, color: T.text3 }}>카메라</span>
+              </button>
+              <button style={{ width: 74, height: 74, borderRadius: 14, border: `1.5px dashed ${T.border}`, background: T.bg2, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 4, cursor: 'pointer' }}>
+                <Icon name="image" size={18} color={T.text3} />
+                <span style={{ fontSize: 9, color: T.text3 }}>갤러리</span>
+              </button>
+            </div>
+            <ImgPlaceholder w={156} h={156} tone="warm" label="selected photo" style={{ borderRadius: 14 }} />
+          </div>
+        </div>
+
+        {/* Date */}
+        <div>
+          <label style={{ fontSize: 12, fontWeight: 600, color: T.text2, display: 'block', marginBottom: 8, letterSpacing: '0.04em', textTransform: 'uppercase' }}>날짜</label>
+          <div style={{ background: T.bg2, borderRadius: 12, padding: '12px 14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', border: `1px solid ${T.border}` }}>
+            <span style={{ fontSize: 14, color: T.text }}>2026년 4월 27일 월요일</span>
+            <Icon name="chevRight" size={16} color={T.text3} />
+          </div>
+        </div>
+
+        {/* Memo — optional */}
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+            <label style={{ fontSize: 12, fontWeight: 600, color: T.text2, letterSpacing: '0.04em', textTransform: 'uppercase' }}>메모</label>
+            <span style={{ fontSize: 10, color: T.text3, background: T.bg3, borderRadius: 10, padding: '2px 7px' }}>선택</span>
+          </div>
+          <div style={{ background: T.bg2, borderRadius: 12, padding: '12px 14px', minHeight: 80, border: `1px solid ${T.border}`, fontSize: 14, color: T.text3, lineHeight: 1.6 }}>
+            오늘의 기록을 남겨보세요 · · ·
+          </div>
+          <div style={{ textAlign: 'right', marginTop: 4, fontSize: 10, color: T.text3 }}>0 / 200</div>
+        </div>
+
+        {/* Emotion — optional, no default */}
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
+            <label style={{ fontSize: 12, fontWeight: 600, color: T.text2, letterSpacing: '0.04em', textTransform: 'uppercase' }}>오늘의 감정</label>
+            <span style={{ fontSize: 10, color: T.text3, background: T.bg3, borderRadius: 10, padding: '2px 7px' }}>선택</span>
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            {emotionList.map(e => (
+              <button key={e} onClick={() => setSelEmotion(selEmotion === e ? null : e)} style={{
+                border: 'none', cursor: 'pointer', fontFamily: 'inherit',
+                padding: '8px 14px', borderRadius: 20, fontSize: 13,
+                background: selEmotion === e ? T.accentL : T.bg2,
+                color: selEmotion === e ? T.accent : T.text2,
+                outline: selEmotion === e ? `1.5px solid ${T.accent}` : 'none',
+                fontWeight: selEmotion === e ? 600 : 400,
+              }}>{e}</button>
+            ))}
+          </div>
+          {!selEmotion && <p style={{ fontSize: 11, color: T.text3, marginTop: 8 }}>선택하지 않아도 기록이 저장돼요.</p>}
+        </div>
+
+        {/* Privacy notice — v2 copy */}
+        <div style={{ background: T.goodL, borderRadius: 12, padding: '10px 14px', display: 'flex', gap: 10, alignItems: 'flex-start', border: `1px solid ${T.good}22` }}>
+          <Icon name="lock" size={15} color={T.good} />
+          <p style={{ fontSize: 12, color: T.good, lineHeight: 1.6 }}>이 기기에만 저장돼요. 서버로 보내지 않아요.</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// Screen 5 — Archive (unchanged core, emotion filter chip)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const ArchiveScreen = () => {
+  const months = [
+    { month: '2026년 4월', count: 10, items: ['warm','cool','sage','peach','lavender','warm','cool','sage','peach','warm'] },
+    { month: '2026년 3월', count: 8,  items: ['sage','warm','cool','peach','warm','lavender','cool','sage'] },
+  ];
+  const chips = ['전체', '😊 행복', '😌 평온', '🥰 감사', '😢 슬픔'];
+  return (
+    <div style={{ width: '100%', height: '100%', background: T.bg, display: 'flex', flexDirection: 'column' }}>
+      <div style={{ padding: '52px 20px 10px' }}>
+        <div style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: T.text, marginBottom: 10 }}>아카이브</div>
+        <div style={{ background: T.bg2, borderRadius: 12, display: 'flex', alignItems: 'center', gap: 8, padding: '10px 14px', border: `1px solid ${T.border}` }}>
+          <Icon name="search" size={16} color={T.text3} />
+          <span style={{ fontSize: 14, color: T.text3 }}>메모, 날짜로 검색하기</span>
+        </div>
+      </div>
+      <div style={{ padding: '8px 0 8px 20px', display: 'flex', gap: 8, overflowX: 'auto', scrollbarWidth: 'none' }}>
+        {chips.map((c, i) => (
+          <button key={c} style={{ flexShrink: 0, border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: '6px 14px', borderRadius: 20, fontSize: 12, background: i === 0 ? T.accent : T.bg2, color: i === 0 ? '#fff' : T.text2 }}>{c}</button>
+        ))}
+      </div>
+      <div style={{ flex: 1, overflowY: 'auto', padding: '8px 16px', paddingBottom: 88 }}>
+        {months.map((m, mi) => (
+          <div key={mi} style={{ marginBottom: 24 }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
+              <span style={{ fontFamily: "'DM Serif Display', serif", fontSize: 16, color: T.text }}>{m.month}</span>
+              <span style={{ fontSize: 11, color: T.text3 }}>{m.count}개의 기록</span>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 6 }}>
+              {m.items.map((tone, i) => (
+                <ImgPlaceholder key={i} w="100%" h={90} tone={tone} style={{ borderRadius: 12 }} />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <TabBar active="archive" />
+    </div>
+  );
+};
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// Screen 6 — Settings (v2: export primary, import secondary, danger zone separate)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const SettingsRow = ({ icon, label, sub, value, last, muted }) => (
+  <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '13px 16px', borderBottom: last ? 'none' : `1px solid ${T.border}` }}>
+    <div style={{ width: 32, height: 32, borderRadius: 10, background: muted ? T.bg3 : T.bg2, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+      <Icon name={icon} size={16} color={muted ? T.text3 : T.text2} />
+    </div>
+    <div style={{ flex: 1 }}>
+      <div style={{ fontSize: 14, color: muted ? T.text3 : T.text, fontWeight: 500 }}>{label}</div>
+      {sub && <div style={{ fontSize: 11, color: T.text3, marginTop: 1, lineHeight: 1.4 }}>{sub}</div>}
+    </div>
+    {value && <span style={{ fontSize: 12, color: T.text3 }}>{value}</span>}
+    {!value && <Icon name="chevRight" size={16} color={muted ? T.border : T.text3} />}
+  </div>
+);
+
+const SettingsScreen = () => (
+  <div style={{ width: '100%', height: '100%', background: T.bg2, display: 'flex', flexDirection: 'column' }}>
+    <div style={{ background: T.bg, padding: '52px 20px 16px', boxShadow: '0 1px 0 #E8E4DD' }}>
+      <div style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: T.text }}>설정</div>
+    </div>
+
+    <div style={{ flex: 1, overflowY: 'auto', padding: '16px 16px', paddingBottom: 88 }}>
+      {/* Trust card */}
+      <div style={{ background: 'linear-gradient(135deg, #E8F5E9, #E4F2F2)', borderRadius: 18, padding: '16px 18px', marginBottom: 20, border: `1px solid ${T.good}22`, display: 'flex', gap: 14, alignItems: 'flex-start' }}>
+        <div style={{ width: 40, height: 40, borderRadius: 20, background: T.good, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+          <Icon name="lock" size={20} color="#fff" />
+        </div>
+        <div>
+          <div style={{ fontSize: 14, fontWeight: 600, color: '#2D6A4F', marginBottom: 4 }}>이 기기에만 저장됩니다</div>
+          <div style={{ fontSize: 12, color: '#52796F', lineHeight: 1.6 }}>계정 없이 사용할 수 있어요. 모든 기록은 이 디바이스에만 보관됩니다.</div>
+        </div>
+      </div>
+
+      {/* Backup — export primary CTA */}
+      <div style={{ marginBottom: 8 }}>
+        <div style={{ fontSize: 11, fontWeight: 600, color: T.text3, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 8, paddingLeft: 4 }}>백업</div>
+        {/* Export — primary style */}
+        <button style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 12, background: T.card, borderRadius: 16, padding: '14px 16px', border: `1.5px solid ${T.accent}33`, cursor: 'pointer', fontFamily: 'inherit', marginBottom: 8 }}>
+          <div style={{ width: 36, height: 36, borderRadius: 10, background: T.accentL, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <Icon name="download" size={18} color={T.accent} />
+          </div>
+          <div style={{ flex: 1, textAlign: 'left' }}>
+            <div style={{ fontSize: 14, fontWeight: 600, color: T.accent }}>백업 파일 내보내기</div>
+            <div style={{ fontSize: 11, color: T.text3, marginTop: 1 }}>모든 기록을 파일로 저장해요</div>
+          </div>
+          <Icon name="chevRight" size={16} color={T.accent} />
+        </button>
+        {/* Import — secondary, muted, coming soon */}
+        <div style={{ background: T.card, borderRadius: 16, overflow: 'hidden', border: `1px solid ${T.border}` }}>
+          <SettingsRow icon="download" label="백업에서 복원하기" sub="준비 중 — 다음 업데이트에서 제공돼요" value="준비 중" last muted />
+        </div>
+      </div>
+
+      {/* App settings */}
+      <div style={{ marginBottom: 8 }}>
+        <div style={{ fontSize: 11, fontWeight: 600, color: T.text3, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 8, paddingLeft: 4 }}>앱 설정</div>
+        <div style={{ background: T.card, borderRadius: 16, overflow: 'hidden', border: `1px solid ${T.border}` }}>
+          <SettingsRow icon="image" label="기본 사진 품질" value="원본" />
+          <SettingsRow icon="calendar" label="한 주 시작 요일" value="일요일" last />
+        </div>
+      </div>
+
+      {/* Info */}
+      <div style={{ marginBottom: 16 }}>
+        <div style={{ fontSize: 11, fontWeight: 600, color: T.text3, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 8, paddingLeft: 4 }}>앱 정보</div>
+        <div style={{ background: T.card, borderRadius: 16, overflow: 'hidden', border: `1px solid ${T.border}` }}>
+          <SettingsRow icon="info" label="버전" value="1.0.0" />
+          <SettingsRow icon="check" label="오픈소스 라이선스" last />
+        </div>
+      </div>
+
+      {/* Danger zone — separated */}
+      <div style={{ marginBottom: 20 }}>
+        <div style={{ fontSize: 11, fontWeight: 600, color: T.danger, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 8, paddingLeft: 4 }}>위험 영역</div>
+        <div style={{ background: T.dangerL, borderRadius: 16, overflow: 'hidden', border: `1px solid ${T.danger}22` }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px' }}>
+            <div style={{ width: 32, height: 32, borderRadius: 10, background: `${T.danger}22`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <Icon name="trash" size={16} color={T.danger} />
+            </div>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: 14, color: T.danger, fontWeight: 600 }}>전체 데이터 삭제</div>
+              <div style={{ fontSize: 11, color: `${T.danger}99`, marginTop: 1 }}>백업 없이 삭제하면 복구할 수 없어요</div>
+            </div>
+            <Icon name="chevRight" size={16} color={T.danger} />
+          </div>
+        </div>
+      </div>
+
+      <div style={{ textAlign: 'center', fontSize: 11, color: T.text3, lineHeight: 1.8 }}>
+        Image Calendar · 개인 기록 앱
+      </div>
+    </div>
+
+    <TabBar active="settings" />
+  </div>
+);
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// Screen 7 — Delete Confirmation: Individual Record
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const DeleteRecordModal = () => (
+  <div style={{ width: '100%', height: '100%', background: T.bg2, display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    {/* Dimmed bg with detail screen behind */}
+    <div style={{ position: 'absolute', inset: 0, background: '#2C282588' }} />
+    {/* Modal sheet */}
+    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: T.card, borderRadius: '24px 24px 0 0', padding: '28px 24px 50px', boxShadow: '0 -8px 40px #00000022' }}>
+      {/* Drag handle */}
+      <div style={{ width: 40, height: 4, borderRadius: 2, background: T.border, margin: '0 auto 22px' }} />
+
+      {/* Thumb preview */}
+      <div style={{ display: 'flex', gap: 14, alignItems: 'center', marginBottom: 20 }}>
+        <ImgPlaceholder w={62} h={62} tone="warm" style={{ borderRadius: 12, flexShrink: 0 }} />
+        <div>
+          <div style={{ fontSize: 13, fontWeight: 600, color: T.text, marginBottom: 3 }}>4월 27일 07:42</div>
+          <div style={{ fontSize: 12, color: T.text2, lineHeight: 1.5 }}>아침 산책 중에 발견한 벚꽃 골목...</div>
+        </div>
+      </div>
+
+      <div style={{ width: '100%', height: 1, background: T.border, marginBottom: 20 }} />
+
+      <div style={{ marginBottom: 24 }}>
+        <div style={{ fontSize: 17, fontWeight: 700, color: T.text, marginBottom: 8 }}>이 기록을 삭제할까요?</div>
+        <p style={{ fontSize: 13, color: T.text2, lineHeight: 1.7 }}>
+          사진과 메모가 이 기기에서 삭제돼요.<br/>
+          삭제 후에는 복구할 수 없어요.
+        </p>
+      </div>
+
+      <div style={{ display: 'flex', gap: 10 }}>
+        <button style={{ flex: 1, height: 50, borderRadius: 14, background: T.bg2, border: 'none', fontSize: 15, fontWeight: 600, color: T.text2, fontFamily: 'inherit', cursor: 'pointer' }}>취소</button>
+        <button style={{ flex: 1, height: 50, borderRadius: 14, background: T.danger, border: 'none', fontSize: 15, fontWeight: 700, color: '#fff', fontFamily: 'inherit', cursor: 'pointer' }}>삭제</button>
+      </div>
+    </div>
+  </div>
+);
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// Screen 8 — Delete Confirmation: All Data
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const DeleteAllModal = () => (
+  <div style={{ width: '100%', height: '100%', background: T.bg2, display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ position: 'absolute', inset: 0, background: '#2C282599' }} />
+    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: T.card, borderRadius: '24px 24px 0 0', padding: '28px 24px 50px', boxShadow: '0 -8px 40px #00000022' }}>
+      <div style={{ width: 40, height: 4, borderRadius: 2, background: T.border, margin: '0 auto 24px' }} />
+
+      {/* Warning icon */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 20 }}>
+        <div style={{ width: 56, height: 56, borderRadius: 28, background: T.dangerL, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14, border: `2px solid ${T.danger}33` }}>
+          <Icon name="warn" size={26} color={T.danger} />
+        </div>
+        <div style={{ fontSize: 19, fontWeight: 700, color: T.text, textAlign: 'center', marginBottom: 10 }}>전체 데이터를 삭제할까요?</div>
+        <p style={{ fontSize: 13, color: T.text2, lineHeight: 1.8, textAlign: 'center' }}>
+          모든 사진과 메모가 이 기기에서<br/>영구적으로 삭제돼요.
+        </p>
+      </div>
+
+      {/* Warning checklist */}
+      <div style={{ background: T.dangerL, borderRadius: 14, padding: '14px 16px', marginBottom: 22, border: `1px solid ${T.danger}22` }}>
+        {[
+          '백업 없이 삭제하면 복구할 수 없어요',
+          '기록된 사진 전체가 삭제돼요',
+          '삭제 전 내보내기를 먼저 권장해요',
+        ].map((t, i) => (
+          <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', marginBottom: i < 2 ? 8 : 0 }}>
+            <div style={{ width: 16, height: 16, borderRadius: 8, background: `${T.danger}22`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>
+              <Icon name="warn" size={9} color={T.danger} />
+            </div>
+            <span style={{ fontSize: 12, color: T.danger, lineHeight: 1.5 }}>{t}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Export nudge */}
+      <button style={{ width: '100%', height: 46, borderRadius: 12, background: T.accentL, border: `1px solid ${T.accent}33`, color: T.accent, fontSize: 13, fontWeight: 600, fontFamily: 'inherit', cursor: 'pointer', marginBottom: 10 }}>
+        먼저 백업 파일 내보내기
+      </button>
+
+      <div style={{ display: 'flex', gap: 10 }}>
+        <button style={{ flex: 1, height: 50, borderRadius: 14, background: T.bg2, border: 'none', fontSize: 15, fontWeight: 600, color: T.text2, fontFamily: 'inherit', cursor: 'pointer' }}>취소</button>
+        <button style={{ flex: 1, height: 50, borderRadius: 14, background: T.danger, border: 'none', fontSize: 15, fontWeight: 700, color: '#fff', fontFamily: 'inherit', cursor: 'pointer', boxShadow: `0 4px 16px ${T.danger}44` }}>전체 삭제</button>
+      </div>
+    </div>
+  </div>
+);
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// App
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const screens = [
+  { id: 'onboarding',    label: '01 온보딩',           component: <OnboardingScreen /> },
+  { id: 'calendar',      label: '02 홈 캘린더',         component: <CalendarScreen /> },
+  { id: 'detail',        label: '03 날짜별 상세',        component: <DetailScreen /> },
+  { id: 'add',           label: '04 기록 추가',          component: <AddScreen /> },
+  { id: 'archive',       label: '05 아카이브',           component: <ArchiveScreen /> },
+  { id: 'settings',      label: '06 설정',              component: <SettingsScreen /> },
+  { id: 'del-record',    label: '07 기록 삭제 확인',     component: <DeleteRecordModal /> },
+  { id: 'del-all',       label: '08 전체 삭제 확인',     component: <DeleteAllModal /> },
+];
+
+const App = () => (
+  <DesignCanvas title="Image Calendar v2 · App Design">
+    <DCSection id="screens" title="핵심 화면 — v2">
+      {screens.map(s => (
+        <DCArtboard key={s.id} id={s.id} label={s.label} width={393} height={852}>
+          <IOSDevice width={393} height={852} statusBarStyle="dark">
+            {s.component}
+          </IOSDevice>
+        </DCArtboard>
+      ))}
+    </DCSection>
+  </DesignCanvas>
+);
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

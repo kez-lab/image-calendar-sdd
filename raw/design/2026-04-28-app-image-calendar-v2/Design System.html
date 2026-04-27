@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Calendar · Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { background:#F3F0EB; font-family:'DM Sans',sans-serif; color:#2C2825; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+const DS = {
+  bg:       '#FAFAF7',
+  bg2:      '#F3F0EB',
+  bg3:      '#EAE6DF',
+  card:     '#FFFFFF',
+  border:   '#E8E4DD',
+  text:     '#2C2825',
+  text2:    '#7A746C',
+  text3:    '#B0A99F',
+  accent:   '#7C6FC4',
+  accentL:  '#EAE7F8',
+  warm:     '#C8815A',
+  warmL:    '#F5EBE4',
+  teal:     '#5A9EA0',
+  tealL:    '#E4F2F2',
+  good:     '#6BAE8C',
+  goodL:    '#E4F2EB',
+  danger:   '#D94F3D',
+  dangerL:  '#FDECEA',
+  disabled: '#D8D3CC',
+  disabledBg:'#F0EDE8',
+};
+
+// ─── Nav Sidebar ────────────────────────────────────────────────
+const sections = [
+  { id: 'colors',     label: '색상 토큰' },
+  { id: 'typography', label: '타이포그래피' },
+  { id: 'spacing',    label: '간격 · 반경' },
+  { id: 'components', label: '컴포넌트' },
+  { id: 'states',     label: '상태' },
+  { id: 'a11y',       label: '접근성' },
+  { id: 'changelog',  label: '변경 요약' },
+];
+
+const Sidebar = ({ active, setActive }) => (
+  <nav style={{ width: 200, flexShrink: 0, position: 'sticky', top: 0, height: '100vh', overflowY: 'auto', background: DS.card, borderRight: `1px solid ${DS.border}`, padding: '32px 0' }}>
+    <div style={{ padding: '0 20px 24px', borderBottom: `1px solid ${DS.border}`, marginBottom: 16 }}>
+      <div style={{ fontFamily: "'DM Serif Display', serif", fontSize: 15, color: DS.text, lineHeight: 1.3 }}>Image Calendar</div>
+      <div style={{ fontSize: 11, color: DS.text3, marginTop: 2 }}>Design System · v2</div>
+    </div>
+    {sections.map(s => (
+      <button key={s.id} onClick={() => setActive(s.id)} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '9px 20px', fontSize: 13, fontWeight: active === s.id ? 600 : 400, color: active === s.id ? DS.accent : DS.text2, background: active === s.id ? DS.accentL : 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', borderLeft: active === s.id ? `3px solid ${DS.accent}` : '3px solid transparent' }}>
+        {s.label}
+      </button>
+    ))}
+  </nav>
+);
+
+// ─── Section wrapper ─────────────────────────────────────────────
+const Section = ({ title, sub, children }) => (
+  <div style={{ marginBottom: 56 }}>
+    <div style={{ marginBottom: 24 }}>
+      <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 26, color: DS.text }}>{title}</h2>
+      {sub && <p style={{ fontSize: 13, color: DS.text2, marginTop: 6, lineHeight: 1.6 }}>{sub}</p>}
+    </div>
+    {children}
+  </div>
+);
+
+const SubSection = ({ title, children }) => (
+  <div style={{ marginBottom: 32 }}>
+    <div style={{ fontSize: 11, fontWeight: 600, color: DS.text3, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 14, paddingBottom: 8, borderBottom: `1px solid ${DS.border}` }}>{title}</div>
+    {children}
+  </div>
+);
+
+const Code = ({ children }) => (
+  <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, background: DS.bg2, padding: '2px 6px', borderRadius: 4, color: DS.warm }}>{children}</span>
+);
+
+// ─── Color Token Row ────────────────────────────────────────────
+const ColorRow = ({ name, hex, usage, role }) => (
+  <div style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '10px 0', borderBottom: `1px solid ${DS.border}` }}>
+    <div style={{ width: 40, height: 40, borderRadius: 10, background: hex, flexShrink: 0, border: `1px solid #00000012` }} />
+    <div style={{ flex: 1 }}>
+      <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
+        <Code>{name}</Code>
+        <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: DS.text3 }}>{hex}</span>
+        {role && <span style={{ fontSize: 10, background: DS.accentL, color: DS.accent, borderRadius: 10, padding: '2px 8px', fontWeight: 600 }}>{role}</span>}
+      </div>
+      <div style={{ fontSize: 12, color: DS.text2, marginTop: 4 }}>{usage}</div>
+    </div>
+  </div>
+);
+
+// ─── Color Palette ────────────────────────────────────────────
+const ColorsSection = () => {
+  const tokens = [
+    { name: '--color-bg',          hex: '#FAFAF7', usage: '기본 화면 배경, 카드 외부 영역', role: 'Background' },
+    { name: '--color-bg2',         hex: '#F3F0EB', usage: '보조 배경, 입력 필드, 비활성 탭 배경' },
+    { name: '--color-bg3',         hex: '#EAE6DF', usage: '강조 구분선, hover state, disabled 배경' },
+    { name: '--color-card',        hex: '#FFFFFF', usage: '카드 컴포넌트, 모달, Bottom Sheet 배경', role: 'Card' },
+    { name: '--color-border',      hex: '#E8E4DD', usage: '구분선, 카드 테두리, 입력 필드 테두리', role: 'Border' },
+    { name: '--color-text',        hex: '#2C2825', usage: '주요 텍스트 — 제목, 강조 본문', role: 'Text Primary' },
+    { name: '--color-text2',       hex: '#7A746C', usage: '보조 텍스트 — 설명, 서브라벨' },
+    { name: '--color-text3',       hex: '#B0A99F', usage: '비활성/힌트 텍스트, placeholder, muted 레이블' },
+    { name: '--color-accent',      hex: '#7C6FC4', usage: '주요 액션 버튼, 탭 활성, 포커스, 선택 상태', role: 'Accent' },
+    { name: '--color-accent-light',hex: '#EAE7F8', usage: '액센트 버튼 배경(약), 선택된 칩 배경, 배지' },
+    { name: '--color-good',        hex: '#6BAE8C', usage: '로컬 저장 배지, 신뢰 카드, 저장 성공 상태', role: 'Local-safe' },
+    { name: '--color-good-light',  hex: '#E4F2EB', usage: '로컬 저장 배지 배경, 신뢰 카드 배경' },
+    { name: '--color-danger',      hex: '#D94F3D', usage: '삭제 버튼, 위험 영역 텍스트, 에러 상태', role: 'Danger' },
+    { name: '--color-danger-light',hex: '#FDECEA', usage: '위험 영역 배경, 삭제 확인 모달 배경' },
+    { name: '--color-disabled',    hex: '#D8D3CC', usage: '비활성 버튼 텍스트, 비활성 아이콘' },
+    { name: '--color-disabled-bg', hex: '#F0EDE8', usage: '비활성 버튼 배경' },
+    { name: '--color-warm',        hex: '#C8815A', usage: '캘린더 날짜 마커 점, 사진 기록 accent warm', role: 'Warm' },
+    { name: '--color-warm-light',  hex: '#F5EBE4', usage: '감사 감정 칩 배경' },
+    { name: '--color-teal',        hex: '#5A9EA0', usage: '평온 감정 칩 텍스트' },
+    { name: '--color-teal-light',  hex: '#E4F2F2', usage: '평온 감정 칩 배경' },
+  ];
+  return (
+    <Section title="색상 토큰" sub="모든 토큰은 CSS 커스텀 프로퍼티로 관리하며, 라이트 모드 단일 팔레트로 운영합니다.">
+      <SubSection title="전체 팔레트">
+        {tokens.map(t => <ColorRow key={t.name} {...t} />)}
+      </SubSection>
+      <SubSection title="사용 예시 코드">
+        <div style={{ background: DS.bg2, borderRadius: 12, padding: 16, fontFamily: "'DM Mono', monospace", fontSize: 12, color: DS.text2, lineHeight: 2 }}>
+          <span style={{ color: DS.text3 }}>/* 주요 버튼 */</span><br/>
+          background: <span style={{ color: DS.accent }}>var(--color-accent)</span>;<br/>
+          color: <span style={{ color: DS.accent }}>#ffffff</span>;<br/><br/>
+          <span style={{ color: DS.text3 }}>/* 로컬 저장 배지 */</span><br/>
+          background: <span style={{ color: DS.good }}>var(--color-good-light)</span>;<br/>
+          color: <span style={{ color: DS.good }}>var(--color-good)</span>;<br/><br/>
+          <span style={{ color: DS.text3 }}>/* 위험 버튼 */</span><br/>
+          background: <span style={{ color: DS.danger }}>var(--color-danger)</span>;<br/>
+          color: <span style={{ color: DS.danger }}>#ffffff</span>;
+        </div>
+      </SubSection>
+    </Section>
+  );
+};
+
+// ─── Typography ──────────────────────────────────────────────────
+const TypographySection = () => {
+  const scale = [
+    { name: 'Display', font: 'DM Serif Display', size: 28, weight: 400, lh: 1.25, usage: '온보딩 헤드라인', italic: true },
+    { name: 'Title L',  font: 'DM Serif Display', size: 22, weight: 400, lh: 1.3, usage: '월 제목, 섹션 헤더' },
+    { name: 'Title M',  font: 'DM Serif Display', size: 18, weight: 400, lh: 1.35, usage: '날짜 헤더' },
+    { name: 'Body L',   font: 'DM Sans', size: 16, weight: 400, lh: 1.6, usage: '버튼 레이블, 입력 값' },
+    { name: 'Body M',   font: 'DM Sans', size: 14, weight: 400, lh: 1.65, usage: '카드 본문, 설정 항목, 메모' },
+    { name: 'Body S',   font: 'DM Sans', size: 13, weight: 400, lh: 1.7, usage: '보조 설명, 감정 칩' },
+    { name: 'Label',    font: 'DM Sans', size: 12, weight: 600, lh: 1.4, usage: '섹션 레이블 (uppercase)', mono: false },
+    { name: 'Caption',  font: 'DM Sans', size: 11, weight: 400, lh: 1.5, usage: '타임스탬프, 메타, 카운트' },
+    { name: 'Micro',    font: 'DM Sans', size: 10, weight: 500, lh: 1.4, usage: '탭 바 레이블, 배지 텍스트' },
+    { name: 'Mono',     font: 'DM Mono', size: 11, weight: 400, lh: 1.6, usage: '색상 값, 코드, 토큰 표시' },
+  ];
+
+  return (
+    <Section title="타이포그래피" sub="제목계는 DM Serif Display, 본문계는 DM Sans, 토큰/코드는 DM Mono를 사용합니다.">
+      <SubSection title="타입 스케일">
+        <div style={{ background: DS.card, borderRadius: 16, border: `1px solid ${DS.border}`, overflow: 'hidden' }}>
+          {scale.map((s, i) => (
+            <div key={s.name} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 20px', borderBottom: i < scale.length - 1 ? `1px solid ${DS.border}` : 'none' }}>
+              <div style={{ width: 76, flexShrink: 0 }}>
+                <Code>{s.name}</Code>
+              </div>
+              <div style={{ flex: 1, fontFamily: `'${s.font}', ${s.font === 'DM Mono' ? 'monospace' : 'sans-serif'}`, fontSize: s.size, fontWeight: s.weight, lineHeight: s.lh, color: DS.text, fontStyle: s.italic ? 'italic' : 'normal' }}>
+                가나다 ABC 123
+              </div>
+              <div style={{ width: 200, flexShrink: 0 }}>
+                <div style={{ fontSize: 11, color: DS.text3, fontFamily: "'DM Mono', monospace" }}>{s.size}px · {s.weight} · lh {s.lh}</div>
+                <div style={{ fontSize: 11, color: DS.text2, marginTop: 2 }}>{s.usage}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </SubSection>
+
+      <SubSection title="Android 대체 폰트">
+        <div style={{ background: DS.bg2, borderRadius: 12, padding: '14px 18px', fontSize: 13, color: DS.text2, lineHeight: 1.8 }}>
+          <div style={{ fontWeight: 600, color: DS.text, marginBottom: 6 }}>권장 방식</div>
+          DM Serif Display → <Code>Noto Serif KR</Code> (weight 400) — 한글 세리프 계열<br/>
+          DM Sans → <Code>Pretendard</Code> 또는 <Code>Noto Sans KR</Code> — 모든 weight 지원<br/>
+          DM Mono → <Code>JetBrains Mono</Code> 또는 <Code>Noto Sans Mono</Code><br/>
+          <div style={{ marginTop: 10, fontSize: 12, color: DS.text3 }}>Android에서는 Google Fonts 동적 로딩 또는 앱 번들 내 폰트 임베드를 권장합니다.</div>
+        </div>
+      </SubSection>
+    </Section>
+  );
+};
+
+// ─── Spacing & Radius ────────────────────────────────────────────
+const SpacingSection = () => {
+  const spacingScale = [
+    { token: '--sp-1', px: 4,  usage: '아이콘 내부 gap, 마이크로 간격' },
+    { token: '--sp-2', px: 8,  usage: '칩 내부 패딩, 아이콘↔텍스트 gap' },
+    { token: '--sp-3', px: 12, usage: '카드 내부 패딩 (소형), 섹션 gap' },
+    { token: '--sp-4', px: 16, usage: '카드 패딩, 설정 row 패딩 (수평)' },
+    { token: '--sp-5', px: 20, usage: '화면 수평 패딩 (기본)', role: '기준' },
+    { token: '--sp-6', px: 24, usage: '모달 패딩, 큰 섹션 간격' },
+    { token: '--sp-7', px: 28, usage: 'CTA 영역 수평 패딩' },
+    { token: '--sp-8', px: 32, usage: '온보딩 여백, 대형 섹션 분리' },
+  ];
+  const radii = [
+    { token: '--r-chip',   px: 20, usage: '감정 칩, 필터 버튼, 배지' },
+    { token: '--r-btn',    px: 16, usage: '주요 CTA 버튼' },
+    { token: '--r-btn-sm', px: 20, usage: '소형 버튼 (pill 형태)' },
+    { token: '--r-card',   px: 16, usage: '일반 카드, 설정 그룹' },
+    { token: '--r-card-lg',px: 18, usage: '기록 카드 (사진 포함)' },
+    { token: '--r-img',    px: 12, usage: '아카이브 썸네일, 미리보기 이미지' },
+    { token: '--r-img-sm', px: 8,  usage: '캘린더 날짜 셀 내 이미지' },
+    { token: '--r-modal',  px: 24, usage: 'Bottom Sheet, 삭제 모달 (top only)' },
+    { token: '--r-input',  px: 12, usage: '텍스트 입력 필드' },
+    { token: '--r-icon',   px: 10, usage: '설정 row 아이콘 컨테이너' },
+  ];
+  return (
+    <Section title="간격 · 반경" sub="8pt 기반 간격 시스템. 화면 수평 패딩은 20px(--sp-5)를 기본으로 합니다.">
+      <SubSection title="Spacing Scale">
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+          {spacingScale.map(s => (
+            <div key={s.token} style={{ background: DS.card, border: `1px solid ${DS.border}`, borderRadius: 12, padding: '12px 16px', minWidth: 160 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                <div style={{ height: 6, background: s.role ? DS.accent : DS.warm, borderRadius: 3, width: s.px * 2 }} />
+              </div>
+              <Code>{s.token}</Code>
+              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: DS.text, marginTop: 4, fontWeight: 600 }}>{s.px}px</div>
+              <div style={{ fontSize: 11, color: DS.text3, marginTop: 4, lineHeight: 1.4 }}>{s.usage}</div>
+            </div>
+          ))}
+        </div>
+      </SubSection>
+      <SubSection title="Border Radius Scale">
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+          {radii.map(r => (
+            <div key={r.token} style={{ background: DS.card, border: `1px solid ${DS.border}`, borderRadius: 12, padding: '12px 16px', minWidth: 160 }}>
+              <div style={{ width: 40, height: 40, background: DS.accentL, borderRadius: Math.min(r.px, 20), marginBottom: 8 }} />
+              <Code>{r.token}</Code>
+              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: DS.text, marginTop: 4, fontWeight: 600 }}>{r.px}px</div>
+              <div style={{ fontSize: 11, color: DS.text3, marginTop: 4, lineHeight: 1.4 }}>{r.usage}</div>
+            </div>
+          ))}
+        </div>
+      </SubSection>
+    </Section>
+  );
+};
+
+// ─── Components ──────────────────────────────────────────────────
+const Chip = ({ label }) => (
+  <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, background: DS.goodL, border: `1px solid ${DS.good}33`, borderRadius: 20, padding: '4px 10px' }}>
+    <span style={{ fontSize: 10, color: DS.good, fontWeight: 500 }}>🔒 {label}</span>
+  </div>
+);
+
+const ComponentsSection = () => {
+  // Emotion chip states
+  const emotionStates = [
+    { label: '😊 행복', state: 'default', bg: DS.bg2, color: DS.text2, border: 'transparent' },
+    { label: '😊 행복', state: 'selected', bg: DS.accentL, color: DS.accent, border: DS.accent },
+    { label: '😊 행복', state: 'disabled', bg: DS.bg3, color: DS.disabled, border: 'transparent' },
+  ];
+
+  // Date marker types
+  const markerTypes = [
+    { label: '기록 없음', node: <div style={{ width: 44, height: 50, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderRadius: 12 }}><span style={{ fontSize: 14, color: DS.text }}>14</span></div> },
+    { label: '기록 1개', node: <div style={{ width: 44, height: 50, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderRadius: 12, gap: 4 }}><span style={{ fontSize: 14, color: DS.text, fontWeight: 500 }}>15</span><div style={{ display: 'flex', gap: 2 }}><div style={{ width: 4, height: 4, borderRadius: 2, background: DS.warm }} /></div></div> },
+    { label: '기록 3개', node: <div style={{ width: 44, height: 50, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderRadius: 12, gap: 4 }}><span style={{ fontSize: 14, color: DS.text, fontWeight: 500 }}>16</span><div style={{ display: 'flex', gap: 2 }}>{[0,1,2].map(i => <div key={i} style={{ width: 4, height: 4, borderRadius: 2, background: DS.warm }} />)}</div></div> },
+    { label: '오늘 (기록 있음)', node: <div style={{ width: 44, height: 50, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderRadius: 12, gap: 4, background: DS.accentL }}><span style={{ fontSize: 14, color: DS.accent, fontWeight: 700 }}>27</span><div style={{ display: 'flex', gap: 2 }}>{[0,1,2].map(i => <div key={i} style={{ width: 4, height: 4, borderRadius: 2, background: DS.accent }} />)}</div></div> },
+    { label: '오늘 (기록 없음)', node: <div style={{ width: 44, height: 50, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderRadius: 12, gap: 4, background: DS.accentL }}><span style={{ fontSize: 14, color: DS.accent, fontWeight: 700 }}>28</span><div style={{ width: 4, height: 4, borderRadius: 2, background: DS.accentL }} /></div> },
+  ];
+
+  const ComponentCard = ({ title, desc, children, rule }) => (
+    <div style={{ background: DS.card, border: `1px solid ${DS.border}`, borderRadius: 16, overflow: 'hidden', marginBottom: 16 }}>
+      <div style={{ padding: '14px 18px', borderBottom: `1px solid ${DS.border}`, display: 'flex', alignItems: 'baseline', gap: 10 }}>
+        <span style={{ fontSize: 13, fontWeight: 600, color: DS.text }}>{title}</span>
+        {desc && <span style={{ fontSize: 11, color: DS.text3 }}>{desc}</span>}
+      </div>
+      <div style={{ padding: '18px 18px' }}>
+        {children}
+        {rule && <div style={{ marginTop: 14, paddingTop: 12, borderTop: `1px solid ${DS.border}`, fontSize: 12, color: DS.text2, lineHeight: 1.6 }}><span style={{ fontWeight: 600 }}>규칙: </span>{rule}</div>}
+      </div>
+    </div>
+  );
+
+  return (
+    <Section title="컴포넌트" sub="각 컴포넌트의 상태 및 사용 규칙을 정리합니다.">
+
+      {/* Buttons */}
+      <SubSection title="버튼">
+        <ComponentCard title="Primary Button" desc="주요 CTA" rule="높이 52px, borderRadius --r-btn(16px), 최소 터치 영역 44px. 텍스트는 16px/600.">
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+            <button style={{ height: 52, padding: '0 28px', borderRadius: 16, background: DS.accent, border: 'none', color: '#fff', fontSize: 16, fontWeight: 600, fontFamily: 'inherit', boxShadow: `0 6px 20px ${DS.accent}44`, cursor: 'pointer' }}>첫 기록 만들기</button>
+            <button style={{ height: 52, padding: '0 28px', borderRadius: 16, background: DS.disabledBg, border: 'none', color: DS.disabled, fontSize: 16, fontWeight: 600, fontFamily: 'inherit', cursor: 'not-allowed' }}>비활성 상태</button>
+          </div>
+        </ComponentCard>
+        <ComponentCard title="Secondary / Text Button" desc="보조 액션" rule="배경 없음. 색상은 --color-text3. 최소 터치 영역 44px 확보 (padding으로).">
+          <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', alignItems: 'center' }}>
+            <button style={{ background: 'none', border: 'none', fontSize: 13, color: DS.text3, fontFamily: 'inherit', cursor: 'pointer', padding: '10px 0' }}>건너뛰고 캘린더 보기</button>
+            <button style={{ background: 'none', border: 'none', fontSize: 13, color: DS.accent, fontFamily: 'inherit', cursor: 'pointer', padding: '10px 0' }}>모두 보기 →</button>
+          </div>
+        </ComponentCard>
+        <ComponentCard title="Pill Button (소형)" desc="인라인 액션" rule="높이 34px, borderRadius 20px(pill). 추가/저장 등 헤더 내 버튼에 사용.">
+          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
+            <button style={{ display: 'flex', alignItems: 'center', gap: 5, background: DS.accent, border: 'none', borderRadius: 20, padding: '7px 14px', color: '#fff', fontSize: 12, fontWeight: 600, fontFamily: 'inherit', cursor: 'pointer' }}>+ 추가</button>
+            <button style={{ background: DS.accent, border: 'none', borderRadius: 20, padding: '7px 18px', color: '#fff', fontSize: 13, fontWeight: 600, fontFamily: 'inherit', cursor: 'pointer' }}>저장</button>
+          </div>
+        </ComponentCard>
+        <ComponentCard title="Danger Button" desc="파괴적 액션" rule="배경 --color-danger. 삭제 확인 모달의 최종 확인 버튼에만 사용. 높이 50px.">
+          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
+            <button style={{ height: 50, padding: '0 28px', borderRadius: 14, background: DS.danger, border: 'none', color: '#fff', fontSize: 15, fontWeight: 700, fontFamily: 'inherit', cursor: 'pointer', boxShadow: `0 4px 16px ${DS.danger}44` }}>전체 삭제</button>
+            <button style={{ height: 50, padding: '0 28px', borderRadius: 14, background: DS.bg2, border: 'none', color: DS.text2, fontSize: 15, fontWeight: 600, fontFamily: 'inherit', cursor: 'pointer' }}>취소</button>
+          </div>
+        </ComponentCard>
+        <ComponentCard title="Backup Export Button" desc="백업 우선 CTA" rule="설정 내 최상위 CTA. accent 컬러 테두리 + 아이콘 + 설명 포함. 일반 설정 row보다 시각적 위계 높게.">
+          <button style={{ width: '100%', maxWidth: 360, display: 'flex', alignItems: 'center', gap: 12, background: DS.card, borderRadius: 16, padding: '14px 16px', border: `1.5px solid ${DS.accent}33`, cursor: 'pointer', fontFamily: 'inherit' }}>
+            <div style={{ width: 36, height: 36, borderRadius: 10, background: DS.accentL, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span style={{ fontSize: 16 }}>↓</span>
+            </div>
+            <div style={{ flex: 1, textAlign: 'left' }}>
+              <div style={{ fontSize: 14, fontWeight: 600, color: DS.accent }}>백업 파일 내보내기</div>
+              <div style={{ fontSize: 11, color: DS.text3, marginTop: 1 }}>모든 기록을 파일로 저장해요</div>
+            </div>
+            <span style={{ fontSize: 16, color: DS.accent }}>›</span>
+          </button>
+        </ComponentCard>
+      </SubSection>
+
+      {/* Floating Add */}
+      <SubSection title="Floating Add Button (탭 바 중앙)">
+        <ComponentCard title="FAB" rule="탭 바 중앙 고정. 지름 46px, borderRadius 23px. 탭 바보다 20px 위로 떠 있음(margin-top -20px). shadow: 0 4px 14px accent55.">
+          <div style={{ background: DS.bg2, borderRadius: 16, height: 80, display: 'flex', justifyContent: 'center', alignItems: 'flex-end', paddingBottom: 10 }}>
+            <div style={{ width: 46, height: 46, borderRadius: 23, background: DS.accent, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 4px 14px ${DS.accent}55` }}>
+              <span style={{ color: '#fff', fontSize: 22, lineHeight: 1 }}>+</span>
+            </div>
+          </div>
+        </ComponentCard>
+      </SubSection>
+
+      {/* Calendar markers */}
+      <SubSection title="Calendar Date Marker">
+        <ComponentCard title="날짜 마커 유형" desc="날짜 숫자 가독성 우선" rule="썸네일은 Day Detail · Archive 전용. 캘린더 셀에서는 dot(4×4px, --color-warm 또는 --color-accent) 최대 3개로 표현. 오늘은 --color-accent-light 배경 + 굵은 숫자.">
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            {markerTypes.map((m, i) => (
+              <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+                {m.node}
+                <span style={{ fontSize: 10, color: DS.text3, textAlign: 'center', maxWidth: 60 }}>{m.label}</span>
+              </div>
+            ))}
+          </div>
+        </ComponentCard>
+      </SubSection>
+
+      {/* Local Storage badge / trust card */}
+      <SubSection title="로컬 저장 컴포넌트">
+        <ComponentCard title="Local Storage Badge" rule="온보딩, 캘린더 헤더, 기록 추가 화면에 배치. 텍스트는 항상 '내 폰에만 저장됨'. 작은 자물쇠 아이콘 포함.">
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+            <Chip label="내 폰에만 저장됨" />
+          </div>
+        </ComponentCard>
+        <ComponentCard title="Local Storage Trust Card" rule="설정 화면 최상단. 그라데이션 배경(goodL→tealL), 자물쇠 아이콘 40px, 제목 14px/600 + 설명 12px. '이 기기에만 저장됩니다 · 계정 없이 사용할 수 있어요' 문구 사용.">
+          <div style={{ background: 'linear-gradient(135deg, #E8F5E9, #E4F2F2)', borderRadius: 16, padding: '14px 16px', display: 'flex', gap: 12, alignItems: 'flex-start', maxWidth: 360, border: `1px solid ${DS.good}22` }}>
+            <div style={{ width: 38, height: 38, borderRadius: 19, background: DS.good, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <span style={{ color: '#fff', fontSize: 16 }}>🔒</span>
+            </div>
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: '#2D6A4F', marginBottom: 3 }}>이 기기에만 저장됩니다</div>
+              <div style={{ fontSize: 11, color: '#52796F', lineHeight: 1.6 }}>계정 없이 사용할 수 있어요. 모든 기록은 이 디바이스에만 보관됩니다.</div>
+            </div>
+          </div>
+        </ComponentCard>
+      </SubSection>
+
+      {/* Emotion chips */}
+      <SubSection title="감정 태그 칩">
+        <ComponentCard title="Emotion Chip" desc="default / selected / disabled" rule="기록 추가에서 기본 선택 없음(v2). 탭하면 토글 선택. 비활성: background --color-bg3, color --color-disabled. 선택: accentL 배경 + 1.5px solid accent outline.">
+          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center', marginBottom: 10 }}>
+            {emotionStates.map((e, i) => (
+              <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+                <button style={{ padding: '8px 14px', borderRadius: 20, fontSize: 13, background: e.bg, color: e.color, border: e.border !== 'transparent' ? `1.5px solid ${e.border}` : '1.5px solid transparent', fontWeight: e.state === 'selected' ? 600 : 400, fontFamily: 'inherit', cursor: e.state === 'disabled' ? 'not-allowed' : 'pointer' }}>{e.label}</button>
+                <span style={{ fontSize: 10, color: DS.text3 }}>{e.state}</span>
+              </div>
+            ))}
+          </div>
+          <div style={{ fontSize: 12, color: DS.text2, background: DS.bg2, borderRadius: 8, padding: '8px 12px' }}>
+            선택하지 않아도 기록이 저장돼요. <span style={{ color: DS.text3 }}>(선택 안 함 상태 = 기본)</span>
+          </div>
+        </ComponentCard>
+      </SubSection>
+
+      {/* Image Record Card */}
+      <SubSection title="기록 카드 (Image Record Card)">
+        <ComponentCard title="Record Card" rule="사진 상단 full-width (height 180px), padding 12px 14px. time 11px/text3, 메모 13px/text, 감정칩 선택적. 삭제 아이콘 색상 --color-danger.">
+          <div style={{ background: DS.card, borderRadius: 18, overflow: 'hidden', border: `1px solid ${DS.border}`, maxWidth: 320 }}>
+            <div style={{ height: 100, background: '#E8D5C8', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#A08070', fontSize: 11, fontFamily: 'monospace' }}>photo placeholder</div>
+            <div style={{ padding: '10px 14px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+                <span style={{ fontSize: 11, color: DS.text3 }}>07:42</span>
+                <div style={{ display: 'flex', gap: 10 }}>
+                  <span style={{ fontSize: 11, color: DS.text3 }}>✎</span>
+                  <span style={{ fontSize: 11, color: DS.danger }}>🗑</span>
+                </div>
+              </div>
+              <p style={{ fontSize: 12, color: DS.text, lineHeight: 1.5, marginBottom: 8 }}>아침 산책 중에 발견한 벚꽃 골목.</p>
+              <span style={{ display: 'inline-flex', padding: '3px 10px', borderRadius: 20, fontSize: 11, background: DS.tealL, color: DS.teal, border: `1px solid ${DS.teal}33`, fontWeight: 500 }}>😌 평온</span>
+            </div>
+          </div>
+        </ComponentCard>
+      </SubSection>
+
+      {/* Search Bar + Archive */}
+      <SubSection title="검색 바 · 아카이브 월 그룹">
+        <ComponentCard title="Search Bar" rule="background --color-bg2, borderRadius --r-input(12px), 높이 44px. 아이콘 왼쪽 고정, placeholder --color-text3.">
+          <div style={{ background: DS.bg2, borderRadius: 12, display: 'flex', alignItems: 'center', gap: 8, padding: '10px 14px', border: `1px solid ${DS.border}`, maxWidth: 320 }}>
+            <span style={{ color: DS.text3, fontSize: 14 }}>🔍</span>
+            <span style={{ fontSize: 14, color: DS.text3 }}>메모, 날짜로 검색하기</span>
+          </div>
+        </ComponentCard>
+        <ComponentCard title="Archive Month Group" rule="month label: DM Serif Display 16px + 기록 수 11px/text3. 3열 그리드, gap 6px, 이미지 borderRadius --r-img(12px).">
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+              <span style={{ fontFamily: "'DM Serif Display', serif", fontSize: 15, color: DS.text }}>2026년 4월</span>
+              <span style={{ fontSize: 11, color: DS.text3 }}>10개의 기록</span>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 4, maxWidth: 280 }}>
+              {['#E8D5C8','#C8D5E8','#C8D8C8','#E8D0C0','#D5C8E8','#E8D5C8'].map((bg, i) => (
+                <div key={i} style={{ height: 56, background: bg, borderRadius: 8 }} />
+              ))}
+            </div>
+          </div>
+        </ComponentCard>
+      </SubSection>
+
+      {/* Empty state */}
+      <SubSection title="Empty State">
+        <ComponentCard title="날짜 기록 없음" rule="일러스트 플레이스홀더 + 짧은 설명 + 보조 CTA. 기록 없음 상태에서 '첫 기록 추가' 버튼 표시.">
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px 0', gap: 10 }}>
+            <div style={{ width: 60, height: 60, borderRadius: 16, background: DS.bg2, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24 }}>📷</div>
+            <span style={{ fontSize: 13, color: DS.text2, fontWeight: 500 }}>아직 기록이 없어요</span>
+            <span style={{ fontSize: 12, color: DS.text3 }}>사진 한 장으로 오늘을 남겨보세요</span>
+            <button style={{ marginTop: 4, padding: '8px 18px', borderRadius: 20, background: DS.accentL, border: 'none', color: DS.accent, fontSize: 13, fontWeight: 600, fontFamily: 'inherit', cursor: 'pointer' }}>첫 기록 추가</button>
+          </div>
+        </ComponentCard>
+      </SubSection>
+
+      {/* Settings Row */}
+      <SubSection title="설정 Row · Delete Confirmation Modal">
+        <ComponentCard title="Settings Row" rule="height 최소 50px. 32×32 아이콘 컨테이너(r-icon 10px) + label 14px/500 + sub 11px/text3 + 오른쪽 값/chevron. 마지막 row는 borderBottom 없음.">
+          <div style={{ background: DS.card, borderRadius: 14, border: `1px solid ${DS.border}`, overflow: 'hidden', maxWidth: 340 }}>
+            {[
+              { icon: '↓', label: '백업 파일 내보내기', sub: '모든 기록을 파일로 저장해요' },
+              { icon: '📅', label: '한 주 시작 요일', value: '일요일' },
+              { icon: 'ℹ', label: '버전', value: '1.0.0', last: true },
+            ].map((r, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', borderBottom: r.last ? 'none' : `1px solid ${DS.border}` }}>
+                <div style={{ width: 30, height: 30, borderRadius: 8, background: DS.bg2, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: 14 }}>{r.icon}</div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 13, color: DS.text, fontWeight: 500 }}>{r.label}</div>
+                  {r.sub && <div style={{ fontSize: 11, color: DS.text3 }}>{r.sub}</div>}
+                </div>
+                {r.value && <span style={{ fontSize: 12, color: DS.text3 }}>{r.value}</span>}
+                {!r.value && <span style={{ color: DS.text3 }}>›</span>}
+              </div>
+            ))}
+          </div>
+        </ComponentCard>
+        <ComponentCard title="Delete Confirmation Modal" desc="개별 기록 삭제" rule="Bottom Sheet, borderRadius 24px top. drag handle 4×40px. 확인 전 썸네일/내용 미리보기. 취소(bg2) + 삭제(danger) 버튼. 높이 50px, gap 10px.">
+          <div style={{ background: DS.card, borderRadius: '18px 18px 0 0', border: `1px solid ${DS.border}`, padding: '18px 18px 18px', maxWidth: 340 }}>
+            <div style={{ width: 36, height: 4, borderRadius: 2, background: DS.border, margin: '0 auto 16px' }} />
+            <div style={{ fontSize: 15, fontWeight: 700, color: DS.text, marginBottom: 6 }}>이 기록을 삭제할까요?</div>
+            <p style={{ fontSize: 12, color: DS.text2, lineHeight: 1.6, marginBottom: 14 }}>사진과 메모가 이 기기에서 삭제돼요.<br/>삭제 후에는 복구할 수 없어요.</p>
+            <div style={{ display: 'flex', gap: 8 }}>
+              <button style={{ flex: 1, height: 44, borderRadius: 12, background: DS.bg2, border: 'none', fontSize: 14, fontWeight: 600, color: DS.text2, fontFamily: 'inherit', cursor: 'pointer' }}>취소</button>
+              <button style={{ flex: 1, height: 44, borderRadius: 12, background: DS.danger, border: 'none', fontSize: 14, fontWeight: 700, color: '#fff', fontFamily: 'inherit', cursor: 'pointer' }}>삭제</button>
+            </div>
+          </div>
+        </ComponentCard>
+        <ComponentCard title="Delete All Confirmation Modal" rule="위험 아이콘 56px + 경고 checklist (dangerL 배경). '먼저 백업 파일 내보내기' 보조 CTA 필수 포함. 최종 '전체 삭제' 버튼 danger shadow.">
+          <div style={{ background: DS.card, border: `1px solid ${DS.border}`, borderRadius: 16, padding: 16, maxWidth: 340 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 14 }}>
+              <div style={{ width: 48, height: 48, borderRadius: 24, background: DS.dangerL, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, marginBottom: 10 }}>⚠️</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: DS.text, textAlign: 'center', marginBottom: 6 }}>전체 데이터를 삭제할까요?</div>
+            </div>
+            <div style={{ background: DS.dangerL, borderRadius: 10, padding: '10px 12px', marginBottom: 12, border: `1px solid ${DS.danger}22` }}>
+              {['백업 없이 삭제하면 복구할 수 없어요', '삭제 전 내보내기를 먼저 권장해요'].map((t, i) => (
+                <div key={i} style={{ fontSize: 11, color: DS.danger, marginBottom: i === 0 ? 4 : 0 }}>• {t}</div>
+              ))}
+            </div>
+            <button style={{ width: '100%', height: 40, borderRadius: 10, background: DS.accentL, border: 'none', color: DS.accent, fontSize: 12, fontWeight: 600, fontFamily: 'inherit', cursor: 'pointer', marginBottom: 8 }}>먼저 백업 파일 내보내기</button>
+            <div style={{ display: 'flex', gap: 8 }}>
+              <button style={{ flex: 1, height: 44, borderRadius: 12, background: DS.bg2, border: 'none', fontSize: 14, fontWeight: 600, color: DS.text2, fontFamily: 'inherit', cursor: 'pointer' }}>취소</button>
+              <button style={{ flex: 1, height: 44, borderRadius: 12, background: DS.danger, border: 'none', fontSize: 14, fontWeight: 700, color: '#fff', fontFamily: 'inherit', cursor: 'pointer' }}>전체 삭제</button>
+            </div>
+          </div>
+        </ComponentCard>
+      </SubSection>
+    </Section>
+  );
+};
+
+// ─── States ──────────────────────────────────────────────────────
+const StatesSection = () => {
+  const states = [
+    { name: 'Empty', desc: '기록 없음', bg: DS.bg2, icon: '📷', text: '아직 기록이 없어요', color: DS.text2 },
+    { name: 'Loading', desc: '불러오는 중', bg: DS.bg2, icon: '⏳', text: '기록을 불러오는 중...', color: DS.text3 },
+    { name: 'Error', desc: '오류', bg: DS.dangerL, icon: '⚠️', text: '문제가 발생했어요', color: DS.danger },
+    { name: 'Success / Saved', desc: '저장 완료', bg: DS.goodL, icon: '✓', text: '기록이 저장됐어요', color: DS.good },
+  ];
+  return (
+    <Section title="상태" sub="주요 UI 상태 목록 및 시각적 표현 기준.">
+      <SubSection title="상태 토큰">
+        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+          {states.map(s => (
+            <div key={s.name} style={{ background: s.bg, borderRadius: 14, padding: '16px 20px', minWidth: 150, border: `1px solid ${DS.border}` }}>
+              <div style={{ fontSize: 24, marginBottom: 8 }}>{s.icon}</div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: s.color, marginBottom: 4 }}>{s.name}</div>
+              <div style={{ fontSize: 11, color: DS.text2 }}>{s.desc}</div>
+              <div style={{ fontSize: 11, color: s.color, marginTop: 6, fontStyle: 'italic' }}>"{s.text}"</div>
+            </div>
+          ))}
+        </div>
+      </SubSection>
+      <SubSection title="버튼 상태">
+        <div style={{ background: DS.card, borderRadius: 14, border: `1px solid ${DS.border}`, padding: '16px 20px', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'center' }}>
+            <button style={{ height: 44, padding: '0 18px', borderRadius: 14, background: DS.accent, border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, fontFamily: 'inherit' }}>기본</button>
+            <span style={{ fontSize: 10, color: DS.text3 }}>default</span>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'center' }}>
+            <button style={{ height: 44, padding: '0 18px', borderRadius: 14, background: '#6960AA', border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, fontFamily: 'inherit' }}>눌림</button>
+            <span style={{ fontSize: 10, color: DS.text3 }}>pressed</span>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'center' }}>
+            <button style={{ height: 44, padding: '0 18px', borderRadius: 14, background: DS.disabledBg, border: 'none', color: DS.disabled, fontSize: 14, fontWeight: 600, fontFamily: 'inherit', cursor: 'not-allowed' }}>비활성</button>
+            <span style={{ fontSize: 10, color: DS.text3 }}>disabled</span>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'center' }}>
+            <button style={{ height: 44, padding: '0 18px', borderRadius: 14, background: DS.danger, border: 'none', color: '#fff', fontSize: 14, fontWeight: 700, fontFamily: 'inherit' }}>위험</button>
+            <span style={{ fontSize: 10, color: DS.text3 }}>danger</span>
+          </div>
+        </div>
+      </SubSection>
+    </Section>
+  );
+};
+
+// ─── Accessibility ───────────────────────────────────────────────
+const A11ySection = () => {
+  const contrastChecks = [
+    { pair: 'text(#2C2825) on bg(#FAFAF7)',  ratio: '13.6:1', aa: true, aaa: true },
+    { pair: 'text2(#7A746C) on card(#FFF)',   ratio: '4.7:1',  aa: true, aaa: false },
+    { pair: 'text3(#B0A99F) on bg(#FAFAF7)', ratio: '2.5:1',  aa: false, note: '힌트/플레이스홀더 전용' },
+    { pair: 'accent(#7C6FC4) on white',       ratio: '4.6:1',  aa: true, aaa: false },
+    { pair: 'white on accent(#7C6FC4)',        ratio: '4.6:1',  aa: true, aaa: false },
+    { pair: 'danger(#D94F3D) on white',        ratio: '4.5:1',  aa: true, aaa: false },
+    { pair: 'white on danger(#D94F3D)',         ratio: '4.5:1',  aa: true, aaa: false },
+    { pair: 'good(#6BAE8C) on goodL(#E4F2EB)', ratio: '3.1:1', aa: false, note: '배지 내 소형 텍스트 — 아이콘 보조 사용' },
+  ];
+  return (
+    <Section title="접근성" sub="WCAG 2.1 AA 기준 준수 여부 및 터치 영역 규칙.">
+      <SubSection title="텍스트 대비 체크">
+        <div style={{ background: DS.card, border: `1px solid ${DS.border}`, borderRadius: 14, overflow: 'hidden' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 80px 60px 60px', padding: '8px 16px', background: DS.bg2, fontSize: 11, fontWeight: 600, color: DS.text3, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+            <span>조합</span><span style={{ textAlign: 'center' }}>비율</span><span style={{ textAlign: 'center' }}>AA</span><span style={{ textAlign: 'center' }}>AAA</span>
+          </div>
+          {contrastChecks.map((c, i) => (
+            <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 80px 60px 60px', padding: '10px 16px', borderTop: `1px solid ${DS.border}`, alignItems: 'center' }}>
+              <div>
+                <span style={{ fontSize: 12, color: DS.text }}>{c.pair}</span>
+                {c.note && <div style={{ fontSize: 10, color: DS.text3 }}>{c.note}</div>}
+              </div>
+              <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: DS.text2, textAlign: 'center' }}>{c.ratio}</span>
+              <span style={{ textAlign: 'center', fontSize: 14 }}>{c.aa ? '✅' : '❌'}</span>
+              <span style={{ textAlign: 'center', fontSize: 14 }}>{c.aaa ? '✅' : c.aa ? '–' : '❌'}</span>
+            </div>
+          ))}
+        </div>
+      </SubSection>
+      <SubSection title="터치 영역 기준">
+        <div style={{ background: DS.card, border: `1px solid ${DS.border}`, borderRadius: 14, padding: '16px 18px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {[
+            ['모든 버튼', '최소 44 × 44px', '✅'],
+            ['탭 바 아이템', '최소 44px 높이, 1/4 너비 (≈98px)', '✅'],
+            ['설정 row', '50px 높이 보장', '✅'],
+            ['캘린더 날짜 셀', '최소 44px 높이 (padding으로 확보)', '✅'],
+            ['아이콘 전용 버튼', '패딩 포함 44×44px', '주의'],
+          ].map(([label, val, icon], i) => (
+            <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+              <span style={{ fontSize: 14 }}>{icon}</span>
+              <span style={{ fontSize: 13, color: DS.text, flex: 1 }}>{label}</span>
+              <span style={{ fontSize: 12, color: DS.text3 }}>{val}</span>
+            </div>
+          ))}
+        </div>
+      </SubSection>
+      <SubSection title="색상 외 상태 구분">
+        <div style={{ background: DS.card, border: `1px solid ${DS.border}`, borderRadius: 14, padding: '16px 18px', fontSize: 13, color: DS.text2, lineHeight: 1.8 }}>
+          <div style={{ fontWeight: 600, color: DS.text, marginBottom: 6 }}>색상만으로 상태를 전달하지 않는 규칙</div>
+          선택된 감정 칩: accent 색상 + bold weight + 1.5px outline (색상 외 형태 변화)<br/>
+          오늘 날짜: accent 색상 + bold weight + 배경 변화<br/>
+          비활성 버튼: 색상 + cursor:not-allowed + opacity 감소<br/>
+          위험 영역: danger 색상 + ⚠️ 경고 아이콘 + 별도 섹션 분리<br/>
+          로컬 저장 badge: good 색상 + 🔒 자물쇠 아이콘 항상 포함
+        </div>
+      </SubSection>
+    </Section>
+  );
+};
+
+// ─── Changelog ───────────────────────────────────────────────────
+const ChangelogSection = () => {
+  const changes = [
+    { screen: '온보딩', type: 'copy', v1: '시작하기 / 이미 데이터가 있어요 →', v2: '첫 기록 만들기 / 건너뛰고 캘린더 보기', reason: 'MVP에서 데이터 가져오기 기능 미포함' },
+    { screen: '홈 캘린더', type: 'ui', v1: '기록 있는 날짜에 사진 썸네일 표시', v2: '날짜 숫자 + 도트 마커 (최대 3개)', reason: '날짜 숫자 가독성 우선, 썸네일은 상세/아카이브에서만' },
+    { screen: '기록 추가', type: 'ux', v1: '감정 태그 기본 선택 상태 (😌 평온)', v2: '기본 선택 없음. 사진=필수 레이블 명시', reason: '사진만 필수, 메모/감정은 선택임을 명확히' },
+    { screen: '기록 추가', type: 'copy', v1: '외부 서버로 전송되지 않아요', v2: '이 기기에만 저장돼요. 서버로 보내지 않아요.', reason: '업로드/동기화 표현 제거, 제품 약속 언어 통일' },
+    { screen: '설정', type: 'hierarchy', v1: '내보내기 / 가져오기 동등 위계', v2: '내보내기=primary CTA, 가져오기=준비 중(muted)', reason: 'MVP 우선 기능 강조, 복원은 후속' },
+    { screen: '설정', type: 'structure', v1: '전체 삭제가 데이터 관리 섹션에 포함', v2: '위험 영역 별도 섹션 분리 (danger 컬러)', reason: '파괴적 액션 시각적 분리' },
+    { screen: '신규 (7, 8)', type: 'new', v1: '없음', v2: '개별 기록 삭제 확인 모달 + 전체 삭제 확인 모달', reason: '전체 삭제 경고 체크리스트 + 백업 넛지 포함' },
+  ];
+  const typeColor = { copy: DS.teal, ui: DS.accent, ux: DS.warm, hierarchy: DS.good, structure: DS.text2, new: DS.danger };
+  return (
+    <Section title="변경 요약 (v1 → v2)" sub="v2에서 반영된 모든 수정 사항.">
+      <div style={{ background: DS.card, border: `1px solid ${DS.border}`, borderRadius: 16, overflow: 'hidden' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '90px 80px 1fr 1fr 1fr', padding: '8px 16px', background: DS.bg2, fontSize: 11, fontWeight: 600, color: DS.text3, letterSpacing: '0.05em', textTransform: 'uppercase', gap: 12 }}>
+          <span>화면</span><span>분류</span><span>v1</span><span>v2</span><span>이유</span>
+        </div>
+        {changes.map((c, i) => (
+          <div key={i} style={{ display: 'grid', gridTemplateColumns: '90px 80px 1fr 1fr 1fr', padding: '12px 16px', borderTop: `1px solid ${DS.border}`, gap: 12, alignItems: 'start', fontSize: 12 }}>
+            <span style={{ color: DS.text, fontWeight: 500 }}>{c.screen}</span>
+            <span style={{ padding: '2px 8px', borderRadius: 10, background: `${typeColor[c.type]}22`, color: typeColor[c.type], fontWeight: 600, display: 'inline-block', fontSize: 10 }}>{c.type}</span>
+            <span style={{ color: DS.text3, lineHeight: 1.5, textDecoration: 'line-through' }}>{c.v1}</span>
+            <span style={{ color: DS.text, lineHeight: 1.5, fontWeight: 500 }}>{c.v2}</span>
+            <span style={{ color: DS.text2, lineHeight: 1.5 }}>{c.reason}</span>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+};
+
+// ─── App Shell ────────────────────────────────────────────────────
+const SECTION_MAP = {
+  colors:     <ColorsSection />,
+  typography: <TypographySection />,
+  spacing:    <SpacingSection />,
+  components: <ComponentsSection />,
+  states:     <StatesSection />,
+  a11y:       <A11ySection />,
+  changelog:  <ChangelogSection />,
+};
+
+const App = () => {
+  const [active, setActive] = React.useState('colors');
+  return (
+    <div style={{ display: 'flex', minHeight: '100vh' }}>
+      <Sidebar active={active} setActive={setActive} />
+      <main style={{ flex: 1, padding: '48px 56px', maxWidth: 900, overflowY: 'auto' }}>
+        {SECTION_MAP[active]}
+      </main>
+    </div>
+  );
+};
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
