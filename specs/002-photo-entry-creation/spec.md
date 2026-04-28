@@ -16,7 +16,8 @@ As a user, I want to quickly save a daily photo with an optional note and emotio
 
 ## Functional Requirements
 
-- The Add Record screen provides camera capture and gallery selection entry points.
+- The Add Record screen provides gallery selection in the first vertical slice.
+- Camera capture is deferred from the first vertical slice.
 - A photo is required before saving.
 - The record date defaults to today and can be changed before saving.
 - Memo input is optional and short-form.
@@ -31,6 +32,10 @@ As a user, I want to quickly save a daily photo with an optional note and emotio
 - The record stores local date, image asset reference/path, optional memo, optional emotion tag, and timestamps.
 - The app creates or updates the local date summary used by Calendar markers.
 - The save flow must not require network access.
+- The selected image is copied into app-specific internal storage.
+- The source gallery URI is not stored as the long-term record reference.
+- The database stores relative original/thumbnail asset paths.
+- Save failure cleans up partial files when possible.
 
 ## Acceptance Criteria
 
@@ -44,5 +49,4 @@ As a user, I want to quickly save a daily photo with an optional note and emotio
 ## Open Questions
 
 - What is the fixed MVP emotion tag list?
-- Should the app copy the original photo into app-private storage or keep a platform asset reference?
-- What is the default image compression/thumbnail policy?
+- What exact thumbnail dimensions and compression format should be used?

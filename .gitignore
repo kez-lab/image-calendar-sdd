@@ -4,7 +4,13 @@ Thumbs.db
 # Local editor state
 .idea/
 .vscode/
+local.properties
 
 # Temporary files
 *.tmp
 *.log
+
+# Build outputs
+.gradle/
+build/
+app/build/

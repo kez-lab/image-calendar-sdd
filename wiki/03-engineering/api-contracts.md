@@ -24,6 +24,14 @@ sources:
 - `updatePhotoEntry(id, input)`: 기존 기록을 수정한다.
 - `deletePhotoEntry(id)`: 기록과 연결된 로컬 이미지/썸네일을 삭제한다.
 
+Create flow contract:
+
+- Input image URI is copied into app-specific internal storage.
+- DB stores relative original/thumbnail paths only.
+- `localDate` uses `YYYY-MM-DD`.
+- On copy, thumbnail, or DB failure, partial files are cleaned up.
+- The source gallery URI is not stored.
+
 ## Archive Repository
 
 - `searchEntries(query, filters)`: 메모와 로컬 날짜 기반 검색 결과를 반환한다. 감정 태그는 `filters.emotionTagId`로만 처리한다.

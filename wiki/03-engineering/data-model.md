@@ -5,33 +5,32 @@ owner: llm
 updated: 2026-04-27
 sources:
   - raw/sources/0002-claude-design-prompt.md
+  - wiki/08-meetings/2026-04-28-tech-implementation-council.md
 ---
 
 # Data Model
 
-## Candidate Entities
+## Locked MVP Entities
 
 ## DayRecord
 
-- id
-- localDate
-- entryCount
-- coverThumbnailPath
-- createdAt
-- updatedAt
+MVP does not create a `DayRecord` table. Calendar summaries are calculated from `PhotoEntry.localDate` grouping.
 
 ## PhotoEntry
 
 - id
-- dayRecordId
 - localDate
-- imagePath
-- thumbnailPath
 - note
 - emotionTagId
 - capturedAt
 - createdAt
 - updatedAt
+
+Storage:
+
+- `localDate` is stored as `YYYY-MM-DD`.
+- `createdAt`, `updatedAt`, and `capturedAt` are stored separately from `localDate`.
+- Room indexes are required for `localDate`, `createdAt`, and `emotionTagId`.
 
 ## EmotionTag
 
@@ -42,17 +41,26 @@ sources:
 - sortOrder
 - isCustom
 
+MVP uses fixed seed tags only. Custom tags are deferred.
+
 ## LocalAsset
 
 - id
 - entryId
-- originalPath
-- thumbnailPath
+- originalRelativePath
+- thumbnailRelativePath
 - mimeType
 - width
 - height
-- fileSize
+- fileSizeBytes
 - createdAt
+
+Storage:
+
+- Paths are relative to app-specific internal storage.
+- Gallery source URI is not persisted.
+- `LocalAsset.entryId` has a foreign key to `PhotoEntry.id`.
+- Metadata can cascade when a `PhotoEntry` is removed, but actual file deletion is handled by repository/storage code.
 
 ## AppSettings
 
@@ -79,8 +87,5 @@ MVP exclusion:
 
 ## Open Modeling Questions
 
-- 사진 원본은 앱 내부 저장소에 복사할 것인가?
-- DayRecord를 별도 테이블로 둘 것인가, PhotoEntry의 날짜 그룹으로 계산할 것인가?
-- EmotionTag는 고정 seed 데이터와 사용자 정의를 함께 허용할 것인가?
 - 삭제된 사진의 파일 제거 실패를 어떻게 재시도할 것인가?
 - 백업 가져오기 시 ID 충돌을 어떻게 처리할 것인가?

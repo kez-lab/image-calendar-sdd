@@ -15,7 +15,8 @@ sources:
 ## Repository
 
 - 현재 저장소는 LLM Wiki/SDD 문서 구조를 먼저 구축하고 있다.
-- 아직 애플리케이션 코드, 빌드 시스템, 실제 Spec Kit 산출물은 없다.
+- Android 애플리케이션 코드와 Gradle 빌드 시스템이 초기화되었다.
+- 실제 Spec Kit 산출물은 아직 없다.
 - GitHub private repository는 `kez-lab/image-calendar-sdd`로 생성되어 있다.
 
 ## Documentation
@@ -48,11 +49,18 @@ sources:
 ## Engineering
 
 - 서버 없이 로컬 저장만 사용하는 구조를 전제로 한다.
-- 기술 스택은 아직 확정되지 않았다.
+- 기술 스택은 Android Native Kotlin + Jetpack Compose로 확정되었다.
+- 로컬 메타데이터는 Room으로 저장한다.
+- 사진은 Android Photo Picker로 선택해 앱 내부 저장소에 복사한다.
+- `localDate`는 `YYYY-MM-DD`로 저장한다.
+- MVP는 `INTERNET` permission 없이 구현한다.
 - 백업은 로컬 파일 내보내기 우선으로 다루고, 가져오기/복원은 정책 확정 후 후속으로 다룬다.
+- 현재 앱은 Compose app shell, Calendar, Add Record, Day Detail, Archive placeholder, Settings placeholder를 가진다.
+- `./gradlew assembleDebug`는 통과했다.
+- 현재 기록 상태는 in-memory이며, Room 영속화는 다음 구현 사이클의 핵심 과제다.
 
 ## Next Actions
 
-1. 고정 감정 태그 목록을 확정한다.
-2. Spec Kit을 도입하고 구현 플랫폼/기술 스택을 확정한다.
-3. `001-calendar-daily-record`와 `002-photo-entry-creation`부터 실제 앱 코드 구현으로 전환한다.
+1. Room `PhotoEntry`/`LocalAsset` 영속화를 연결한다.
+2. Add Record 저장 흐름을 repository 기반으로 교체한다.
+3. Calendar marker와 Day Detail을 Room query 기반으로 연결한다.

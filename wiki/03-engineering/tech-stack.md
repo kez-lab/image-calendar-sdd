@@ -11,7 +11,7 @@ sources:
 
 ## Current Status
 
-기술 스택은 아직 확정되지 않았다.
+기술 스택은 [Tech Implementation Council](../08-meetings/2026-04-28-tech-implementation-council.md)에서 MVP 기준으로 확정되었다.
 
 ## Fixed Constraints
 
@@ -21,29 +21,52 @@ sources:
 - 사진, 메모, 감정 태그는 디바이스 로컬 저장
 - 백업은 명시적 파일 내보내기 우선 방식
 
-## Working Assumption
+## Locked Stack
 
-저장소 이름이 `Android-SDD`이므로 구현은 Android-first로 진행할 가능성이 높다. 디자인 레퍼런스는 iPhone 15 Pro 비율과 iOS 스타일을 기준으로 하되, 실제 구현은 Android에서도 자연스럽게 적용 가능한 UI를 목표로 한다.
+- Platform: Android Native
+- Language: Kotlin
+- UI: Jetpack Compose
+- Build: Gradle + Android Gradle Plugin
+- Initial module structure: single `:app` module
+- Package: `com.kezlab.imagecalendar`
+- Local metadata: Room
+- Lightweight preferences: DataStore when onboarding/settings persistence is added
+- Image input for first slice: Android Photo Picker
+- Image storage: app-specific internal storage copy
+- Thumbnail strategy: generate thumbnails at save time
+- Backup direction: `.imagecalendar-backup.zip` with manifest, entries, assets, and checksums
 
-## Candidate Choices
+## First Build Version Targets
 
-### Android Native
+- `compileSdk`: 36
+- `targetSdk`: 36
+- `minSdk`: 26
 
-- Kotlin
-- Jetpack Compose
-- Gradle
-- Room or SQLite for metadata
-- App-specific internal storage for copied images and thumbnails
-- Android Photo Picker or camera intent
+Rationale:
 
-### Cross-Platform Alternative
+- The local SDK already has Android 36 installed.
+- Android Photo Picker is available without broad media permission on modern devices, with platform support/fallback handled by the Activity Result API.
+- `minSdk 26` keeps Java time APIs practical for `LocalDate` handling while covering enough MVP devices.
 
-- Flutter with local SQLite/file storage
-- React Native with local SQLite/file storage
-- Kotlin Multiplatform if iOS expansion is likely
+## Explicit MVP Exclusions
 
-## Decision Needed
+- Cross-platform implementation
+- Multi-module architecture
+- Camera implementation in the first vertical slice
+- Cloud sync
+- Network API layer
+- `INTERNET` permission
+- User-configurable photo quality
+- User-configurable week start day
 
-- MVP를 Android native로 구현할지 확정해야 한다.
-- 사진 원본을 앱 내부 저장소에 복사할지, 시스템 사진 URI를 참조할지 결정해야 한다.
-- 백업 파일 포맷과 가져오기/복원 정책을 결정해야 한다.
+## First Implementation Slice
+
+Implement `001 + 002` as a vertical slice:
+
+- Compose app shell
+- Bottom tabs: Calendar, Add, Archive, Settings
+- Calendar with local badge, today highlight, month navigation, and markers
+- Add Record with gallery selection, date, optional memo, optional emotion tag
+- Local image copy and thumbnail generation
+- Room metadata insert
+- Day Detail confirmation after save

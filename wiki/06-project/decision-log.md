@@ -91,3 +91,26 @@ Rationale:
 - 로컬 저장은 제품 신뢰의 핵심 약속이므로 일회성 안내가 아니라 지속적 reassurance로 다룬다.
 - 사진 품질과 주 시작 요일은 이미지 정책과 캘린더 계산 범위를 넓히므로 핵심 루프 검증 후로 미룬다.
 - Day Detail은 저장 직후 결과를 가장 명확하게 보여주는 화면이다.
+
+## [2026-04-28] Android native stack and first vertical slice
+
+Decision:
+
+- MVP 구현은 Android Native Kotlin + Jetpack Compose로 진행한다.
+- MVP는 single `:app` module과 package `com.kezlab.imagecalendar`로 시작한다.
+- Room을 로컬 메타데이터 저장소로 사용한다.
+- `PhotoEntry`와 `LocalAsset`을 핵심 테이블로 두고 `DayRecord` 테이블은 만들지 않는다.
+- `localDate`는 `YYYY-MM-DD` 문자열로 저장한다.
+- 사진은 Android Photo Picker로 선택하고, 앱 내부 저장소에 복사한다.
+- DB에는 source URI나 절대경로가 아니라 relative asset path를 저장한다.
+- 저장 시 썸네일을 생성한다.
+- 첫 구현은 `001 + 002` 수직 슬라이스로 진행한다.
+- 첫 슬라이스에서는 Camera를 제외하고 Gallery 선택만 완성한다.
+- MVP manifest에는 `INTERNET` permission을 넣지 않는다.
+
+Rationale:
+
+- Android native가 사진 선택, 앱 내부 저장, 삭제, 백업 내보내기, 권한 UX를 가장 명확하게 제어한다.
+- 앱 내부 복사본은 원본 갤러리 삭제/권한 만료와 무관하게 로컬 기록을 유지할 수 있다.
+- relative path와 `PhotoEntry` 중심 모델은 추후 백업/복원 포맷으로 확장하기 쉽다.
+- 첫 수직 슬라이스는 기록 저장부터 캘린더 반영까지 핵심 루프를 가장 빠르게 검증한다.

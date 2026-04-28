@@ -13,6 +13,8 @@ sources:
 
 LLM 서브 에이전트를 회의 참여자처럼 사용해 제품 기획, 설계 판단, 리스크 검토를 구조화한다. 회의는 원문 보존과 정리된 지식화를 모두 수행한다.
 
+For implementation work, meetings are operated by the [CEO Orchestration](ceo-orchestration.md) loop: the main agent synthesizes staff input, locks decisions, applies changes, verifies, and starts the next cycle.
+
 ## Pipeline
 
 1. 회의 주제와 결정해야 할 질문을 정의한다.

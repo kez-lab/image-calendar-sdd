@@ -30,6 +30,19 @@ sources:
 - 앱은 로그인 없이 시작된다.
 - 기록은 로컬 repository에 저장된다.
 - 서버 업로드/동기화 UI가 나타나지 않는다.
+- Android manifest에는 `INTERNET` permission이 없다.
+- 갤러리 이미지는 source URI를 장기 저장하지 않고 앱 내부 저장소로 복사된다.
+- 저장 실패 시 부분 파일과 부분 record가 남지 않는다.
 - 기록 삭제 후 캘린더와 아카이브에서 사라진다.
 - 전체 삭제 후 기록과 로컬 assets가 제거된다.
 - 가져오기/복원이 포함될 경우 백업 파일 검증이 먼저 실행된다.
+
+## First Implementation Gate
+
+- Build succeeds.
+- App opens without login.
+- Calendar shows the compact local-storage badge.
+- Gallery image can be selected and saved locally.
+- Save success opens Day Detail for the saved date.
+- Calendar marker appears after returning.
+- App contains no account, sync, upload, sharing, public feed, likes, comments, or follows.

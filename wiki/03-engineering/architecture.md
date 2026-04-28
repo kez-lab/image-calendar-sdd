@@ -5,6 +5,7 @@ owner: llm
 updated: 2026-04-27
 sources:
   - raw/sources/0002-claude-design-prompt.md
+  - wiki/08-meetings/2026-04-28-tech-implementation-council.md
 ---
 
 # Architecture
@@ -13,16 +14,44 @@ sources:
 
 앱은 서버 없는 로컬 전용 구조를 전제로 한다. 캘린더 중심 기록 도메인, 로컬 저장 도메인, 아카이브 탐색 도메인을 분리한다.
 
-## Candidate Layers
+## Locked MVP Architecture
 
-- Presentation: 화면, 디자인 시스템, 내비게이션
-- Domain: 기록 생성, 날짜별 조회, 검색/필터, 삭제, 백업/복원
-- Data: 로컬 DB, 이미지 파일 저장소, 썸네일 캐시, 백업 패키지 생성/복원
+- Single Activity Android app.
+- Jetpack Compose presentation layer.
+- Single `:app` Gradle module for MVP.
+- Package-level separation instead of premature multi-module architecture.
+- Local repositories mediate Room metadata and internal file storage.
+- No remote repository or network layer.
+
+## Package Structure
+
+- `app`: entry point and app-level composition.
+- `core.designsystem`: colors, typography, spacing, shared UI primitives.
+- `core.model`: UI/domain data models.
+- `core.database`: Room entities, DAO, database.
+- `core.storage`: internal asset copy, thumbnail generation, rollback cleanup.
+- `core.datetime`: local date helpers.
+- `feature.calendar`: Calendar home.
+- `feature.addrecord`: Add Record.
+- `feature.daydetail`: Day Detail.
+- `feature.archive`: Archive.
+- `feature.settings`: Settings.
 
 ## No-Server Rule
 
 - MVP에는 원격 API, 사용자 계정, 클라우드 동기화, 외부 공유 엔드포인트를 만들지 않는다.
 - 외부 파일 선택/내보내기는 사용자의 명시적 OS-level action으로만 발생한다.
+- Android manifest must not include `INTERNET` permission for MVP.
+
+## Local Save Flow
+
+1. User selects an image through Android Photo Picker.
+2. App copies the selected image into app-specific internal storage.
+3. App generates a thumbnail in app-specific internal storage.
+4. App inserts `PhotoEntry` and `LocalAsset` metadata into Room.
+5. If any step before Room insert fails, generated files are removed.
+6. If DB insert fails after files are created, generated files are removed.
+7. Save success navigates to Day Detail for the saved `localDate`.
 
 ## Key Architectural Risks
 
@@ -34,4 +63,4 @@ sources:
 
 ## MVP Strategy
 
-초기에는 로컬 repository 인터페이스를 먼저 정의하고, 화면은 목업 데이터에서 실제 로컬 저장소로 자연스럽게 전환 가능하게 설계한다. 원격 데이터 레이어는 만들지 않는다.
+첫 구현은 `001 + 002` 수직 슬라이스로 진행한다. 목업 UI만 만들지 않고, 갤러리 이미지 선택부터 로컬 저장, Day Detail 표시, Calendar marker 반영까지 연결한다.

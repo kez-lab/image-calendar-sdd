@@ -12,10 +12,13 @@ The app is a personal image calendar for recording daily photos, short notes, an
 - [raw/](raw/README.md): Immutable source materials, design outputs, and meeting raw records.
 - [wiki/](wiki/README.md): Persistent LLM-maintained project wiki.
 - [specs/](specs/README.md): SDD-style feature specifications and implementation plans.
+- [app/](app): Android Native Kotlin + Jetpack Compose app.
 
 ## Current Status
 
 - Product concept and MVP scope are documented in the wiki.
 - Design v2 has been ingested and reviewed.
-- Initial product planning meeting has been recorded.
-- Next recommended step is to resolve remaining design/product decisions, then convert the first feature spec into implementation tasks.
+- CEO orchestration loop is documented under `wiki/08-meetings/`.
+- Android app scaffold builds with `./gradlew assembleDebug`.
+- Current implementation has Calendar/Add/Day Detail prototype with local internal image copy and generated thumbnails.
+- Next recommended step is Room persistence for `PhotoEntry` and `LocalAsset`.

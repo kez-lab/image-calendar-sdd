@@ -53,3 +53,16 @@
 - Source: [Meeting Minutes](08-meetings/2026-04-28-mvp-decision-lock.md)
 - Action: 구현 태스크 전환 전 Archive 검색 범위, Calendar 로컬 배지, Settings 부가 항목, 첫 저장 후 이동 위치를 확정.
 - Updated: `raw/meetings/2026-04-28-mvp-decision-lock/*`, `wiki/08-meetings/2026-04-28-mvp-decision-lock.md`, `wiki/06-project/decision-log.md`, `wiki/00-context/current-state.md`, `wiki/02-design/design-output-review-2026-04-28-v2.md`, `specs/*`.
+
+## [2026-04-28] meeting | Tech implementation council
+
+- Source: [Meeting Minutes](08-meetings/2026-04-28-tech-implementation-council.md)
+- Action: CEO 오케스트레이션 루프를 문서화하고 Android Native 기술 스택, Room/local asset 저장 전략, `001+002` 첫 구현 수직 슬라이스를 확정.
+- Updated: `raw/meetings/2026-04-28-tech-implementation-council/*`, `wiki/08-meetings/*`, `wiki/03-engineering/*`, `wiki/06-project/decision-log.md`, `specs/001-calendar-daily-record/*`, `specs/002-photo-entry-creation/*`.
+
+## [2026-04-28] implementation | Android scaffold and local-save prototype
+
+- Source: [Implementation Log](06-project/implementation-log.md)
+- Action: Android Gradle/Compose 프로젝트를 생성하고 Calendar/Add/Day Detail 중심의 첫 로컬 저장 prototype을 구현.
+- Verification: `./gradlew assembleDebug` passed; static string check found no `INTERNET`, account, upload, sync, sharing, cloud, or social UI terms in `app/src/main`.
+- Updated: `app/*`, `build.gradle.kts`, `settings.gradle.kts`, `gradle.properties`, `gradle/*`, `wiki/06-project/implementation-log.md`, `wiki/00-context/current-state.md`, `specs/*/tasks.md`.

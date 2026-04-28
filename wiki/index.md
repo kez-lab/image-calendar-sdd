@@ -56,15 +56,18 @@ Updated: 2026-04-28
 - [Milestones](06-project/milestones.md): 마일스톤 초안.
 - [Release Plan](06-project/release-plan.md): 릴리즈 기준.
 - [Decision Log](06-project/decision-log.md): 의사결정 기록.
+- [Implementation Log](06-project/implementation-log.md): CEO 구현 사이클 결과 기록.
 
 ## Meetings
 
 - [Meetings README](08-meetings/README.md): 회의 원문과 회의 wiki의 분리 원칙.
 - [Meeting Index](08-meetings/index.md): 회의 시스템과 회의록 목록.
 - [Meeting System](08-meetings/meeting-system.md): 서브 에이전트 회의 운영 절차.
+- [CEO Orchestration](08-meetings/ceo-orchestration.md): CEO 메인 에이전트가 회의-결정-구현-검증을 반복하는 운영 루프.
 - [Meeting Roles](08-meetings/roles.md): 회의 참여 역할 정의.
 - [2026-04-28 Product Planning Kickoff](08-meetings/2026-04-28-product-planning-kickoff.md): 로컬 전용 개인 이미지 캘린더 MVP 기획 고도화 회의.
 - [2026-04-28 MVP Decision Lock](08-meetings/2026-04-28-mvp-decision-lock.md): 구현 태스크 전환 전 남은 제품/디자인 결정을 확정한 회의.
+- [2026-04-28 Tech Implementation Council](08-meetings/2026-04-28-tech-implementation-council.md): 기술 스택과 첫 구현 수직 슬라이스를 확정한 회의.
 
 ## LLM Ops
 
@@ -91,3 +94,4 @@ Updated: 2026-04-28
 - [Designer Feedback Request](../raw/design/2026-04-28-app-image-calendar/designer-feedback-request.md)
 - [Product Planning Kickoff Meeting Raw](../raw/meetings/2026-04-28-product-planning-kickoff/brief.md)
 - [MVP Decision Lock Meeting Raw](../raw/meetings/2026-04-28-mvp-decision-lock/brief.md)
+- [Tech Implementation Council Meeting Raw](../raw/meetings/2026-04-28-tech-implementation-council/brief.md)
