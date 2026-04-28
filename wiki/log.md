@@ -47,3 +47,9 @@
 - Source: [Raw Design v2](../raw/design/2026-04-28-app-image-calendar-v2/README.md)
 - Action: v2 디자인과 디자인 시스템 산출물을 보관하고, 구현 기준으로 채택 가능한 항목과 잔여 결정 사항을 정리.
 - Updated: `raw/design/2026-04-28-app-image-calendar-v2/*`, `wiki/02-design/design-output-review-2026-04-28-v2.md`, `wiki/02-design/design-system.md`, `wiki/02-design/screen-inventory.md`, `wiki/index.md`.
+
+## [2026-04-28] meeting | MVP decision lock
+
+- Source: [Meeting Minutes](08-meetings/2026-04-28-mvp-decision-lock.md)
+- Action: 구현 태스크 전환 전 Archive 검색 범위, Calendar 로컬 배지, Settings 부가 항목, 첫 저장 후 이동 위치를 확정.
+- Updated: `raw/meetings/2026-04-28-mvp-decision-lock/*`, `wiki/08-meetings/2026-04-28-mvp-decision-lock.md`, `wiki/06-project/decision-log.md`, `wiki/00-context/current-state.md`, `wiki/02-design/design-output-review-2026-04-28-v2.md`, `specs/*`.

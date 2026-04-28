@@ -22,3 +22,4 @@ sources: []
 ## Meetings
 
 - [2026-04-28 Product Planning Kickoff](2026-04-28-product-planning-kickoff.md): 로컬 전용 개인 이미지 캘린더 MVP 기획 고도화 회의.
+- [2026-04-28 MVP Decision Lock](2026-04-28-mvp-decision-lock.md): 구현 태스크 전환 전 남은 제품/디자인 결정을 확정한 회의.

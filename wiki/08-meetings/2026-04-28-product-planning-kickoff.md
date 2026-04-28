@@ -72,6 +72,10 @@ Raw Folder: [raw/meetings/2026-04-28-product-planning-kickoff](../../raw/meeting
 - 로컬 저장 배지를 Calendar에서 항상 보여줄지 초기 사용 구간에만 강조할 것인가?
 - 로컬 알림은 MVP에서 제외할지 선택형으로 둘 것인가?
 
+Resolution note:
+
+- 첫 기록 저장 후 이동과 Calendar 로컬 저장 배지 노출 방식은 [2026-04-28 MVP Decision Lock](2026-04-28-mvp-decision-lock.md)에서 확정되었다.
+
 ## Action Items
 
 - PRD에 제품 약속, 1차 타깃, 기록 추가 최소 경로, 측정 가능한 성공 기준을 반영한다.

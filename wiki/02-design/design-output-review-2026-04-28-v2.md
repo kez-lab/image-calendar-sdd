@@ -34,31 +34,13 @@ v2는 v1 피드백을 대부분 반영했다. 현재 기준으로는 구현 기�
 - 개별 기록 삭제 확인과 전체 데이터 삭제 확인 모달이 추가되었다.
 - 디자인 시스템 페이지가 별도로 추가되었다.
 
-## Remaining Issues
+## Locked Decisions After Review
 
-### Search Scope Copy
-
-Archive 검색 placeholder는 `메모, 날짜로 검색하기`로 되어 있다. 현재 PRD는 감정 태그 필터를 별도로 제공하므로 큰 문제는 아니지만, 검색 범위 open question이 남아 있다.
-
-Decision needed:
-
-- 검색이 메모+날짜만인지, 감정 태그까지 포함하는지 확정해야 한다.
-
-### Calendar Local Badge Persistence
-
-Calendar에 `내 폰에만 저장됨` 배지가 표시된다. 현재 기획에는 “항상 표시 vs 초기 사용 구간 강조”가 open question으로 남아 있다.
-
-Decision needed:
-
-- Calendar local badge를 상시 노출할지, 첫 사용 후 축소/숨김 처리할지 결정해야 한다.
-
-### App Settings Scope
-
-Settings에 `기본 사진 품질`, `한 주 시작 요일`이 포함되어 있다. 둘 다 유용하지만 MVP scope에 명시되어 있지는 않다.
-
-Decision needed:
-
-- MVP 설정에 포함할지, 후속으로 둘지 결정해야 한다.
+- Archive 검색 placeholder `메모, 날짜로 검색하기`는 MVP 기준으로 유지한다.
+- 감정 태그는 검색어 대상이 아니라 명시적 칩 필터로만 다룬다.
+- Calendar의 `내 폰에만 저장됨` 배지는 compact 형태로 상시 노출한다.
+- Settings에 표시된 `기본 사진 품질`, `한 주 시작 요일`은 MVP 구현 범위에서 제외하고 후속 후보로 둔다.
+- 첫 기록 저장 후에는 Calendar가 아니라 저장된 날짜의 Day Detail로 이동한다.
 
 ## Adopted As Implementation Reference
 
@@ -81,7 +63,6 @@ Status: usable as first implementation reference.
 
 Before code implementation:
 
-- Extract final design tokens into [Design System](design-system.md).
-- Reflect 8 artboards in [Screen Inventory](screen-inventory.md).
-- Decide whether Settings extras are MVP.
-- Decide Calendar local badge persistence.
+- Use final design tokens in [Design System](design-system.md).
+- Use 8 artboards in [Screen Inventory](screen-inventory.md).
+- Treat Settings extras as deferred unless a later decision reopens them.

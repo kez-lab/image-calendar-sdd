@@ -1,6 +1,6 @@
 # 005 Settings Data Safety
 
-Planned SDD feature for settings, local storage explanation, app information, and safe full data deletion.
+SDD feature for settings, local storage explanation, app information, backup export, and safe full data deletion.
 
 Source wiki:
 
@@ -11,3 +11,9 @@ Source wiki:
 Primary invariant:
 
 - Dangerous data actions require clear explanation and confirmation.
+
+Files:
+
+- [spec.md](spec.md)
+- [plan.md](plan.md)
+- [tasks.md](tasks.md)

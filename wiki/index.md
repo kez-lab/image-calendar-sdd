@@ -64,6 +64,7 @@ Updated: 2026-04-28
 - [Meeting System](08-meetings/meeting-system.md): 서브 에이전트 회의 운영 절차.
 - [Meeting Roles](08-meetings/roles.md): 회의 참여 역할 정의.
 - [2026-04-28 Product Planning Kickoff](08-meetings/2026-04-28-product-planning-kickoff.md): 로컬 전용 개인 이미지 캘린더 MVP 기획 고도화 회의.
+- [2026-04-28 MVP Decision Lock](08-meetings/2026-04-28-mvp-decision-lock.md): 구현 태스크 전환 전 남은 제품/디자인 결정을 확정한 회의.
 
 ## LLM Ops
 
@@ -76,10 +77,10 @@ Updated: 2026-04-28
 
 - [Specs README](../specs/README.md): 기능별 SDD 명세 운영 방식.
 - [001 Calendar Daily Record](../specs/001-calendar-daily-record/spec.md): 캘린더 기반 하루 기록 조회 spec 초안.
-- [002 Photo Entry Creation](../specs/002-photo-entry-creation/README.md): 사진 기록 작성 후보 spec.
-- [003 Archive Search Filter](../specs/003-archive-search-filter/README.md): 아카이브 검색/필터 후보 spec.
+- [002 Photo Entry Creation](../specs/002-photo-entry-creation/spec.md): 사진 기록 작성 spec 초안.
+- [003 Archive Search Filter](../specs/003-archive-search-filter/spec.md): 아카이브 검색/필터 spec 초안.
 - [004 Local Backup Restore](../specs/004-local-backup-restore/README.md): 백업 파일 내보내기 우선 후보 spec.
-- [005 Settings Data Safety](../specs/005-settings-data-safety/README.md): 설정과 데이터 안전 후보 spec.
+- [005 Settings Data Safety](../specs/005-settings-data-safety/spec.md): 설정과 데이터 안전 spec 초안.
 
 ## Raw Sources
 
@@ -89,3 +90,4 @@ Updated: 2026-04-28
 - [App Image Calendar Design v2 Raw](../raw/design/2026-04-28-app-image-calendar-v2/README.md)
 - [Designer Feedback Request](../raw/design/2026-04-28-app-image-calendar/designer-feedback-request.md)
 - [Product Planning Kickoff Meeting Raw](../raw/meetings/2026-04-28-product-planning-kickoff/brief.md)
+- [MVP Decision Lock Meeting Raw](../raw/meetings/2026-04-28-mvp-decision-lock/brief.md)

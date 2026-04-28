@@ -21,13 +21,15 @@ As a user, I want to see my local photo records on a monthly calendar, so that I
 - Selecting a date opens the day record detail for that date.
 - Empty dates communicate that no record exists yet and provide a path to add one.
 - The calendar includes no public feed, friend activity, or account state.
-- The calendar can surface a lightweight local-storage reassurance message when appropriate.
+- The calendar always shows a compact local-storage reassurance badge, such as `내 폰에만 저장됨`.
+- The calendar uses the device's local date context for month/day grouping.
 
 ## Local Data Requirements
 
 - Calendar summaries are derived from local data only.
 - Date grouping uses local calendar dates.
 - Thumbnail markers use locally stored thumbnails or generated previews.
+- Calendar local-storage badge state is not dismissible and does not require persisted UI state.
 
 ## Acceptance Criteria
 
@@ -37,8 +39,8 @@ As a user, I want to see my local photo records on a monthly calendar, so that I
 - Given a date has no record, when the calendar renders, then it does not show a record marker.
 - Given the user taps a date, when records exist, then the day record detail opens for that date.
 - Given the user taps an empty date, then the app offers a clear path to add a local record for that date.
+- Given the calendar is visible, then a compact local-storage badge is visible without implying sync or upload.
 
 ## Open Questions
 
 - Can a day have unlimited photo entries or a practical display limit?
-- Is the calendar month based on device locale/timezone?

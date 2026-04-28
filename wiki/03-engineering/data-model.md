@@ -63,6 +63,12 @@ sources:
 - createdAt
 - updatedAt
 
+MVP exclusion:
+
+- 기본 사진 품질 설정은 MVP에서 모델링하지 않는다.
+- 한 주 시작 요일 설정은 MVP에서 모델링하지 않는다.
+- Calendar local-storage badge는 dismiss 상태를 저장하지 않는다.
+
 ## BackupManifest
 
 - version

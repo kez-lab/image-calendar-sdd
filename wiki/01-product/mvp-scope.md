@@ -32,6 +32,8 @@ sources:
 - 데이터 가져오기/복원 안내 또는 후속 진입점
 - 전체 데이터 삭제 버튼과 확인 모달
 - 하단 탭바: Calendar, Add, Archive, Settings
+- Calendar compact local-storage badge
+- 저장 후 Day Detail 이동
 
 ## Explicitly Excluded
 
@@ -63,3 +65,5 @@ sources:
 - 사진 OCR 검색
 - 실제 데이터 가져오기/복원
 - 감정 태그 사용자 정의
+- 기본 사진 품질 설정
+- 한 주 시작 요일 설정

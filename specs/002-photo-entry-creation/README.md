@@ -1,6 +1,6 @@
 # 002 Photo Entry Creation
 
-Planned SDD feature for adding a local photo record with date, short memo, and emotion tag.
+SDD feature for adding a local photo record with date, short memo, and optional emotion tag.
 
 Source wiki:
 
@@ -12,3 +12,9 @@ Source wiki:
 Primary invariant:
 
 - Records are saved on the device only and do not require login or server upload.
+
+Files:
+
+- [spec.md](spec.md)
+- [plan.md](plan.md)
+- [tasks.md](tasks.md)

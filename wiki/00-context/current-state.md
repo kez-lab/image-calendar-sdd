@@ -16,7 +16,7 @@ sources:
 
 - 현재 저장소는 LLM Wiki/SDD 문서 구조를 먼저 구축하고 있다.
 - 아직 애플리케이션 코드, 빌드 시스템, 실제 Spec Kit 산출물은 없다.
-- git repository 초기화 여부는 아직 결정되지 않았다.
+- GitHub private repository는 `kez-lab/image-calendar-sdd`로 생성되어 있다.
 
 ## Documentation
 
@@ -32,6 +32,8 @@ sources:
 - 제품 방향은 서버 없는 개인용 이미지 캘린더로 정의되었다.
 - MVP의 핵심은 기록, 날짜별 탐색, 아카이브, 로컬 데이터 신뢰다.
 - SNS, 친구 공유, 로그인, 공개 피드는 범위에서 제외한다.
+- Archive 검색은 메모와 로컬 날짜만 대상으로 하며, 감정 태그는 칩 필터로만 처리한다.
+- 첫 기록 저장 후에는 저장된 날짜의 Day Detail로 이동한다.
 
 ## Design
 
@@ -40,6 +42,8 @@ sources:
 - 디자인 기준은 iPhone 15 Pro 비율의 6개 주요 화면이다.
 - iOS 스타일을 기본으로 하되 Android에도 무리 없이 적용 가능한 UI를 목표로 한다.
 - 현재 design reference는 8개 artboard다: Onboarding, Calendar, Day Detail, Add Record, Archive, Settings, Delete Record Confirmation, Delete All Confirmation.
+- Calendar의 `내 폰에만 저장됨` 배지는 compact 형태로 상시 노출한다.
+- Settings의 `기본 사진 품질`과 `한 주 시작 요일`은 MVP에서 제외한다.
 
 ## Engineering
 
@@ -49,6 +53,6 @@ sources:
 
 ## Next Actions
 
-1. 고정 감정 태그 목록, 첫 저장 후 이동 위치, Calendar local badge persistence, Settings extras 포함 여부를 결정한다.
-2. Spec Kit을 도입하고 `001-calendar-daily-record` 초안을 템플릿에 맞춰 정제한다.
-3. 로컬 저장 기술 스택과 앱 아키텍처를 확정한다.
+1. 고정 감정 태그 목록을 확정한다.
+2. Spec Kit을 도입하고 구현 플랫폼/기술 스택을 확정한다.
+3. `001-calendar-daily-record`와 `002-photo-entry-creation`부터 실제 앱 코드 구현으로 전환한다.

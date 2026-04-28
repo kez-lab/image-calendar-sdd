@@ -1,6 +1,6 @@
 # 003 Archive Search Filter
 
-Planned SDD feature for browsing saved records by month/list, searching notes, and filtering by emotion tag.
+SDD feature for browsing saved records by month/list, searching memo/date, and filtering by emotion tag.
 
 Source wiki:
 
@@ -11,3 +11,9 @@ Source wiki:
 Primary invariant:
 
 - Archive is a private local browsing surface, not a social feed.
+
+Files:
+
+- [spec.md](spec.md)
+- [plan.md](plan.md)
+- [tasks.md](tasks.md)

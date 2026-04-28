@@ -26,7 +26,7 @@ sources:
 
 ## Archive Repository
 
-- `searchEntries(query, filters)`: 메모, 날짜, 감정 태그 기반 검색 결과를 반환한다.
+- `searchEntries(query, filters)`: 메모와 로컬 날짜 기반 검색 결과를 반환한다. 감정 태그는 `filters.emotionTagId`로만 처리한다.
 - `getArchiveMonths()`: 기록이 있는 월 목록을 반환한다.
 
 ## Backup Repository

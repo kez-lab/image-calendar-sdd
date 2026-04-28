@@ -40,7 +40,7 @@ Required elements:
 - 기록 날짜 점 또는 미니 스택
 - 빠른 기록 추가 버튼
 - 하단 탭바
-- 로컬 저장 안내 배지 또는 짧은 안내
+- compact `내 폰에만 저장됨` 상시 배지
 
 ## 3. Day Record Detail
 
@@ -84,7 +84,8 @@ Required elements:
 
 - 최근 월 우선 월별 그룹
 - 검색바
-- 감정 태그 필터
+- 메모/날짜 검색바
+- 감정 태그 칩 필터
 - 이미지 중심 기록 그리드/리스트
 - 오래된 기록 탐색 구조
 
@@ -102,6 +103,11 @@ Required elements:
 - 전체 데이터 삭제 버튼
 - 삭제 확인 모달 진입
 - 앱 정보
+
+Excluded from MVP Settings:
+
+- 기본 사진 품질
+- 한 주 시작 요일
 
 ## 7. Delete Record Confirmation
 
