@@ -1,0 +1,6 @@
+interface:
+  display_name: "Android Journey Test"
+  short_description: "Run Android UI smoke journeys"
+  default_prompt: "Use $android-journey-smoke-test to validate a user journey on the connected device."
+policy:
+  allow_implicit_invocation: true

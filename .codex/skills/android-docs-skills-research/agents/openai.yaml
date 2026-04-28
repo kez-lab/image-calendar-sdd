@@ -1,0 +1,6 @@
+interface:
+  display_name: "Android Docs & Skills"
+  short_description: "Search Android KB and official skills"
+  default_prompt: "Use $android-docs-skills-research to find official Android guidance or skills."
+policy:
+  allow_implicit_invocation: true

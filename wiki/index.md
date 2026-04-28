@@ -75,6 +75,7 @@ Updated: 2026-04-28
 - [Context Loading Guide](07-llm/context-loading-guide.md): 작업 시작 시 읽을 문서 순서.
 - [SDD Workflow](07-llm/sdd-workflow.md): wiki 기반 SDD 절차.
 - [Wiki Maintenance](07-llm/wiki-maintenance.md): ingest/query/lint 운영법.
+- [Android CLI Custom Skills](07-llm/skills/android-cli-custom-skills.md): 공식 Android CLI를 용도별로 활용하기 위한 Codex 커스텀 skills.
 
 ## Specs
 

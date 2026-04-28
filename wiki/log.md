@@ -66,3 +66,9 @@
 - Action: Android Gradle/Compose 프로젝트를 생성하고 Calendar/Add/Day Detail 중심의 첫 로컬 저장 prototype을 구현.
 - Verification: `./gradlew assembleDebug` passed; static string check found no `INTERNET`, account, upload, sync, sharing, cloud, or social UI terms in `app/src/main`.
 - Updated: `app/*`, `build.gradle.kts`, `settings.gradle.kts`, `gradle.properties`, `gradle/*`, `wiki/06-project/implementation-log.md`, `wiki/00-context/current-state.md`, `specs/*/tasks.md`.
+
+## [2026-04-29] llm-ops | Add Android CLI custom skills
+
+- Source: [Android CLI Custom Skills](07-llm/skills/android-cli-custom-skills.md)
+- Action: 공식 Android CLI 명령군을 setup, project describe, app run, UI inspect, SDK/emulator, docs/skills, journey smoke test 용도로 나눈 Codex 커스텀 skills를 추가.
+- Updated: `.codex/skills/android-*`, `~/.codex/skills/android-*`, `wiki/07-llm/skills/android-cli-custom-skills.md`, `wiki/index.md`.

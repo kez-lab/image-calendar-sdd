@@ -1,0 +1,6 @@
+interface:
+  display_name: "Android UI Inspector"
+  short_description: "Inspect UI layout and screenshots"
+  default_prompt: "Use $android-ui-inspector to inspect the current Android app UI."
+policy:
+  allow_implicit_invocation: true

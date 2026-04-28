@@ -14,3 +14,6 @@ local.properties
 .gradle/
 build/
 app/build/
+
+# Local verification artifacts
+artifacts/

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Android SDK & Emulator"
+  short_description: "Manage SDK packages and emulators"
+  default_prompt: "Use $android-sdk-emulator-manager to inspect SDK packages or emulator state."
+policy:
+  allow_implicit_invocation: true

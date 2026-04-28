@@ -1,0 +1,6 @@
+interface:
+  display_name: "Android App Runner"
+  short_description: "Deploy and launch APKs with android run"
+  default_prompt: "Use $android-app-runner to build and launch the debug APK on a connected device."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Android CLI Setup"
+  short_description: "Configure and verify official Android CLI"
+  default_prompt: "Use $android-cli-setup to verify Android CLI setup for this Android project."
+policy:
+  allow_implicit_invocation: true

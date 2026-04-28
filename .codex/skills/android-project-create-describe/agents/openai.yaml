@@ -1,0 +1,6 @@
+interface:
+  display_name: "Android Project Describe"
+  short_description: "Create templates and inspect APK outputs"
+  default_prompt: "Use $android-project-create-describe to inspect this Android project and find build artifacts."
+policy:
+  allow_implicit_invocation: true
