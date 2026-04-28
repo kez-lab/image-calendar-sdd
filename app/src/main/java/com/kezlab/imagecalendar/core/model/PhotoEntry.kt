@@ -16,4 +16,9 @@ enum class EmotionTag(val label: String) {
     Tired("피곤"),
     Cozy("포근"),
     Busy("바쁨"),
+    ;
+
+    companion object {
+        fun fromId(id: String?): EmotionTag? = entries.firstOrNull { it.name == id }
+    }
 }

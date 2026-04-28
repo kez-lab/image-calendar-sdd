@@ -23,9 +23,9 @@ Status: draft
 - [ ] Add Floating Add Button entry to Add Record.
 - [ ] Add empty date state and add-record entry for selected empty dates.
 - [x] Add navigation from date selection to Day Record Detail.
-- [ ] Replace letter-only bottom navigation icons with distinct accessible icons or labels.
-- [ ] Add Compose semantics/content descriptions/test tags for month navigation, date cells, local badge, add CTA, and bottom tabs.
-- [ ] Ensure date cells announce full date, today state, and record count.
+- [x] Replace letter-only bottom navigation icons with distinct accessible icons or labels.
+- [x] Add Compose semantics/content descriptions/test tags for month navigation, date cells, local badge, add CTA, and bottom tabs.
+- [x] Ensure date cells announce full date, today state, and record count.
 - [x] Ensure no account, sync, upload, sharing, or social UI appears on Calendar.
 
 ## Verification
@@ -33,7 +33,7 @@ Status: draft
 - [x] Test app opens calendar without login. Verified 2026-04-29 with official `android run`.
 - [x] Test current day highlight. Verified 2026-04-29 screenshot.
 - [ ] Test empty date behavior.
-- [ ] Test record marker rendering.
+- [x] Test record marker rendering. Verified 2026-04-29 after Room fixture save.
 - [ ] Test date selection navigation.
 - [x] Test local-storage badge is visible and does not imply upload/sync. Verified 2026-04-29 screenshot and static string scan.
 - [x] Test calendar screen contains no server/account/social UI.

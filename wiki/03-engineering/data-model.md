@@ -2,15 +2,22 @@
 type: engineering
 status: draft
 owner: llm
-updated: 2026-04-27
+updated: 2026-04-29
 sources:
   - raw/sources/0002-claude-design-prompt.md
   - wiki/08-meetings/2026-04-28-tech-implementation-council.md
+  - ../../raw/verification/2026-04-29-room-persistence-smoke/README.md
 ---
 
 # Data Model
 
 ## Locked MVP Entities
+
+Implemented Room schema:
+
+- Schema file: `app/schemas/com.kezlab.imagecalendar.core.database.ImageCalendarDatabase/1.json`
+- Tables: `photo_entries`, `local_assets`
+- Current database version: `1`
 
 ## DayRecord
 
@@ -31,6 +38,7 @@ Storage:
 - `localDate` is stored as `YYYY-MM-DD`.
 - `createdAt`, `updatedAt`, and `capturedAt` are stored separately from `localDate`.
 - Room indexes are required for `localDate`, `createdAt`, and `emotionTagId`.
+- Implemented column names use `createdAtMillis`, `updatedAtMillis`, and `capturedAtMillis`.
 
 ## EmotionTag
 
@@ -61,6 +69,7 @@ Storage:
 - Gallery source URI is not persisted.
 - `LocalAsset.entryId` has a foreign key to `PhotoEntry.id`.
 - Metadata can cascade when a `PhotoEntry` is removed, but actual file deletion is handled by repository/storage code.
+- Implemented fields include `mimeType`, `width`, `height`, and `fileSizeBytes`.
 
 ## AppSettings
 

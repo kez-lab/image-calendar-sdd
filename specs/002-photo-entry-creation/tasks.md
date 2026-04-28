@@ -26,20 +26,20 @@ Status: draft
 - [x] Add optional memo input.
 - [x] Add optional fixed emotion tag chips with unselected default state.
 - [x] Add local-only reassurance copy.
-- [ ] Implement local `createPhotoEntry` flow with Room persistence.
+- [x] Implement local `createPhotoEntry` flow with Room persistence.
 - [x] Copy selected image into app-specific internal storage.
 - [x] Generate thumbnail at save time.
-- [ ] Insert Room metadata for `PhotoEntry` and `LocalAsset`.
+- [x] Insert Room metadata for `PhotoEntry` and `LocalAsset`.
 - [x] Store relative original/thumbnail paths.
 - [x] Clean up copied files when save fails before commit.
-- [ ] Update local date summary so Calendar marker appears.
+- [x] Update local date summary so Calendar marker appears.
 - [x] Navigate to saved date Day Detail after successful save.
 - [ ] Show save failure state without implying network/server failure.
-- [ ] Move no-photo validation message under the photo section as inline error.
-- [ ] Label inputs as required or optional: photo required, memo optional, emotion optional.
-- [ ] Add date picker or strict `YYYY-MM-DD` validation before save.
-- [ ] Add Compose semantics/content descriptions/test tags for photo picker, date input, memo input, emotion chips, validation error, and save button.
-- [ ] Add deterministic debug/test fixture so Android CLI can verify a successful photo save without manual picker dependency.
+- [x] Move no-photo validation message under the photo section as inline error.
+- [x] Label inputs as required or optional: photo required, memo optional, emotion optional.
+- [x] Add date picker or strict `YYYY-MM-DD` validation before save.
+- [x] Add Compose semantics/content descriptions/test tags for photo picker, date input, memo input, emotion chips, validation error, and save button.
+- [x] Add deterministic debug/test fixture so Android CLI can verify a successful photo save without manual picker dependency.
 - [ ] Defer camera capture to a later subtask.
 
 ## Verification
@@ -48,9 +48,9 @@ Status: draft
 - [ ] Test save succeeds with photo only.
 - [ ] Test save succeeds with photo, memo, and emotion.
 - [ ] Test changed date is respected.
-- [ ] Test success opens Day Detail and shows the saved card.
-- [ ] Test Calendar marker appears after returning from Day Detail.
-- [ ] Test Add Record contains no account/upload/sync/share language.
+- [x] Test success opens Day Detail and shows the saved card. Verified 2026-04-29 with debug fixture.
+- [x] Test Calendar marker appears after returning from Day Detail. Verified 2026-04-29 with Android CLI capture.
+- [x] Test Add Record contains no account/upload/sync/share language. Verified 2026-04-29 static string scan.
 - [ ] Test failed save does not create a partial visible record.
 - [x] Test manifest has no `INTERNET` permission.
 - [ ] Add Android CLI smoke test for photo fixture save, Day Detail card, app restart persistence, and Calendar marker.

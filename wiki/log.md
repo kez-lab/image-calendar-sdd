@@ -79,3 +79,10 @@
 - Evidence: [Screen Evidence](../raw/meetings/2026-04-29-weekly-app-review/screen-evidence.md)
 - Action: 공식 Android CLI로 Calendar/Add/Archive/Settings/validation 화면을 캡처하고, 회의를 통해 현재 앱을 prototype으로 분류한 뒤 다음 P0 범위를 Room persistence, repository, deterministic QA fixture로 확정.
 - Updated: `raw/meetings/2026-04-29-weekly-app-review/*`, `wiki/08-meetings/2026-04-29-weekly-app-review.md`, `wiki/06-project/decision-log.md`, `wiki/06-project/implementation-log.md`, `wiki/00-context/current-state.md`, `wiki/05-qa/*`, `specs/*/tasks.md`.
+
+## [2026-04-29] implementation | Room persistence and debug fixture
+
+- Source: [Implementation Log](06-project/implementation-log.md)
+- Evidence: [Room Persistence Smoke Verification](../raw/verification/2026-04-29-room-persistence-smoke/README.md)
+- Action: Room/KSP, `photo_entries`/`local_assets` schema, repository save contract, debug fixture, repository-backed Compose state, and Android CLI persistence verification were added.
+- Updated: `app/*`, `app/schemas/*`, `raw/verification/2026-04-29-room-persistence-smoke/README.md`, `wiki/03-engineering/*`, `wiki/06-project/implementation-log.md`, `wiki/00-context/current-state.md`, `specs/001-calendar-daily-record/tasks.md`, `specs/002-photo-entry-creation/tasks.md`.

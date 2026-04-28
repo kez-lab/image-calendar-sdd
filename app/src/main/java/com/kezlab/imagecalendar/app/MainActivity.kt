@@ -43,30 +43,37 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.kezlab.imagecalendar.BuildConfig
 import com.kezlab.imagecalendar.core.designsystem.AppColors
 import com.kezlab.imagecalendar.core.designsystem.ImageCalendarTheme
 import com.kezlab.imagecalendar.core.model.EmotionTag
 import com.kezlab.imagecalendar.core.model.PhotoEntry
-import com.kezlab.imagecalendar.core.storage.LocalImageStore
+import com.kezlab.imagecalendar.core.repository.AppContainer
+import com.kezlab.imagecalendar.core.repository.CreatePhotoEntryInput
+import com.kezlab.imagecalendar.core.repository.PhotoEntryRepository
 import java.io.File
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
-import java.util.UUID
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -82,17 +89,19 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-private enum class AppTab(val label: String) {
-    Calendar("Calendar"),
-    Add("Add"),
-    Archive("Archive"),
-    Settings("Settings"),
+private enum class AppTab(val label: String, val iconLabel: String, val a11yLabel: String) {
+    Calendar("Calendar", "Cal", "Calendar tab"),
+    Add("Add", "+", "Add record tab"),
+    Archive("Archive", "Arc", "Archive tab"),
+    Settings("Settings", "Set", "Settings tab"),
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 private fun ImageCalendarApp() {
     val context = LocalContext.current
-    val entries = remember { mutableStateListOf<PhotoEntry>() }
+    val repository = remember(context) { AppContainer.photoEntryRepository(context) }
+    val entries by repository.observeEntries().collectAsState(initial = emptyList())
     var currentTab by remember { mutableStateOf(AppTab.Calendar) }
     var selectedDate by remember { mutableStateOf(LocalDate.now().toIsoDate()) }
     var dayDetailDate by remember { mutableStateOf<String?>(null) }
@@ -103,13 +112,16 @@ private fun ImageCalendarApp() {
             NavigationBar(containerColor = AppColors.Card) {
                 AppTab.entries.forEach { tab ->
                     NavigationBarItem(
+                        modifier = Modifier
+                            .testTag("tab_${tab.label.lowercase()}")
+                            .semantics { contentDescription = tab.a11yLabel },
                         selected = currentTab == tab && dayDetailDate == null,
                         onClick = {
                             dayDetailDate = null
                             currentTab = tab
                         },
                         label = { Text(tab.label) },
-                        icon = { Text(tab.label.first().toString()) },
+                        icon = { Text(tab.iconLabel) },
                     )
                 }
             }
@@ -119,7 +131,8 @@ private fun ImageCalendarApp() {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .background(AppColors.Bg),
+                .background(AppColors.Bg)
+                .semantics { testTagsAsResourceId = true },
         ) {
             val detailDate = dayDetailDate
             if (detailDate != null) {
@@ -151,11 +164,10 @@ private fun ImageCalendarApp() {
                 AppTab.Add -> AddRecordScreen(
                     defaultDate = selectedDate,
                     onSaved = { entry ->
-                        entries.add(entry)
                         selectedDate = entry.localDate
                         dayDetailDate = entry.localDate
                     },
-                    imageStore = remember(context) { LocalImageStore(context) },
+                    repository = repository,
                 )
 
                 AppTab.Archive -> ArchiveScreen(entries)
@@ -199,9 +211,19 @@ private fun CalendarScreen(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                TextButton(onClick = { month = month.minusMonths(1) }) { Text("이전") }
+                TextButton(
+                    onClick = { month = month.minusMonths(1) },
+                    modifier = Modifier
+                        .testTag("calendar_previous_month")
+                        .semantics { contentDescription = "Previous month" },
+                ) { Text("이전") }
                 Text("${month.year}.${month.monthValue.toString().padStart(2, '0')}", fontWeight = FontWeight.Bold)
-                TextButton(onClick = { month = month.plusMonths(1) }) { Text("다음") }
+                TextButton(
+                    onClick = { month = month.plusMonths(1) },
+                    modifier = Modifier
+                        .testTag("calendar_next_month")
+                        .semantics { contentDescription = "Next month" },
+                ) { Text("다음") }
             }
         }
         item {
@@ -218,7 +240,9 @@ private fun CalendarScreen(
                 onClick = onAdd,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(54.dp),
+                    .height(54.dp)
+                    .testTag("calendar_add_today")
+                    .semantics { contentDescription = "Add today's record" },
                 colors = ButtonDefaults.buttonColors(containerColor = AppColors.Accent),
                 shape = RoundedCornerShape(16.dp),
             ) {
@@ -298,6 +322,17 @@ private fun DateCell(
             .clip(RoundedCornerShape(14.dp))
             .background(if (isToday) AppColors.AccentLight else AppColors.Card)
             .border(1.dp, if (isToday) AppColors.Accent else AppColors.Border, RoundedCornerShape(14.dp))
+            .then(
+                if (date != null) {
+                    Modifier
+                        .testTag("calendar_day_${date.toIsoDate()}")
+                        .semantics {
+                            contentDescription = buildDateCellDescription(date, isToday, count)
+                        }
+                } else {
+                    Modifier
+                },
+            )
             .clickable(enabled = date != null, onClick = onClick),
         contentAlignment = Alignment.Center,
     ) {
@@ -324,19 +359,25 @@ private fun DateCell(
 @Composable
 private fun AddRecordScreen(
     defaultDate: String,
-    imageStore: LocalImageStore,
+    repository: PhotoEntryRepository,
     onSaved: (PhotoEntry) -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     var selectedUri by remember { mutableStateOf<Uri?>(null) }
+    var debugFixtureSelected by remember { mutableStateOf(false) }
     var note by remember { mutableStateOf("") }
     var emotion by remember { mutableStateOf<EmotionTag?>(null) }
     var localDate by remember { mutableStateOf(defaultDate.ifBlank { LocalDate.now().toIsoDate() }) }
     var saving by remember { mutableStateOf(false) }
-    var error by remember { mutableStateOf<String?>(null) }
+    var photoError by remember { mutableStateOf<String?>(null) }
+    var saveError by remember { mutableStateOf<String?>(null) }
     val picker = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia(),
-        onResult = { uri -> selectedUri = uri },
+        onResult = { uri ->
+            selectedUri = uri
+            debugFixtureSelected = false
+            if (uri != null) photoError = null
+        },
     )
 
     LazyColumn(
@@ -352,18 +393,41 @@ private fun AddRecordScreen(
         }
         item {
             CardBlock {
-                Text("사진", fontWeight = FontWeight.Bold, color = AppColors.Text)
+                Text("사진 (필수)", fontWeight = FontWeight.Bold, color = AppColors.Text)
                 Spacer(Modifier.height(10.dp))
                 Button(
                     onClick = {
                         picker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
                     },
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("add_photo_picker")
+                        .semantics { contentDescription = "Select photo from gallery" },
                     colors = ButtonDefaults.buttonColors(containerColor = AppColors.Accent),
                 ) {
-                    Text(if (selectedUri == null) "갤러리에서 사진 선택" else "다른 사진 선택")
+                    Text(if (selectedUri == null && !debugFixtureSelected) "갤러리에서 사진 선택" else "다른 사진 선택")
                 }
-                if (selectedUri != null) {
+                if (BuildConfig.DEBUG) {
+                    Spacer(Modifier.height(8.dp))
+                    TextButton(
+                        onClick = {
+                            selectedUri = null
+                            debugFixtureSelected = true
+                            photoError = null
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .testTag("add_debug_fixture_photo")
+                            .semantics { contentDescription = "Use QA test photo" },
+                    ) {
+                        Text("QA 테스트 사진 사용")
+                    }
+                }
+                photoError?.let {
+                    Spacer(Modifier.height(8.dp))
+                    Text(it, color = AppColors.Danger)
+                }
+                if (selectedUri != null || debugFixtureSelected) {
                     Spacer(Modifier.height(10.dp))
                     Text("사진이 선택됐어요. 저장하면 앱 안에 복사본을 보관해요.", color = AppColors.Text2)
                 }
@@ -375,7 +439,10 @@ private fun AddRecordScreen(
                 TextField(
                     value = localDate,
                     onValueChange = { localDate = it },
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("add_local_date")
+                        .semantics { contentDescription = "Record date" },
                     singleLine = true,
                     colors = TextFieldDefaults.colors(
                         focusedContainerColor = AppColors.Bg2,
@@ -386,12 +453,15 @@ private fun AddRecordScreen(
         }
         item {
             CardBlock {
-                Text("메모", fontWeight = FontWeight.Bold, color = AppColors.Text)
+                Text("메모 (선택)", fontWeight = FontWeight.Bold, color = AppColors.Text)
                 TextField(
                     value = note,
                     onValueChange = { note = it },
                     placeholder = { Text("짧게 남겨보세요") },
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("add_note")
+                        .semantics { contentDescription = "Optional note" },
                     colors = TextFieldDefaults.colors(
                         focusedContainerColor = AppColors.Bg2,
                         unfocusedContainerColor = AppColors.Bg2,
@@ -401,11 +471,14 @@ private fun AddRecordScreen(
         }
         item {
             CardBlock {
-                Text("감정 태그", fontWeight = FontWeight.Bold, color = AppColors.Text)
+                Text("감정 태그 (선택)", fontWeight = FontWeight.Bold, color = AppColors.Text)
                 Spacer(Modifier.height(8.dp))
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     EmotionTag.entries.forEach { tag ->
                         FilterChip(
+                            modifier = Modifier
+                                .testTag("add_emotion_${tag.name.lowercase()}")
+                                .semantics { contentDescription = "Emotion ${tag.label}" },
                             selected = emotion == tag,
                             onClick = { emotion = if (emotion == tag) null else tag },
                             label = { Text(tag.label) },
@@ -415,41 +488,52 @@ private fun AddRecordScreen(
             }
         }
         item {
-            error?.let { Text(it, color = AppColors.Danger) }
+            saveError?.let { Text(it, color = AppColors.Danger) }
             Button(
                 enabled = !saving,
                 onClick = {
                     val uri = selectedUri
-                    if (uri == null) {
-                        error = "사진을 먼저 선택해주세요."
+                    if (uri == null && !debugFixtureSelected) {
+                        photoError = "사진을 먼저 선택해주세요."
+                        saveError = null
+                        return@Button
+                    }
+                    val normalizedDate = localDate.toValidIsoDateOrNull()
+                    if (normalizedDate == null) {
+                        saveError = "날짜는 YYYY-MM-DD 형식으로 입력해주세요."
                         return@Button
                     }
                     saving = true
-                    error = null
+                    photoError = null
+                    saveError = null
                     scope.launch {
                         runCatching {
-                            withContext(Dispatchers.IO) { imageStore.copyFromUri(uri) }
-                        }.onSuccess { stored ->
-                            onSaved(
-                                PhotoEntry(
-                                    id = UUID.randomUUID().toString(),
-                                    localDate = localDate,
-                                    originalRelativePath = stored.originalRelativePath,
-                                    thumbnailRelativePath = stored.thumbnailRelativePath,
-                                    note = note.trim(),
-                                    emotionTag = emotion,
-                                    createdAtMillis = System.currentTimeMillis(),
-                                ),
+                            val input = CreatePhotoEntryInput(
+                                localDate = normalizedDate,
+                                note = note,
+                                emotionTag = emotion,
                             )
+                            withContext(Dispatchers.IO) {
+                                if (debugFixtureSelected) {
+                                    repository.createDebugFixtureEntry(input)
+                                } else {
+                                    requireNotNull(uri)
+                                    repository.createPhotoEntryFromUri(uri, input)
+                                }
+                            }
+                        }.onSuccess { entry ->
+                            onSaved(entry)
                         }.onFailure {
-                            error = "사진을 앱 안에 저장하지 못했어요. 다시 시도해주세요."
+                            saveError = "사진을 앱 안에 저장하지 못했어요. 다시 시도해주세요."
                         }
                         saving = false
                     }
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(54.dp),
+                    .height(54.dp)
+                    .testTag("add_save")
+                    .semantics { contentDescription = "Save record" },
                 colors = ButtonDefaults.buttonColors(containerColor = AppColors.Accent),
                 shape = RoundedCornerShape(16.dp),
             ) {
@@ -595,7 +679,9 @@ private fun LocalBadge() {
         modifier = Modifier
             .clip(RoundedCornerShape(20.dp))
             .background(AppColors.GoodLight)
-            .padding(horizontal = 12.dp, vertical = 7.dp),
+            .padding(horizontal = 12.dp, vertical = 7.dp)
+            .testTag("local_storage_badge")
+            .semantics { contentDescription = "Stored only on this phone" },
     ) {
         Text("내 폰에만 저장됨", color = AppColors.Good, style = MaterialTheme.typography.labelMedium)
     }
@@ -621,3 +707,13 @@ private fun EmptyCard(title: String, body: String) {
 }
 
 private fun LocalDate.toIsoDate(): String = format(DateTimeFormatter.ISO_LOCAL_DATE)
+
+private fun String.toValidIsoDateOrNull(): String? = runCatching {
+    LocalDate.parse(trim(), DateTimeFormatter.ISO_LOCAL_DATE).toIsoDate()
+}.getOrNull()
+
+private fun buildDateCellDescription(date: LocalDate, isToday: Boolean, count: Int): String {
+    val todayText = if (isToday) ", today" else ""
+    val countText = if (count == 0) "no records" else "$count record${if (count == 1) "" else "s"}"
+    return "${date.toIsoDate()}$todayText, $countText"
+}

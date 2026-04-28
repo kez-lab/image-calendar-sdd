@@ -64,3 +64,33 @@ Updated tasks:
 - `002-photo-entry-creation`: Room persistence, repository save contract, fixture, date validation, inline validation.
 - `003-archive-search-filter`: placeholder removal, search/filter/month grouping, Android CLI smoke test.
 - `005-settings-data-safety`: placeholder removal, backup/delete shell, confirmation modal, Android CLI smoke test.
+
+## [2026-04-29] cycle-002 | Room persistence and Android CLI fixture
+
+Scope:
+
+- Added Room/KSP build setup with schema export.
+- Added Room database version `1` with `photo_entries` and `local_assets` tables.
+- Added `PhotoEntryRepository` and `AppContainer`.
+- Moved app record state from in-memory Compose list to repository-backed Flow.
+- Updated `LocalImageStore` so repository supplies the entry id and owns rollback cleanup.
+- Added debug-only deterministic fixture path for Android CLI save verification.
+- Added strict `YYYY-MM-DD` date validation, required/optional labels, inline photo validation, bottom nav label cleanup, content descriptions, and test tags for touched UI.
+
+Verification:
+
+- `./gradlew assembleDebug` passed.
+- Official `android describe --project_dir=.` found the debug APK.
+- Official `android run --apks=app/build/outputs/apk/debug/app-debug.apk --activity=.app.MainActivity` installed and launched the app.
+- Android CLI capture verified debug fixture save opens Day Detail with `이 기기에 저장된 기록 1개`.
+- Calendar marker appears on `2026-04-29` after returning from Day Detail.
+- After app process restart and official `android run`, Calendar still shows `2026-04-29` and `이 기기에 저장된 기록 1개`.
+- Android CLI layout exposes `local_storage_badge`, `calendar_day_2026-04-29`, and content description `2026-04-29, today, 1 record`.
+- Static forbidden wording scan found no network/account/social/share/login concepts.
+
+Known gaps:
+
+- Gallery-picker save success still needs manual/device-level verification; debug fixture covers deterministic automation only.
+- Reusable smoke test script is not yet checked in.
+- Record edit/delete and repository file cleanup on deletion are not implemented yet.
+- Archive and Settings remain release-blocking placeholders.

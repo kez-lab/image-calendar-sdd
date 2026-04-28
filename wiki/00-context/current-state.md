@@ -59,15 +59,15 @@ sources:
 - 현재 앱은 Compose app shell, Calendar, Add Record, Day Detail, Archive placeholder, Settings placeholder를 가진다.
 - `./gradlew assembleDebug`는 통과했다.
 - 공식 Android CLI로 debug APK 설치/실행, layout dump, screen capture가 확인되었다.
-- 현재 기록 상태는 in-memory이며, Room 영속화는 다음 구현 사이클의 핵심 과제다.
+- 기록 상태는 Room `photo_entries`/`local_assets`와 repository-backed Flow로 전환되었다.
+- Android CLI debug fixture로 저장한 기록이 앱 재실행 후 Calendar와 Day Detail에 유지되는 것을 확인했다.
 - 2026-04-29 주간 앱 리뷰에서 현재 앱은 release-ready MVP가 아니라 directionally valid prototype으로 분류되었다.
 - Archive와 Settings placeholder는 release blocker로 확정되었다.
 - Android CLI smoke test는 weekly/release verification gate로 사용한다.
 
 ## Next Actions
 
-1. Room `PhotoEntry`/`LocalAsset` 영속화와 repository를 연결한다.
-2. Android CLI로 검증 가능한 deterministic debug/test fixture를 추가한다.
-3. Add Record 저장 흐름을 repository 기반으로 교체하고 앱 재시작 후 유지되는지 검증한다.
-4. Calendar marker와 Day Detail을 Room query 기반으로 연결한다.
-5. Archive/Settings placeholder를 실제 MVP 기능으로 교체한다.
+1. Day Detail 수정/삭제와 로컬 파일 삭제 cleanup을 구현한다.
+2. Archive placeholder를 검색/감정 필터/월별 목록으로 교체한다.
+3. Settings placeholder를 백업 내보내기 shell, restore 안내, danger zone, 삭제 확인으로 교체한다.
+4. Android CLI smoke journey를 재사용 가능한 스크립트 또는 문서화된 절차로 고정한다.

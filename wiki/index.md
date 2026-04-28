@@ -91,6 +91,7 @@ Updated: 2026-04-29
 
 - [LLM Wiki Pattern](../raw/sources/0001-llm-wiki-pattern.md)
 - [Claude Design Prompt](../raw/sources/0002-claude-design-prompt.md)
+- [Room Persistence Smoke Verification](../raw/verification/2026-04-29-room-persistence-smoke/README.md)
 - [App Image Calendar Design Raw](../raw/design/2026-04-28-app-image-calendar/README.md)
 - [App Image Calendar Design v2 Raw](../raw/design/2026-04-28-app-image-calendar-v2/README.md)
 - [Designer Feedback Request](../raw/design/2026-04-28-app-image-calendar/designer-feedback-request.md)

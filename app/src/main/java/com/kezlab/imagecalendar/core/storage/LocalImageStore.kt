@@ -7,16 +7,18 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import java.io.File
 import java.io.FileOutputStream
-import java.util.UUID
 
 data class StoredImage(
     val originalRelativePath: String,
     val thumbnailRelativePath: String,
+    val mimeType: String,
+    val width: Int,
+    val height: Int,
+    val fileSizeBytes: Long,
 )
 
 class LocalImageStore(private val context: Context) {
-    fun copyFromUri(uri: Uri): StoredImage {
-        val entryId = UUID.randomUUID().toString()
+    fun copyFromUri(uri: Uri, entryId: String): StoredImage {
         val entryDir = File(context.filesDir, "entries/$entryId")
         val originalFile = File(entryDir, "original.jpg")
         val thumbnailFile = File(entryDir, "thumb.jpg")
@@ -25,14 +27,38 @@ class LocalImageStore(private val context: Context) {
             entryDir.mkdirs()
             copyUriToFile(context.contentResolver, uri, originalFile)
             createThumbnail(originalFile, thumbnailFile)
-            return StoredImage(
-                originalRelativePath = "entries/$entryId/original.jpg",
-                thumbnailRelativePath = "entries/$entryId/thumb.jpg",
-            )
+            return storedImage(entryId, originalFile)
         } catch (throwable: Throwable) {
             entryDir.deleteRecursively()
             throw throwable
         }
+    }
+
+    fun createDebugFixture(entryId: String): StoredImage {
+        val entryDir = File(context.filesDir, "entries/$entryId")
+        val originalFile = File(entryDir, "original.jpg")
+        val thumbnailFile = File(entryDir, "thumb.jpg")
+
+        try {
+            entryDir.mkdirs()
+            val bitmap = Bitmap.createBitmap(1024, 1024, Bitmap.Config.ARGB_8888)
+            bitmap.eraseColor(0xFFEAE7F8.toInt())
+            FileOutputStream(originalFile).use { output ->
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 90, output)
+            }
+            bitmap.recycle()
+            createThumbnail(originalFile, thumbnailFile)
+            return storedImage(entryId, originalFile)
+        } catch (throwable: Throwable) {
+            entryDir.deleteRecursively()
+            throw throwable
+        }
+    }
+
+    fun deleteStoredImage(storedImage: StoredImage) {
+        File(context.filesDir, storedImage.originalRelativePath)
+            .parentFile
+            ?.deleteRecursively()
     }
 
     private fun copyUriToFile(contentResolver: ContentResolver, uri: Uri, destination: File) {
@@ -55,6 +81,19 @@ class LocalImageStore(private val context: Context) {
             thumbnail.recycle()
         }
         bitmap.recycle()
+    }
+
+    private fun storedImage(entryId: String, originalFile: File): StoredImage {
+        val options = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+        BitmapFactory.decodeFile(originalFile.absolutePath, options)
+        return StoredImage(
+            originalRelativePath = "entries/$entryId/original.jpg",
+            thumbnailRelativePath = "entries/$entryId/thumb.jpg",
+            mimeType = options.outMimeType ?: "image/jpeg",
+            width = options.outWidth,
+            height = options.outHeight,
+            fileSizeBytes = originalFile.length(),
+        )
     }
 
     private fun Bitmap.centerCropToSquare(size: Int): Bitmap {

@@ -2,9 +2,10 @@
 type: engineering
 status: draft
 owner: llm
-updated: 2026-04-28
+updated: 2026-04-29
 sources:
   - raw/sources/0002-claude-design-prompt.md
+  - ../../raw/verification/2026-04-29-room-persistence-smoke/README.md
 ---
 
 # Local Repository Contracts
@@ -20,16 +21,20 @@ sources:
 
 ## Entry Repository
 
-- `createPhotoEntry(input)`: 사진, 날짜, 메모, 감정 태그를 저장한다.
+- `createPhotoEntryFromUri(uri, input)`: Android Photo Picker URI, 날짜, 메모, 감정 태그를 저장한다.
+- `createDebugFixtureEntry(input)`: debug/test 검증용 고정 이미지를 생성하고 저장한다. Release user flow가 아니다.
 - `updatePhotoEntry(id, input)`: 기존 기록을 수정한다.
 - `deletePhotoEntry(id)`: 기록과 연결된 로컬 이미지/썸네일을 삭제한다.
 
 Create flow contract:
 
 - Input image URI is copied into app-specific internal storage.
+- Debug fixture creates a local JPEG directly in app-specific internal storage.
+- Thumbnail is generated before metadata commit.
 - DB stores relative original/thumbnail paths only.
 - `localDate` uses `YYYY-MM-DD`.
-- On copy, thumbnail, or DB failure, partial files are cleaned up.
+- Repository owns the copy, thumbnail, Room insert, and rollback cleanup sequence.
+- On copy, thumbnail, or DB failure, partial files are cleaned up before surfacing failure.
 - The source gallery URI is not stored.
 
 ## Archive Repository
