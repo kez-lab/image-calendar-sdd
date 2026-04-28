@@ -2,10 +2,11 @@
 type: project
 status: active
 owner: llm
-updated: 2026-04-28
+updated: 2026-04-29
 sources:
   - raw/sources/0001-llm-wiki-pattern.md
   - raw/sources/0002-claude-design-prompt.md
+  - raw/meetings/2026-04-29-weekly-app-review/final-notes.md
 ---
 
 # Decision Log
@@ -114,3 +115,20 @@ Rationale:
 - 앱 내부 복사본은 원본 갤러리 삭제/권한 만료와 무관하게 로컬 기록을 유지할 수 있다.
 - relative path와 `PhotoEntry` 중심 모델은 추후 백업/복원 포맷으로 확장하기 쉽다.
 - 첫 수직 슬라이스는 기록 저장부터 캘린더 반영까지 핵심 루프를 가장 빠르게 검증한다.
+
+## [2026-04-29] Treat current app as prototype and prioritize persistence gate
+
+Decision:
+
+- 현재 앱은 release-ready MVP가 아니라 directionally valid prototype으로 분류한다.
+- 다음 구현 사이클의 P0는 Room persistence, repository save contract, deterministic Android CLI QA fixture다.
+- `createPhotoEntry`는 이미지 복사, 썸네일 생성, Room insert, 실패 시 cleanup rollback을 하나의 계약으로 책임진다.
+- Archive/Settings placeholder는 release blocker로 분류한다.
+- Android CLI smoke test를 weekly review와 release candidate 검증 gate로 둔다.
+- Accessibility semantics, content descriptions, selected states, stable test tags는 각 feature 구현 시 필수로 넣는다.
+
+Rationale:
+
+- in-memory 상태에서는 앱 재시작 후 기록 유지, 아카이브 탐색, 설정 데이터 액션을 신뢰성 있게 검증할 수 없다.
+- placeholder 화면은 로컬 저장 신뢰와 출시 가능한 MVP 인상을 훼손한다.
+- Android CLI layout evidence에서 주요 clickable node의 라벨/description이 부족해 자동 회귀 검증이 좌표 의존으로 굳어질 위험이 있다.

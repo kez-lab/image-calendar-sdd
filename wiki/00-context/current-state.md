@@ -2,12 +2,13 @@
 type: context
 status: active
 owner: llm
-updated: 2026-04-28
+updated: 2026-04-29
 sources:
   - raw/sources/0001-llm-wiki-pattern.md
   - raw/sources/0002-claude-design-prompt.md
   - raw/design/2026-04-28-app-image-calendar/ImageCalendar.html
   - raw/design/2026-04-28-app-image-calendar-v2/ImageCalendar v2.html
+  - raw/meetings/2026-04-29-weekly-app-review/final-notes.md
 ---
 
 # Current State
@@ -57,10 +58,16 @@ sources:
 - 백업은 로컬 파일 내보내기 우선으로 다루고, 가져오기/복원은 정책 확정 후 후속으로 다룬다.
 - 현재 앱은 Compose app shell, Calendar, Add Record, Day Detail, Archive placeholder, Settings placeholder를 가진다.
 - `./gradlew assembleDebug`는 통과했다.
+- 공식 Android CLI로 debug APK 설치/실행, layout dump, screen capture가 확인되었다.
 - 현재 기록 상태는 in-memory이며, Room 영속화는 다음 구현 사이클의 핵심 과제다.
+- 2026-04-29 주간 앱 리뷰에서 현재 앱은 release-ready MVP가 아니라 directionally valid prototype으로 분류되었다.
+- Archive와 Settings placeholder는 release blocker로 확정되었다.
+- Android CLI smoke test는 weekly/release verification gate로 사용한다.
 
 ## Next Actions
 
-1. Room `PhotoEntry`/`LocalAsset` 영속화를 연결한다.
-2. Add Record 저장 흐름을 repository 기반으로 교체한다.
-3. Calendar marker와 Day Detail을 Room query 기반으로 연결한다.
+1. Room `PhotoEntry`/`LocalAsset` 영속화와 repository를 연결한다.
+2. Android CLI로 검증 가능한 deterministic debug/test fixture를 추가한다.
+3. Add Record 저장 흐름을 repository 기반으로 교체하고 앱 재시작 후 유지되는지 검증한다.
+4. Calendar marker와 Day Detail을 Room query 기반으로 연결한다.
+5. Archive/Settings placeholder를 실제 MVP 기능으로 교체한다.

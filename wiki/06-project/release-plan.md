@@ -2,7 +2,7 @@
 type: project
 status: draft
 owner: llm
-updated: 2026-04-28
+updated: 2026-04-29
 sources:
   - raw/sources/0002-claude-design-prompt.md
 ---
@@ -33,3 +33,6 @@ MVP 릴리즈는 “사진으로 하루를 기록하고, 날짜별로 다시 찾
 - 캘린더에서 기록 유무가 불명확한 상태
 - 삭제/백업 내보내기 결과가 불명확한 상태
 - 접근성상 핵심 버튼 사용이 어려운 상태
+- Room persistence 없이 in-memory 상태만 사용하는 상태
+- Archive 또는 Settings에 placeholder/internal development copy가 남아 있는 상태
+- Android CLI smoke test로 핵심 기록 루프를 재현할 수 없는 상태

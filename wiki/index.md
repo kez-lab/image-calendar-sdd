@@ -1,6 +1,6 @@
 # Wiki Index
 
-Updated: 2026-04-28
+Updated: 2026-04-29
 
 ## Context
 
@@ -68,6 +68,7 @@ Updated: 2026-04-28
 - [2026-04-28 Product Planning Kickoff](08-meetings/2026-04-28-product-planning-kickoff.md): 로컬 전용 개인 이미지 캘린더 MVP 기획 고도화 회의.
 - [2026-04-28 MVP Decision Lock](08-meetings/2026-04-28-mvp-decision-lock.md): 구현 태스크 전환 전 남은 제품/디자인 결정을 확정한 회의.
 - [2026-04-28 Tech Implementation Council](08-meetings/2026-04-28-tech-implementation-council.md): 기술 스택과 첫 구현 수직 슬라이스를 확정한 회의.
+- [2026-04-29 Weekly App Review](08-meetings/2026-04-29-weekly-app-review.md): Android CLI 캡처/검증으로 현재 prototype 상태와 다음 구현 우선순위를 확정한 회의.
 
 ## LLM Ops
 
@@ -96,3 +97,4 @@ Updated: 2026-04-28
 - [Product Planning Kickoff Meeting Raw](../raw/meetings/2026-04-28-product-planning-kickoff/brief.md)
 - [MVP Decision Lock Meeting Raw](../raw/meetings/2026-04-28-mvp-decision-lock/brief.md)
 - [Tech Implementation Council Meeting Raw](../raw/meetings/2026-04-28-tech-implementation-council/brief.md)
+- [Weekly App Review Meeting Raw](../raw/meetings/2026-04-29-weekly-app-review/brief.md)

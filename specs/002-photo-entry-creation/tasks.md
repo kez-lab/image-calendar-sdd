@@ -35,11 +35,16 @@ Status: draft
 - [ ] Update local date summary so Calendar marker appears.
 - [x] Navigate to saved date Day Detail after successful save.
 - [ ] Show save failure state without implying network/server failure.
+- [ ] Move no-photo validation message under the photo section as inline error.
+- [ ] Label inputs as required or optional: photo required, memo optional, emotion optional.
+- [ ] Add date picker or strict `YYYY-MM-DD` validation before save.
+- [ ] Add Compose semantics/content descriptions/test tags for photo picker, date input, memo input, emotion chips, validation error, and save button.
+- [ ] Add deterministic debug/test fixture so Android CLI can verify a successful photo save without manual picker dependency.
 - [ ] Defer camera capture to a later subtask.
 
 ## Verification
 
-- [ ] Test save is blocked without photo.
+- [x] Test save is blocked without photo. Verified 2026-04-29 with Android CLI screen capture.
 - [ ] Test save succeeds with photo only.
 - [ ] Test save succeeds with photo, memo, and emotion.
 - [ ] Test changed date is respected.
@@ -48,3 +53,4 @@ Status: draft
 - [ ] Test Add Record contains no account/upload/sync/share language.
 - [ ] Test failed save does not create a partial visible record.
 - [x] Test manifest has no `INTERNET` permission.
+- [ ] Add Android CLI smoke test for photo fixture save, Day Detail card, app restart persistence, and Calendar marker.

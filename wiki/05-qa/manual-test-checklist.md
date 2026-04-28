@@ -2,7 +2,7 @@
 type: qa
 status: draft
 owner: llm
-updated: 2026-04-28
+updated: 2026-04-29
 sources:
   - raw/sources/0002-claude-design-prompt.md
 ---
@@ -21,6 +21,7 @@ sources:
 - 기록이 있는 날짜가 구분된다.
 - 날짜 선택 시 해당 날짜 상세로 이동한다.
 - 서버/업로드/공유처럼 보이는 요소가 없다.
+- Android CLI layout에서 날짜 셀이 full date, today state, record count를 읽을 수 있다.
 
 ## Record Creation
 
@@ -32,6 +33,8 @@ sources:
 - 로컬 저장 안내가 보인다.
 - 저장 후 해당 날짜 Day Detail로 이동한다.
 - Calendar로 돌아오면 기록 날짜 marker가 보인다.
+- 사진 미선택 저장 시 사진 영역 근처에 inline validation이 표시된다.
+- 앱 재시작 후에도 저장한 기록이 유지된다.
 
 ## Day Detail
 
@@ -52,3 +55,12 @@ sources:
 - 가져오기/복원은 후속 기능임이 혼동 없이 이해된다.
 - 전체 데이터 삭제는 확인 모달을 거친다.
 - 앱 정보가 확인 가능하다.
+
+## Android CLI Weekly Gate
+
+- `./gradlew assembleDebug`가 통과한다.
+- 공식 `android run`으로 APK 설치와 앱 실행이 성공한다.
+- Calendar, Add, Archive, Settings, validation 화면을 `android layout`과 `android screen capture`로 저장한다.
+- 캡처 결과가 `raw/meetings/{date-topic}/assets/`에 raw evidence로 보관된다.
+- `app/src/main`과 Gradle 파일에 `INTERNET`, login, upload, sync, cloud, share, social/feed/like/comment/follow 표현이 없다.
+- 핵심 액션은 좌표 의존 없이 layout semantics 또는 안정적인 test tag로 식별 가능하다.

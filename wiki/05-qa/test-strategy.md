@@ -2,7 +2,7 @@
 type: qa
 status: draft
 owner: llm
-updated: 2026-04-28
+updated: 2026-04-29
 sources:
   - raw/sources/0002-claude-design-prompt.md
 ---
@@ -46,3 +46,24 @@ sources:
 - Save success opens Day Detail for the saved date.
 - Calendar marker appears after returning.
 - App contains no account, sync, upload, sharing, public feed, likes, comments, or follows.
+
+## Android CLI Gate
+
+Weekly reviews and release candidates use official Android CLI evidence:
+
+- `android run` for install and launch.
+- `android layout --pretty --output=...` for accessibility/testability inspection.
+- `android screen capture --output=...` for visual evidence.
+- `android screen capture --annotate` and `android screen resolve` only when visual target resolution is required.
+
+Required smoke journeys:
+
+- Calendar launch, local-only badge, today highlight, and month navigation.
+- Add screen photo-required validation.
+- Fixture-based photo save, Day Detail display, Calendar marker, and app restart persistence.
+- Archive search, emotion filtering, no-result state, and record navigation.
+- Settings local trust copy, backup export action shell, restore follow-up row, and delete confirmation cancel path.
+
+## Fixture Strategy
+
+The app needs a deterministic debug/test fixture so Android CLI can verify save success without relying on manual photo picker selection. Fixture behavior must be excluded from release user flows and must not introduce network, account, upload, sync, or share concepts.

@@ -72,3 +72,10 @@
 - Source: [Android CLI Custom Skills](07-llm/skills/android-cli-custom-skills.md)
 - Action: 공식 Android CLI 명령군을 setup, project describe, app run, UI inspect, SDK/emulator, docs/skills, journey smoke test 용도로 나눈 Codex 커스텀 skills를 추가.
 - Updated: `.codex/skills/android-*`, `~/.codex/skills/android-*`, `wiki/07-llm/skills/android-cli-custom-skills.md`, `wiki/index.md`.
+
+## [2026-04-29] meeting | Weekly Android app review
+
+- Source: [Meeting Minutes](08-meetings/2026-04-29-weekly-app-review.md)
+- Evidence: [Screen Evidence](../raw/meetings/2026-04-29-weekly-app-review/screen-evidence.md)
+- Action: 공식 Android CLI로 Calendar/Add/Archive/Settings/validation 화면을 캡처하고, 회의를 통해 현재 앱을 prototype으로 분류한 뒤 다음 P0 범위를 Room persistence, repository, deterministic QA fixture로 확정.
+- Updated: `raw/meetings/2026-04-29-weekly-app-review/*`, `wiki/08-meetings/2026-04-29-weekly-app-review.md`, `wiki/06-project/decision-log.md`, `wiki/06-project/implementation-log.md`, `wiki/00-context/current-state.md`, `wiki/05-qa/*`, `specs/*/tasks.md`.

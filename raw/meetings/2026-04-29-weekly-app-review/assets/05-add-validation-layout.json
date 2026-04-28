@@ -1,0 +1,211 @@
+[
+  {
+    "text": "오늘의 기록",
+    "center": "[229,248]",
+    "key": 3506402
+  },
+  {
+    "text": "내 폰에만 저장됨",
+    "center": "[200,364]",
+    "key": 3506402
+  },
+  {
+    "text": "사진을 먼저 선택해주세요.",
+    "center": "[293,1827]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[540,1930]",
+    "key": 3506402
+  },
+  {
+    "text": "사진",
+    "center": "[135,520]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[540,642]",
+    "key": 3506402
+  },
+  {
+    "text": "날짜",
+    "center": "[135,861]",
+    "key": 3506402
+  },
+  {
+    "text": "2026-04-29",
+    "interactions": [
+      "clickable",
+      "focusable",
+      "long-clickable"
+    ],
+    "center": "[540,966]",
+    "key": 3506402
+  },
+  {
+    "text": "메모",
+    "center": "[135,1197]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable",
+      "long-clickable"
+    ],
+    "center": "[540,1302]",
+    "key": 3506402
+  },
+  {
+    "text": "감정 태그",
+    "center": "[181,1533]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[171,1649]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[344,1649]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[517,1649]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[690,1649]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[863,1649]",
+    "key": 3506402
+  },
+  {
+    "text": "저장하기",
+    "center": "[540,1930]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[127,2256]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "focusable"
+    ],
+    "state": [
+      "selected"
+    ],
+    "center": "[403,2256]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[678,2256]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[953,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "갤러리에서 사진 선택",
+    "center": "[540,641]",
+    "key": 3506402
+  },
+  {
+    "text": "짧게 남겨보세요",
+    "center": "[284,1302]",
+    "key": 3506402
+  },
+  {
+    "text": "차분",
+    "center": "[171,1649]",
+    "key": 3506402
+  },
+  {
+    "text": "기쁨",
+    "center": "[344,1649]",
+    "key": 3506402
+  },
+  {
+    "text": "피곤",
+    "center": "[517,1649]",
+    "key": 3506402
+  },
+  {
+    "text": "포근",
+    "center": "[690,1649]",
+    "key": 3506402
+  },
+  {
+    "text": "바쁨",
+    "center": "[863,1649]",
+    "key": 3506402
+  },
+  {
+    "text": "Calendar",
+    "center": "[127,2298]",
+    "key": 3506402
+  },
+  {
+    "text": "Add",
+    "center": "[402,2298]",
+    "key": 3506402
+  },
+  {
+    "text": "Archive",
+    "center": "[678,2298]",
+    "key": 3506402
+  },
+  {
+    "text": "Settings",
+    "center": "[953,2298]",
+    "key": 3506402
+  }
+]

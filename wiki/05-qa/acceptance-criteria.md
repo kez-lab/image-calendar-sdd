@@ -2,9 +2,10 @@
 type: qa
 status: active
 owner: llm
-updated: 2026-04-28
+updated: 2026-04-29
 sources:
   - raw/sources/0002-claude-design-prompt.md
+  - raw/meetings/2026-04-29-weekly-app-review/final-notes.md
 ---
 
 # Acceptance Criteria
@@ -15,6 +16,7 @@ sources:
 - 사용자는 로그인 없이 캘린더 홈에 진입할 수 있다.
 - 사용자는 월간 캘린더에서 오늘과 기록이 있는 날짜를 구분할 수 있다.
 - 사용자는 사진, 날짜, 메모, 감정 태그를 저장할 수 있다.
+- 저장한 기록은 앱 재시작 후에도 유지된다.
 - 사용자는 같은 날짜의 여러 기록을 카드로 볼 수 있다.
 - 사용자는 기록 저장 후 저장된 날짜의 상세 화면에서 방금 만든 기록을 확인할 수 있다.
 - 사용자는 개별 기록을 수정하고 삭제할 수 있다.
@@ -29,7 +31,16 @@ sources:
 - 로컬 저장 상태가 온보딩, 기록 추가, 설정에서 명확히 보인다.
 - Calendar에는 compact 로컬 저장 배지가 상시 보인다.
 - 텍스트 대비와 터치 영역이 모바일 사용에 적합하다.
+- 주요 액션은 접근성 tree에서 의미 있는 label, role, selected state를 가진다.
 - 삭제와 백업 내보내기 동작이 안전하게 느껴진다.
+
+## Verification Acceptance
+
+- Official Android CLI can install and launch the debug APK.
+- Android CLI smoke test can reproduce the core loop: photo fixture save, Day Detail display, Calendar marker, app restart persistence.
+- Android CLI layout evidence can identify major actions without fragile coordinate-only selectors.
+- Archive and Settings contain no placeholder/internal development copy.
+- Manifest and source scans confirm no network permission and no account/upload/sync/share/social concepts.
 
 ## SDD Acceptance
 
