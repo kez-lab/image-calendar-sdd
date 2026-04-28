@@ -15,6 +15,7 @@
 - [0002-claude-design-prompt.md](sources/0002-claude-design-prompt.md)
 - [2026-04-28 App Image Calendar Design](design/2026-04-28-app-image-calendar/README.md)
 - [2026-04-29 Room Persistence Smoke Verification](verification/2026-04-29-room-persistence-smoke/README.md)
+- [2026-04-29 Overall Behavior and Design Review](verification/2026-04-29-overall-behavior-design-review/README.md)
 
 회의 원자료:
 

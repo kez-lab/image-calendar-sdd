@@ -86,3 +86,10 @@
 - Evidence: [Room Persistence Smoke Verification](../raw/verification/2026-04-29-room-persistence-smoke/README.md)
 - Action: Room/KSP, `photo_entries`/`local_assets` schema, repository save contract, debug fixture, repository-backed Compose state, and Android CLI persistence verification were added.
 - Updated: `app/*`, `app/schemas/*`, `raw/verification/2026-04-29-room-persistence-smoke/README.md`, `wiki/03-engineering/*`, `wiki/06-project/implementation-log.md`, `wiki/00-context/current-state.md`, `specs/001-calendar-daily-record/tasks.md`, `specs/002-photo-entry-creation/tasks.md`.
+
+## [2026-04-29] verification | Overall behavior and design sync review
+
+- Source: [Verification Report](05-qa/verification-report-2026-04-29.md)
+- Evidence: [Overall Behavior and Design Review](../raw/verification/2026-04-29-overall-behavior-design-review/README.md)
+- Action: Calendar, Day Detail, Add, Add validation, Archive, and Settings were captured with screenshot/layout/annotated evidence; design v2 sync was reviewed and release blockers were recorded.
+- Updated: `raw/verification/2026-04-29-overall-behavior-design-review/*`, `wiki/05-qa/verification-report-2026-04-29.md`, `wiki/index.md`, `wiki/log.md`, `raw/README.md`.

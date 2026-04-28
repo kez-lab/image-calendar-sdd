@@ -39,8 +39,22 @@ Android CLI was used for APK install/launch and evidence capture. Device input w
 | Saved date cell exposes `2026-04-29, today, 1 record` content description | Passed |
 | Forbidden network/account/social wording scan | Passed |
 
+## Evidence Assets
+
+- [01 launch calendar](assets/01-launch-calendar.png)
+- [01 launch calendar layout](assets/01-launch-calendar-layout.json)
+- [02 add annotated](assets/02-add-annotated.png)
+- [04 after save detail](assets/04-after-save-detail.png)
+- [04 after save detail layout](assets/04-after-save-detail-layout.json)
+- [05 calendar marker](assets/05-calendar-marker.png)
+- [05 calendar marker layout](assets/05-calendar-marker-layout.json)
+- [06 relaunch calendar](assets/06-relaunch-calendar.png)
+- [06 relaunch calendar layout](assets/06-relaunch-calendar-layout.json)
+- [07 final calendar](assets/07-final-calendar.png)
+- [07 final layout](assets/07-final-layout.json)
+
 ## Notes
 
-- Verification artifacts remain under local ignored `artifacts/android-cli/2026-04-29-room-persistence-smoke/`.
+- Verification artifacts were copied from local ignored `artifacts/android-cli/2026-04-29-room-persistence-smoke/` into this raw folder for persistence.
 - The debug fixture is gated by `BuildConfig.DEBUG`; it is not a release user flow.
 - Archive and Settings remain placeholders and are still release blockers.

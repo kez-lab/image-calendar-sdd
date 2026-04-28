@@ -1,0 +1,574 @@
+[
+  {
+    "interactions": [
+      "scrollable"
+    ],
+    "center": "[540,1146]",
+    "bounds": "[53,195][1027,2098]",
+    "key": 3506402
+  },
+  {
+    "text": "Image Calendar",
+    "center": "[309,242]",
+    "key": 3506402
+  },
+  {
+    "text": "내 폰에만 저장됨",
+    "center": "[879,243]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[129,396]",
+    "key": 3506402
+  },
+  {
+    "text": "2026.04",
+    "center": "[540,395]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[951,396]",
+    "key": 3506402
+  },
+  {
+    "text": "일",
+    "center": "[116,523]",
+    "key": 3506402
+  },
+  {
+    "text": "월",
+    "center": "[258,523]",
+    "key": 3506402
+  },
+  {
+    "text": "화",
+    "center": "[400,523]",
+    "key": 3506402
+  },
+  {
+    "text": "수",
+    "center": "[542,523]",
+    "key": 3506402
+  },
+  {
+    "text": "목",
+    "center": "[683,523]",
+    "key": 3506402
+  },
+  {
+    "text": "금",
+    "center": "[824,523]",
+    "key": 3506402
+  },
+  {
+    "text": "토",
+    "center": "[965,523]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable"
+    ],
+    "center": "[116,630]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable"
+    ],
+    "center": "[258,630]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable"
+    ],
+    "center": "[400,630]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[542,630]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[683,630]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[824,630]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[965,630]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[116,777]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[258,777]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[400,777]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[542,777]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[683,777]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[824,777]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[965,777]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[116,924]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[258,924]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[400,924]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[542,924]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[683,924]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[824,924]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[965,924]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[116,1071]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[258,1071]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[400,1071]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[542,1071]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[683,1071]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[824,1071]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[965,1071]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[116,1218]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[258,1218]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[400,1218]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[542,1218]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[683,1218]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[540,1394]",
+    "key": 3506402
+  },
+  {
+    "text": "이전",
+    "center": "[129,395]",
+    "key": 3506402
+  },
+  {
+    "text": "다음",
+    "center": "[951,395]",
+    "key": 3506402
+  },
+  {
+    "text": "1",
+    "center": "[541,629]",
+    "key": 3506402
+  },
+  {
+    "text": "2",
+    "center": "[682,629]",
+    "key": 3506402
+  },
+  {
+    "text": "3",
+    "center": "[823,629]",
+    "key": 3506402
+  },
+  {
+    "text": "4",
+    "center": "[964,629]",
+    "key": 3506402
+  },
+  {
+    "text": "5",
+    "center": "[116,777]",
+    "key": 3506402
+  },
+  {
+    "text": "6",
+    "center": "[258,777]",
+    "key": 3506402
+  },
+  {
+    "text": "7",
+    "center": "[400,777]",
+    "key": 3506402
+  },
+  {
+    "text": "8",
+    "center": "[541,776]",
+    "key": 3506402
+  },
+  {
+    "text": "9",
+    "center": "[682,776]",
+    "key": 3506402
+  },
+  {
+    "text": "10",
+    "center": "[823,776]",
+    "key": 3506402
+  },
+  {
+    "text": "11",
+    "center": "[964,776]",
+    "key": 3506402
+  },
+  {
+    "text": "12",
+    "center": "[116,924]",
+    "key": 3506402
+  },
+  {
+    "text": "13",
+    "center": "[258,924]",
+    "key": 3506402
+  },
+  {
+    "text": "14",
+    "center": "[400,924]",
+    "key": 3506402
+  },
+  {
+    "text": "15",
+    "center": "[541,923]",
+    "key": 3506402
+  },
+  {
+    "text": "16",
+    "center": "[682,923]",
+    "key": 3506402
+  },
+  {
+    "text": "17",
+    "center": "[823,923]",
+    "key": 3506402
+  },
+  {
+    "text": "18",
+    "center": "[964,923]",
+    "key": 3506402
+  },
+  {
+    "text": "19",
+    "center": "[116,1071]",
+    "key": 3506402
+  },
+  {
+    "text": "20",
+    "center": "[258,1071]",
+    "key": 3506402
+  },
+  {
+    "text": "21",
+    "center": "[400,1071]",
+    "key": 3506402
+  },
+  {
+    "text": "22",
+    "center": "[541,1070]",
+    "key": 3506402
+  },
+  {
+    "text": "23",
+    "center": "[682,1070]",
+    "key": 3506402
+  },
+  {
+    "text": "24",
+    "center": "[823,1070]",
+    "key": 3506402
+  },
+  {
+    "text": "25",
+    "center": "[964,1070]",
+    "key": 3506402
+  },
+  {
+    "text": "26",
+    "center": "[116,1218]",
+    "key": 3506402
+  },
+  {
+    "text": "27",
+    "center": "[258,1218]",
+    "key": 3506402
+  },
+  {
+    "text": "28",
+    "center": "[400,1218]",
+    "key": 3506402
+  },
+  {
+    "text": "29",
+    "center": "[541,1204]",
+    "key": 3506402
+  },
+  {
+    "text": "30",
+    "center": "[682,1217]",
+    "key": 3506402
+  },
+  {
+    "text": "오늘 기록 추가하기",
+    "center": "[540,1394]",
+    "key": 3506402
+  },
+  {
+    "text": "2026-04-29",
+    "center": "[239,1586]",
+    "key": 3506402
+  },
+  {
+    "text": "이 기기에 저장된 기록 1개",
+    "center": "[332,1670]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "focusable"
+    ],
+    "state": [
+      "selected"
+    ],
+    "center": "[127,2256]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[403,2256]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[678,2256]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[953,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "Calendar",
+    "center": "[127,2298]",
+    "key": 3506402
+  },
+  {
+    "text": "Add",
+    "center": "[402,2298]",
+    "key": 3506402
+  },
+  {
+    "text": "Archive",
+    "center": "[678,2298]",
+    "key": 3506402
+  },
+  {
+    "text": "Settings",
+    "center": "[953,2298]",
+    "key": 3506402
+  }
+]

@@ -49,6 +49,7 @@ Updated: 2026-04-29
 - [Test Strategy](05-qa/test-strategy.md): 테스트 전략 초안.
 - [Acceptance Criteria](05-qa/acceptance-criteria.md): MVP 인수 기준.
 - [Manual Test Checklist](05-qa/manual-test-checklist.md): 수동 테스트 체크리스트.
+- [2026-04-29 Verification Report](05-qa/verification-report-2026-04-29.md): Android CLI 전체 동작 검증과 디자인 싱크 리포트.
 
 ## Project
 
@@ -92,6 +93,7 @@ Updated: 2026-04-29
 - [LLM Wiki Pattern](../raw/sources/0001-llm-wiki-pattern.md)
 - [Claude Design Prompt](../raw/sources/0002-claude-design-prompt.md)
 - [Room Persistence Smoke Verification](../raw/verification/2026-04-29-room-persistence-smoke/README.md)
+- [Overall Behavior and Design Review](../raw/verification/2026-04-29-overall-behavior-design-review/README.md)
 - [App Image Calendar Design Raw](../raw/design/2026-04-28-app-image-calendar/README.md)
 - [App Image Calendar Design v2 Raw](../raw/design/2026-04-28-app-image-calendar-v2/README.md)
 - [Designer Feedback Request](../raw/design/2026-04-28-app-image-calendar/designer-feedback-request.md)
