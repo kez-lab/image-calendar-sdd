@@ -113,3 +113,9 @@
 - Evidence: [MVP Completion Verification](../raw/verification/2026-05-01-mvp-completion/README.md)
 - Action: Onboarding, Calendar empty-date CTA, Archive search/filter/month grouping, Settings backup zip export/delete-all, full deletion, and cleanup hardening were implemented and verified with Android CLI evidence.
 - Updated: `app/*`, `raw/verification/2026-05-01-mvp-completion/*`, `wiki/05-qa/verification-report-2026-05-01-mvp-completion.md`, `wiki/00-context/*`, `wiki/03-engineering/api-contracts.md`, `wiki/04-privacy-security/*`, `wiki/05-qa/*`, `wiki/06-project/*`, `specs/*`, `README.md`, `raw/README.md`.
+
+## [2026-05-01] llm-ops | Project workflow conventions and skills
+
+- Source: [Project Custom Skills](07-llm/skills/project-custom-skills.md)
+- Action: 별도 기여 가이드 파일 없이 PR 템플릿, Git convention, Android MVP verification skill, wiki/SDD sync skill을 추가해 반복 운영 절차를 고정.
+- Updated: `.github/pull_request_template.md`, `docs/conventions/git.md`, `.codex/skills/android-mvp-verification/SKILL.md`, `.codex/skills/wiki-sdd-sync/SKILL.md`, `wiki/07-llm/skills/*`, `wiki/index.md`, `README.md`.

@@ -72,6 +72,8 @@ Not yet implemented:
 | `wiki/` | Persistent LLM-maintained project wiki |
 | `specs/` | SDD-style feature specifications and implementation tasks |
 | `.codex/skills/` | Project-versioned Codex skills, including Android CLI workflows |
+| `.github/pull_request_template.md` | PR checklist for wiki/spec sync, verification evidence, and local-only guard |
+| `docs/conventions/` | Project workflow conventions such as branch, commit, and PR rules |
 | `AGENTS.md` | Agent operating rules and wiki maintenance protocol |
 
 ## Key Documents
@@ -84,6 +86,8 @@ Not yet implemented:
 - [Data Model](wiki/03-engineering/data-model.md)
 - [Test Strategy](wiki/05-qa/test-strategy.md)
 - [Implementation Log](wiki/06-project/implementation-log.md)
+- [Git Conventions](docs/conventions/git.md)
+- [Project Custom Skills](wiki/07-llm/skills/project-custom-skills.md)
 - [Meeting Index](wiki/08-meetings/index.md)
 - [Wiki Index](wiki/index.md)
 

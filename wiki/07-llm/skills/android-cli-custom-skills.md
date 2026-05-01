@@ -2,7 +2,7 @@
 type: llm
 status: active
 owner: llm
-updated: 2026-04-29
+updated: 2026-05-01
 sources:
   - https://developer.android.com/tools/agents/android-cli
   - https://developer.android.com/tools/agents/android-skills
@@ -23,6 +23,7 @@ Version-controlled project copies:
 - `.codex/skills/android-sdk-emulator-manager`
 - `.codex/skills/android-docs-skills-research`
 - `.codex/skills/android-journey-smoke-test`
+- `.codex/skills/android-mvp-verification`
 
 Active local Codex copies:
 
@@ -33,6 +34,7 @@ Active local Codex copies:
 - `~/.codex/skills/android-sdk-emulator-manager`
 - `~/.codex/skills/android-docs-skills-research`
 - `~/.codex/skills/android-journey-smoke-test`
+- `~/.codex/skills/android-mvp-verification`
 
 Codex may need to be restarted to discover newly added skills.
 
@@ -45,6 +47,7 @@ Codex may need to be restarted to discover newly added skills.
 - `android-sdk-emulator-manager`: `android sdk` and `android emulator`.
 - `android-docs-skills-research`: `android docs` and `android skills`.
 - `android-journey-smoke-test`: stepwise Android UI smoke journeys using Android CLI inspection.
+- `android-mvp-verification`: project-specific end-to-end MVP verification with durable raw evidence and wiki/SDD updates.
 
 ## Rules
 

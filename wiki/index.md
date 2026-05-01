@@ -58,6 +58,7 @@ Updated: 2026-05-01
 - [Roadmap](06-project/roadmap.md): 프로젝트 단계.
 - [Milestones](06-project/milestones.md): 마일스톤 초안.
 - [Release Plan](06-project/release-plan.md): 릴리즈 기준.
+- [Git Conventions](../docs/conventions/git.md): 브랜치, 커밋, PR, local-only guard 운영 규칙.
 - [Decision Log](06-project/decision-log.md): 의사결정 기록.
 - [Implementation Log](06-project/implementation-log.md): CEO 구현 사이클 결과 기록.
 - [Next Work Plan 2026-05-01](06-project/next-work-plan-2026-05-01.md): Archive 구현 전 계획과 TODO.
@@ -81,6 +82,7 @@ Updated: 2026-05-01
 - [SDD Workflow](07-llm/sdd-workflow.md): wiki 기반 SDD 절차.
 - [Wiki Maintenance](07-llm/wiki-maintenance.md): ingest/query/lint 운영법.
 - [Android CLI Custom Skills](07-llm/skills/android-cli-custom-skills.md): 공식 Android CLI를 용도별로 활용하기 위한 Codex 커스텀 skills.
+- [Project Custom Skills](07-llm/skills/project-custom-skills.md): MVP 검증과 wiki/SDD 동기화를 위한 프로젝트 전용 Codex skills.
 
 ## Specs
 
