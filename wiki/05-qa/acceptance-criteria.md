@@ -2,10 +2,11 @@
 type: qa
 status: active
 owner: llm
-updated: 2026-04-29
+updated: 2026-05-01
 sources:
   - raw/sources/0002-claude-design-prompt.md
   - raw/meetings/2026-04-29-weekly-app-review/final-notes.md
+  - ../../raw/verification/2026-05-01-mvp-completion/README.md
 ---
 
 # Acceptance Criteria
@@ -40,6 +41,7 @@ sources:
 - Android CLI smoke test can reproduce the core loop: photo fixture save, Day Detail display, Calendar marker, app restart persistence.
 - Android CLI layout evidence can identify major actions without fragile coordinate-only selectors.
 - Archive and Settings contain no placeholder/internal development copy.
+- MVP completion evidence covers Onboarding, Calendar, Add, Day Detail, Archive, Settings, backup export, delete-all, and restart after deletion.
 - Manifest and source scans confirm no network permission and no account/upload/sync/share/social concepts.
 
 ## SDD Acceptance

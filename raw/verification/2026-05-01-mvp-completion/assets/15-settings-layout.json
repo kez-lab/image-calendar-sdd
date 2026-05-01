@@ -1,0 +1,180 @@
+[
+  {
+    "interactions": [
+      "scrollable"
+    ],
+    "center": "[540,1146]",
+    "bounds": "[53,195][1027,2098]",
+    "key": 3506402
+  },
+  {
+    "text": "Settings",
+    "center": "[186,242]",
+    "key": 3506402
+  },
+  {
+    "text": "로컬 저장과 데이터 관리를 확인합니다.",
+    "center": "[405,321]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[127,2256]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[403,2256]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[678,2256]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "focusable"
+    ],
+    "state": [
+      "selected"
+    ],
+    "center": "[953,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "이 기록은 현재 디바이스에만 저장됩니다.",
+    "center": "[468,468]",
+    "key": 3506402
+  },
+  {
+    "text": "앱 안에 사진 복사본과 메모를 보관해요. 계정 없이 사용할 수 있고 외부 전송은 사용하지 않습니다.",
+    "center": "[540,615]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Stored only on this phone",
+    "center": "[242,772]",
+    "resource-id": "local_storage_badge",
+    "key": 3506402
+  },
+  {
+    "text": "백업 파일 내보내기",
+    "center": "[267,970]",
+    "key": 3506402
+  },
+  {
+    "text": "내 기록과 사진 복사본을 zip 파일로 저장합니다. 파일 보관 위치는 직접 선택합니다.",
+    "center": "[540,1086]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[540,1249]",
+    "resource-id": "settings_backup_export",
+    "key": 3506402
+  },
+  {
+    "text": "백업에서 복원하기",
+    "center": "[262,1475]",
+    "key": 3506402
+  },
+  {
+    "text": "복원은 기존 기록과 충돌할 수 있어 다음 버전에서 안전하게 제공합니다.",
+    "center": "[540,1586]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Restore coming soon",
+    "center": "[193,1722]",
+    "resource-id": "settings_restore_coming_soon",
+    "key": 3506402
+  },
+  {
+    "text": "앱 정보",
+    "center": "[161,1932]",
+    "key": 3506402
+  },
+  {
+    "text": "Image Calendar 0.1.0",
+    "center": "[306,2016]",
+    "key": 3506402
+  },
+  {
+    "text": "저장된 기록 2개",
+    "center": "[240,2073]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Calendar tab",
+    "center": "[127,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "Calendar",
+    "center": "[127,2298]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Add record tab",
+    "center": "[403,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "Add",
+    "center": "[402,2298]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Archive tab",
+    "center": "[678,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "Archive",
+    "center": "[678,2298]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Settings tab",
+    "center": "[953,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "Settings",
+    "center": "[953,2298]",
+    "key": 3506402
+  },
+  {
+    "text": "내 폰에만 저장됨",
+    "center": "[242,772]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Export backup file",
+    "center": "[540,1249]",
+    "key": 3506402
+  },
+  {
+    "text": "백업 파일 내보내기",
+    "center": "[540,1249]",
+    "key": 3506402
+  },
+  {
+    "text": "준비 중",
+    "center": "[193,1722]",
+    "key": 3506402
+  }
+]

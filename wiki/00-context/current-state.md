@@ -10,6 +10,7 @@ sources:
   - raw/design/2026-04-28-app-image-calendar-v2/ImageCalendar v2.html
   - raw/meetings/2026-04-29-weekly-app-review/final-notes.md
   - raw/verification/2026-05-01-day-detail-edit-delete/README.md
+  - raw/verification/2026-05-01-mvp-completion/README.md
 ---
 
 # Current State
@@ -64,13 +65,16 @@ sources:
 - Android CLI debug fixture로 저장한 기록이 앱 재실행 후 Calendar와 Day Detail에 유지되는 것을 확인했다.
 - Day Detail에서 기록의 날짜/메모/감정 태그 수정과 삭제 확인 모달을 구현했다.
 - 삭제 후 해당 날짜가 빈 상태로 전환되고 Calendar marker가 제거되는 것을 Android CLI로 검증했다.
+- Onboarding, Calendar empty-date CTA, Archive 검색/감정 필터/월별 목록, Settings 백업 zip 내보내기/복원 준비중/전체 삭제 확인을 구현했다.
+- 2026-05-01 MVP completion 검증에서 Android CLI로 onboarding, add, day detail, archive, settings, backup export, delete-all, restart empty state를 확인했다.
 - 2026-04-29 주간 앱 리뷰에서 현재 앱은 release-ready MVP가 아니라 directionally valid prototype으로 분류되었다.
-- Archive와 Settings placeholder는 release blocker로 확정되었다.
+- 2026-05-01 기준으로는 internal QA용 MVP feature-complete 상태로 승격되었다.
+- Archive와 Settings placeholder는 제거되었다.
 - Android CLI smoke test는 weekly/release verification gate로 사용한다.
 
 ## Next Actions
 
-1. Archive placeholder를 검색/감정 필터/월별 목록으로 교체한다.
-2. Settings placeholder를 백업 내보내기 shell, restore 안내, danger zone, 삭제 확인으로 교체한다.
-3. 기록 삭제의 파일 cleanup 실패를 감지/보고하거나 재시도할 수 있게 강화한다.
-4. Android CLI smoke journey를 재사용 가능한 스크립트 또는 문서화된 절차로 고정한다.
+1. Android CLI MVP journey를 재사용 가능한 스크립트 또는 문서화된 릴리즈 체크리스트로 고정한다.
+2. 구현 화면 스크린샷을 외부 디자이너에게 전달해 v2 디자인 싱크를 검수한다.
+3. 백업/삭제 문구는 public release 전에 privacy/legal 관점 검토를 받는다.
+4. 다음 제품 increment를 Camera capture 또는 restore/import 중에서 선택한다.

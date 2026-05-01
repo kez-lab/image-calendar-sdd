@@ -48,5 +48,8 @@ As a user, I want to quickly save a daily photo with an optional note and emotio
 
 ## Open Questions
 
-- What is the fixed MVP emotion tag list?
 - What exact thumbnail dimensions and compression format should be used?
+
+## Locked Decisions
+
+- Fixed MVP emotion tag list: `차분`, `기쁨`, `피곤`, `포근`, `바쁨`.

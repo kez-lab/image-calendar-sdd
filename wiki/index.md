@@ -51,6 +51,7 @@ Updated: 2026-05-01
 - [Manual Test Checklist](05-qa/manual-test-checklist.md): 수동 테스트 체크리스트.
 - [2026-04-29 Verification Report](05-qa/verification-report-2026-04-29.md): Android CLI 전체 동작 검증과 디자인 싱크 리포트.
 - [2026-05-01 Verification Report](05-qa/verification-report-2026-05-01.md): Day Detail 수정/삭제와 캘린더 marker 제거 검증 리포트.
+- [2026-05-01 MVP Completion Report](05-qa/verification-report-2026-05-01-mvp-completion.md): MVP completion Android CLI 검증 리포트.
 
 ## Project
 
@@ -89,6 +90,7 @@ Updated: 2026-05-01
 - [003 Archive Search Filter](../specs/003-archive-search-filter/spec.md): 아카이브 검색/필터 spec 초안.
 - [004 Local Backup Restore](../specs/004-local-backup-restore/README.md): 백업 파일 내보내기 우선 후보 spec.
 - [005 Settings Data Safety](../specs/005-settings-data-safety/spec.md): 설정과 데이터 안전 spec 초안.
+- [006 Onboarding](../specs/006-onboarding/spec.md): 첫 실행 온보딩 spec.
 
 ## Raw Sources
 
@@ -97,6 +99,7 @@ Updated: 2026-05-01
 - [Room Persistence Smoke Verification](../raw/verification/2026-04-29-room-persistence-smoke/README.md)
 - [Overall Behavior and Design Review](../raw/verification/2026-04-29-overall-behavior-design-review/README.md)
 - [Day Detail Edit/Delete Verification](../raw/verification/2026-05-01-day-detail-edit-delete/README.md)
+- [MVP Completion Verification](../raw/verification/2026-05-01-mvp-completion/README.md)
 - [App Image Calendar Design Raw](../raw/design/2026-04-28-app-image-calendar/README.md)
 - [App Image Calendar Design v2 Raw](../raw/design/2026-04-28-app-image-calendar-v2/README.md)
 - [Designer Feedback Request](../raw/design/2026-04-28-app-image-calendar/designer-feedback-request.md)

@@ -17,6 +17,7 @@
 - [2026-04-29 Room Persistence Smoke Verification](verification/2026-04-29-room-persistence-smoke/README.md)
 - [2026-04-29 Overall Behavior and Design Review](verification/2026-04-29-overall-behavior-design-review/README.md)
 - [2026-05-01 Day Detail Edit/Delete Verification](verification/2026-05-01-day-detail-edit-delete/README.md)
+- [2026-05-01 MVP Completion Verification](verification/2026-05-01-mvp-completion/README.md)
 
 회의 원자료:
 

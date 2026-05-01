@@ -1,0 +1,95 @@
+[
+  {
+    "text": "Image Calendar",
+    "center": "[357,178]",
+    "key": 3506402
+  },
+  {
+    "text": "내 폰 안에만 조용히 쌓이는 하루 사진 캘린더",
+    "center": "[465,283]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[540,1426]",
+    "resource-id": "onboarding_start_record",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[540,1561]",
+    "resource-id": "onboarding_skip",
+    "key": 3506402
+  },
+  {
+    "text": "1",
+    "center": "[155,504]",
+    "key": 3506402
+  },
+  {
+    "text": "하루를 사진으로 기록하세요",
+    "center": "[490,435]",
+    "key": 3506402
+  },
+  {
+    "text": "사진 한 장과 짧은 메모로 오늘의 순간을 빠르게 남깁니다.",
+    "center": "[606,541]",
+    "key": 3506402
+  },
+  {
+    "text": "2",
+    "center": "[155,835]",
+    "key": 3506402
+  },
+  {
+    "text": "날짜별로 캘린더에 정리하세요",
+    "center": "[510,766]",
+    "key": 3506402
+  },
+  {
+    "text": "기록한 날짜는 캘린더에서 점으로 표시되어 다시 찾기 쉽습니다.",
+    "center": "[606,872]",
+    "key": 3506402
+  },
+  {
+    "text": "3",
+    "center": "[155,1166]",
+    "key": 3506402
+  },
+  {
+    "text": "내 폰에만 저장되는 프라이빗 기록",
+    "center": "[542,1097]",
+    "key": 3506402
+  },
+  {
+    "text": "계정 없이 사용하고, 사진과 메모는 현재 기기 안에 보관됩니다.",
+    "center": "[606,1203]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Start first record",
+    "center": "[540,1426]",
+    "key": 3506402
+  },
+  {
+    "text": "첫 기록 만들기",
+    "center": "[540,1426]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Skip to calendar",
+    "center": "[540,1560]",
+    "key": 3506402
+  },
+  {
+    "text": "건너뛰고 캘린더 보기",
+    "center": "[540,1560]",
+    "key": 3506402
+  }
+]

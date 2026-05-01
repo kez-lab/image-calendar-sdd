@@ -1,0 +1,131 @@
+[
+  {
+    "interactions": [
+      "scrollable"
+    ],
+    "center": "[540,1283]",
+    "bounds": "[0,142][1080,2424]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "focusable"
+    ],
+    "center": "[540,347]",
+    "key": 3506402
+  },
+  {
+    "text": "image-calendar-backup-2026-05-01.zip",
+    "interactions": [
+      "clickable",
+      "focusable",
+      "long-clickable"
+    ],
+    "center": "[495,2298]",
+    "resource-id": "title",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Show roots",
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[73,205]",
+    "key": 3506402
+  },
+  {
+    "text": "Downloads",
+    "center": "[321,204]",
+    "key": 3506402
+  },
+  {
+    "text": "SAVE",
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[927,2298]",
+    "resource-id": "button1",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "focusable"
+    ],
+    "center": "[540,331]",
+    "resource-id": "horizontal_breadcrumb",
+    "key": 3506402
+  },
+  {
+    "content-desc": "New folder",
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[890,205]",
+    "resource-id": "option_menu_create_dir",
+    "key": 3506402
+  },
+  {
+    "content-desc": "More options",
+    "interactions": [
+      "clickable",
+      "focusable",
+      "long-clickable"
+    ],
+    "center": "[1017,205]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "focusable"
+    ],
+    "center": "[540,1283]",
+    "resource-id": "dir_list",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "focusable"
+    ],
+    "center": "[144,331]",
+    "key": 3506402
+  },
+  {
+    "text": "Files in Downloads",
+    "center": "[476,473]",
+    "resource-id": "header_title",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "focusable"
+    ],
+    "center": "[540,1007]",
+    "resource-id": "empty",
+    "key": 3506402
+  },
+  {
+    "text": "Downloads",
+    "center": "[144,331]",
+    "resource-id": "breadcrumb_text",
+    "key": 3506402
+  },
+  {
+    "content-desc": "List view",
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[953,473]",
+    "resource-id": "sub_menu_list",
+    "key": 3506402
+  },
+  {
+    "text": "No items",
+    "center": "[540,1368]",
+    "resource-id": "message",
+    "key": 3506402
+  }
+]

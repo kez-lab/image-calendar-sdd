@@ -6,6 +6,7 @@ updated: 2026-05-01
 sources:
   - ../08-meetings/2026-04-28-tech-implementation-council.md
   - ../../raw/verification/2026-05-01-day-detail-edit-delete/README.md
+  - ../../raw/verification/2026-05-01-mvp-completion/README.md
 ---
 
 # Implementation Log
@@ -122,3 +123,31 @@ Known gaps:
 - The home Calendar summary card remains read-only; mutation actions require opening full Day Detail.
 - File cleanup failures are not surfaced after metadata deletion.
 - Archive and Settings remain release-blocking placeholders.
+
+## [2026-05-01] cycle-004 | MVP completion
+
+Scope:
+
+- Added first-run onboarding with local-only value messaging and start/skip actions.
+- Added Calendar selected empty-date add CTA.
+- Replaced Archive placeholder with month grouping, memo/date search, emotion chip filters, no-result state, empty state, and record navigation to Day Detail.
+- Replaced Settings placeholder with local trust card, backup zip export, restore `준비 중` row, app info, danger zone, and delete-all confirmation.
+- Added MVP v1 backup zip export with `manifest.json`, originals, and thumbnails.
+- Added full data deletion for Room records/assets and app-managed entry files.
+- Hardened record deletion by surfacing internal file cleanup failures.
+
+Verification:
+
+- `./gradlew assembleDebug` passed.
+- Official `android describe --project_dir=.` found the debug APK.
+- Official `android run --device=emulator-5554 --apks=app/build/outputs/apk/debug/app-debug.apk --activity=.app.MainActivity` installed and launched the app.
+- Android CLI evidence verified onboarding, Calendar empty CTA, fixture save, Day Detail, Archive grouping/search/filter/no-result/navigation, Settings backup export, delete-all cancel/confirm, Archive empty state after deletion, and restart after deletion.
+- Exported backup zip was pulled from emulator and verified to contain `manifest.json`, original images, and thumbnails.
+- Static forbidden concept scan found no network/social/sync/share wording in app/Gradle sources.
+
+Known gaps:
+
+- Restore/import remains deferred.
+- Camera capture remains deferred.
+- Backup zip schema is MVP v1, not yet a stable long-term migration contract.
+- External designer and privacy/legal review are recommended before public release.

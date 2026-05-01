@@ -27,7 +27,9 @@ As a user, I want Settings to clearly explain where my records are stored and pr
 
 - Data deletion removes local records and associated local assets according to the deletion policy.
 - Backup export is user-initiated and produces a local file/package.
+- MVP backup export produces a zip package containing `manifest.json`, original images, and thumbnails.
 - No settings field is needed for photo quality or week-start day in MVP.
+- Full data deletion removes local records and app-managed record assets. It preserves onboarding completion and app preferences.
 
 ## Acceptance Criteria
 
@@ -41,5 +43,5 @@ As a user, I want Settings to clearly explain where my records are stored and pr
 
 ## Open Questions
 
-- What exact backup file format should be used?
-- Should full data deletion reset onboarding completion and local app preferences?
+- Whether the MVP zip schema should become a stable migration contract.
+- Whether restore/import should only be allowed into an empty app state.

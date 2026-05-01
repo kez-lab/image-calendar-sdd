@@ -106,3 +106,10 @@
 - Source: [Next Work Plan 2026-05-01](06-project/next-work-plan-2026-05-01.md)
 - Action: Archive MVP scope, date query formats, navigation target, empty state copy, external manpower assessment, and implementation TODO were locked before coding.
 - Updated: `wiki/06-project/next-work-plan-2026-05-01.md`, `wiki/00-context/open-questions.md`, `wiki/index.md`, `wiki/log.md`, `specs/003-archive-search-filter/*`.
+
+## [2026-05-01] implementation | MVP completion
+
+- Source: [Implementation Log](06-project/implementation-log.md)
+- Evidence: [MVP Completion Verification](../raw/verification/2026-05-01-mvp-completion/README.md)
+- Action: Onboarding, Calendar empty-date CTA, Archive search/filter/month grouping, Settings backup zip export/delete-all, full deletion, and cleanup hardening were implemented and verified with Android CLI evidence.
+- Updated: `app/*`, `raw/verification/2026-05-01-mvp-completion/*`, `wiki/05-qa/verification-report-2026-05-01-mvp-completion.md`, `wiki/00-context/*`, `wiki/03-engineering/api-contracts.md`, `wiki/04-privacy-security/*`, `wiki/05-qa/*`, `wiki/06-project/*`, `specs/*`, `README.md`, `raw/README.md`.

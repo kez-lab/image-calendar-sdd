@@ -1,30 +1,31 @@
 ---
 type: privacy
-status: draft
+status: active
 owner: llm
-updated: 2026-04-28
+updated: 2026-05-01
 sources:
   - raw/sources/0002-claude-design-prompt.md
+  - ../../raw/verification/2026-05-01-mvp-completion/README.md
 ---
 
 # Data Retention
 
 ## Status
 
-데이터 보존/삭제 정책은 로컬 저장 구조를 기준으로 구체화해야 한다.
+MVP 데이터 보존/삭제 정책은 로컬 저장 구조를 기준으로 활성화되었다.
 
 ## Initial Principle
 
 사용자가 작성한 개인 기록은 사용자가 삭제할 수 있어야 한다. 삭제된 기록은 캘린더, 상세, 아카이브 검색 결과에서 더 이상 보이면 안 된다.
 
-## Required Decisions
+## Decisions
 
-- 사용자가 사진 기록을 삭제하면 원본 이미지와 썸네일을 모두 삭제할 것인가?
-- 원본 사진을 시스템 사진첩에서 가져온 경우, 앱은 내부 복사본만 삭제할 것인가?
-- 전체 데이터 삭제 시 앱 설정과 온보딩 완료 상태도 초기화할 것인가?
-- 백업 파일은 앱이 추적하지 않는 외부 파일로 볼 것인가?
-- 가져오기 실패 시 부분 복원된 데이터를 롤백할 것인가?
-- MVP에서 가져오기/복원을 제외할 경우 사용자가 백업 파일을 어떻게 이해해야 하는가?
+- 개별 사진 기록 삭제는 Room metadata와 앱 내부 원본 복사본/썸네일을 삭제한다.
+- 시스템 사진첩 원본은 앱이 삭제하지 않는다. 앱 내부 복사본만 삭제한다.
+- 전체 데이터 삭제는 Room records/assets와 앱 내부 `entries/` 파일들을 삭제한다.
+- 전체 데이터 삭제는 온보딩 완료 상태와 앱 preference를 초기화하지 않는다.
+- 백업 파일은 사용자가 직접 선택한 외부 위치의 파일로 본다. 앱은 export 이후 보관 상태를 추적하지 않는다.
+- 가져오기/복원은 MVP에서 제외하며, 복원 정책 확정 전까지 `준비 중`으로 표시한다.
 
 ## Deletion UX
 

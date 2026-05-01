@@ -1,0 +1,188 @@
+[
+  {
+    "interactions": [
+      "scrollable"
+    ],
+    "center": "[540,1146]",
+    "bounds": "[53,195][1027,2098]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[127,2256]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[403,2256]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[678,2256]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "focusable"
+    ],
+    "state": [
+      "selected"
+    ],
+    "center": "[953,2256]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Stored only on this phone",
+    "center": "[242,215]",
+    "resource-id": "local_storage_badge",
+    "key": 3506402
+  },
+  {
+    "text": "백업 파일 내보내기",
+    "center": "[267,410]",
+    "key": 3506402
+  },
+  {
+    "text": "내 기록과 사진 복사본을 zip 파일로 저장합니다. 파일 보관 위치는 직접 선택합니다.",
+    "center": "[540,526]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[540,689]",
+    "resource-id": "settings_backup_export",
+    "key": 3506402
+  },
+  {
+    "text": "백업 파일을 저장했어요. 기록 2 개가 포함됐습니다.",
+    "center": "[540,842]",
+    "key": 3506402
+  },
+  {
+    "text": "백업에서 복원하기",
+    "center": "[262,1062]",
+    "key": 3506402
+  },
+  {
+    "text": "복원은 기존 기록과 충돌할 수 있어 다음 버전에서 안전하게 제공합니다.",
+    "center": "[540,1173]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Restore coming soon",
+    "center": "[193,1309]",
+    "resource-id": "settings_restore_coming_soon",
+    "key": 3506402
+  },
+  {
+    "text": "앱 정보",
+    "center": "[161,1519]",
+    "key": 3506402
+  },
+  {
+    "text": "Image Calendar 0.1.0",
+    "center": "[306,1603]",
+    "key": 3506402
+  },
+  {
+    "text": "저장된 기록 0개",
+    "center": "[240,1666]",
+    "key": 3506402
+  },
+  {
+    "text": "위험 영역",
+    "center": "[181,1855]",
+    "key": 3506402
+  },
+  {
+    "text": "전체 데이터 삭제는 이 기기에 저장된 기록, 사진 복사본, 메모, 감정 태그를 삭제합니다.",
+    "center": "[540,1971]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable"
+    ],
+    "center": "[540,2108]",
+    "resource-id": "settings_delete_all",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Calendar tab",
+    "center": "[127,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "Calendar",
+    "center": "[127,2298]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Add record tab",
+    "center": "[403,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "Add",
+    "center": "[402,2298]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Archive tab",
+    "center": "[678,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "Archive",
+    "center": "[678,2298]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Settings tab",
+    "center": "[953,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "Settings",
+    "center": "[953,2298]",
+    "key": 3506402
+  },
+  {
+    "text": "내 폰에만 저장됨",
+    "center": "[242,215]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Export backup file",
+    "center": "[540,689]",
+    "key": 3506402
+  },
+  {
+    "text": "백업 파일 내보내기",
+    "center": "[540,689]",
+    "key": 3506402
+  },
+  {
+    "text": "준비 중",
+    "center": "[193,1309]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Delete all local records",
+    "center": "[540,2082]",
+    "key": 3506402
+  }
+]

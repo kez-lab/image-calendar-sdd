@@ -7,6 +7,7 @@ sources:
   - raw/sources/0002-claude-design-prompt.md
   - ../../raw/verification/2026-04-29-room-persistence-smoke/README.md
   - ../../raw/verification/2026-05-01-day-detail-edit-delete/README.md
+  - ../../raw/verification/2026-05-01-mvp-completion/README.md
 ---
 
 # Local Repository Contracts
@@ -26,6 +27,8 @@ sources:
 - `createDebugFixtureEntry(input)`: debug/test 검증용 고정 이미지를 생성하고 저장한다. Release user flow가 아니다.
 - `updatePhotoEntry(id, input)`: 기존 기록의 `localDate`, `note`, `emotionTag`를 수정한다. MVP에서는 사진 교체를 포함하지 않는다.
 - `deletePhotoEntry(id)`: 기록 metadata를 삭제하고 연결된 로컬 이미지/썸네일 디렉터리 cleanup을 요청한다.
+- `exportBackup(destination)`: 사용자가 선택한 로컬 파일 위치에 MVP v1 zip backup을 쓴다.
+- `deleteAllUserData()`: Room records/assets와 앱 내부 entry files를 삭제한다.
 
 Create flow contract:
 
@@ -50,7 +53,20 @@ Delete flow contract:
 - Repository resolves the linked `LocalAsset` before deleting metadata.
 - Room metadata deletion is the user-visible source of truth.
 - After metadata deletion, app-specific internal image directory cleanup is invoked.
-- Current implementation does not surface a filesystem cleanup failure; hardening is required before release.
+- Filesystem cleanup failure is surfaced to the caller after metadata deletion.
+
+Backup export contract:
+
+- Destination is a user-selected `Uri` from the Android document creation flow.
+- The backup package is a zip file.
+- The zip contains `manifest.json`, original image copies, and thumbnails.
+- Import/restore is not implemented in MVP.
+
+Full deletion contract:
+
+- Deletes all `photo_entries`, cascaded `local_assets`, and app-managed `entries/` files.
+- Preserves onboarding completion and app preferences.
+- Surfaces a failure if entry file directory deletion fails.
 
 ## Archive Repository
 

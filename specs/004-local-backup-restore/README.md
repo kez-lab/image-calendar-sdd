@@ -14,5 +14,6 @@ Primary invariant:
 
 MVP direction:
 
-- Include backup file export if technically feasible.
+- Include backup file export as a user-selected local zip package.
+- MVP zip package contains `manifest.json`, original images, and thumbnails.
 - Treat import/restore as a later phase unless a safe, simple restore policy is confirmed.

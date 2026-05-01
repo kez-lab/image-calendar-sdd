@@ -1,0 +1,230 @@
+[
+  {
+    "text": "Archive",
+    "center": "[174,242]",
+    "key": 3506402
+  },
+  {
+    "text": "저장된 기록을 월별로 모아보고 빠르게 찾아요.",
+    "center": "[471,321]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable",
+      "long-clickable"
+    ],
+    "center": "[540,468]",
+    "resource-id": "archive_search",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[129,647]",
+    "resource-id": "archive_emotion_calm",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[302,647]",
+    "resource-id": "archive_emotion_happy",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[475,647]",
+    "resource-id": "archive_emotion_tired",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[648,647]",
+    "resource-id": "archive_emotion_cozy",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[821,647]",
+    "resource-id": "archive_emotion_busy",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[127,2256]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[403,2256]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "focusable"
+    ],
+    "state": [
+      "selected"
+    ],
+    "center": "[678,2256]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[953,2256]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Archive memo and date search",
+    "center": "[540,468]",
+    "key": 3506402
+  },
+  {
+    "text": "메모, 날짜로 검색하기",
+    "center": "[294,468]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Archive emotion 차분",
+    "center": "[129,647]",
+    "key": 3506402
+  },
+  {
+    "text": "차분",
+    "center": "[129,647]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Archive emotion 기쁨",
+    "center": "[302,647]",
+    "key": 3506402
+  },
+  {
+    "text": "기쁨",
+    "center": "[302,647]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Archive emotion 피곤",
+    "center": "[475,647]",
+    "key": 3506402
+  },
+  {
+    "text": "피곤",
+    "center": "[475,647]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Archive emotion 포근",
+    "center": "[648,647]",
+    "key": 3506402
+  },
+  {
+    "text": "포근",
+    "center": "[648,647]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Archive emotion 바쁨",
+    "center": "[821,647]",
+    "key": 3506402
+  },
+  {
+    "text": "바쁨",
+    "center": "[821,647]",
+    "key": 3506402
+  },
+  {
+    "text": "아직 저장된 기록이 없어요",
+    "center": "[334,825]",
+    "key": 3506402
+  },
+  {
+    "text": "사진 한 장으로 하루를 캘린더에 남겨보세요.",
+    "center": "[493,904]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[540,1031]",
+    "resource-id": "archive_empty_add",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Calendar tab",
+    "center": "[127,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "Calendar",
+    "center": "[127,2298]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Add record tab",
+    "center": "[403,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "Add",
+    "center": "[402,2298]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Archive tab",
+    "center": "[678,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "Archive",
+    "center": "[678,2298]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Settings tab",
+    "center": "[953,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "Settings",
+    "center": "[953,2298]",
+    "key": 3506402
+  },
+  {
+    "text": "첫 기록 만들기",
+    "center": "[540,1031]",
+    "key": 3506402
+  }
+]

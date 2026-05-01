@@ -1,0 +1,176 @@
+[
+  {
+    "interactions": [
+      "scrollable"
+    ],
+    "center": "[540,1212]",
+    "bounds": "[0,0][1080,2424]",
+    "resource-id": "workspace",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Home",
+    "center": "[540,1251]",
+    "resource-id": "accessibility_action_view",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Google search",
+    "interactions": [
+      "clickable",
+      "focusable",
+      "long-clickable"
+    ],
+    "center": "[540,2231]",
+    "resource-id": "search_container_hotseat",
+    "key": 3506402
+  },
+  {
+    "text": "Phone",
+    "content-desc": "Phone",
+    "interactions": [
+      "clickable",
+      "focusable",
+      "long-clickable"
+    ],
+    "center": "[169,1994]",
+    "key": 3506402
+  },
+  {
+    "text": "Messages",
+    "content-desc": "Messages",
+    "interactions": [
+      "clickable",
+      "focusable",
+      "long-clickable"
+    ],
+    "center": "[416,1994]",
+    "key": 3506402
+  },
+  {
+    "text": "Chrome",
+    "content-desc": "Chrome",
+    "interactions": [
+      "clickable",
+      "focusable",
+      "long-clickable"
+    ],
+    "center": "[663,1994]",
+    "key": 3506402
+  },
+  {
+    "text": "dari",
+    "content-desc": "Predicted app: dari",
+    "interactions": [
+      "clickable",
+      "focusable",
+      "long-clickable"
+    ],
+    "center": "[910,1994]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Google app",
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[164,2231]",
+    "resource-id": "g_icon",
+    "key": 3506402
+  },
+  {
+    "text": "Play Store",
+    "content-desc": "Play Store",
+    "interactions": [
+      "clickable",
+      "focusable",
+      "long-clickable"
+    ],
+    "center": "[169,1633]",
+    "key": 3506402
+  },
+  {
+    "text": "Gmail",
+    "content-desc": "Gmail",
+    "interactions": [
+      "clickable",
+      "focusable",
+      "long-clickable"
+    ],
+    "center": "[416,1633]",
+    "key": 3506402
+  },
+  {
+    "text": "Photos",
+    "content-desc": "Photos",
+    "interactions": [
+      "clickable",
+      "focusable",
+      "long-clickable"
+    ],
+    "center": "[663,1633]",
+    "key": 3506402
+  },
+  {
+    "text": "YouTube",
+    "content-desc": "YouTube",
+    "interactions": [
+      "clickable",
+      "focusable",
+      "long-clickable"
+    ],
+    "center": "[910,1633]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Voice search",
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[790,2231]",
+    "resource-id": "mic_icon",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Google Lens",
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[916,2231]",
+    "resource-id": "lens_icon",
+    "key": 3506402
+  },
+  {
+    "content-desc": "At a glance",
+    "interactions": [
+      "focusable",
+      "long-clickable"
+    ],
+    "center": "[540,373]",
+    "resource-id": "smartspace_card_pager",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[540,373]",
+    "resource-id": "base_template_card_with_date",
+    "key": 3506402
+  },
+  {
+    "text": "Fri, May 1",
+    "content-desc": "Fri, May 1",
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[195,374]",
+    "resource-id": "date",
+    "key": 3506402
+  }
+]

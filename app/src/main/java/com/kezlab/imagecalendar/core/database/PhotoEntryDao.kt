@@ -37,6 +37,23 @@ abstract class PhotoEntryDao {
             entries.createdAtMillis AS createdAtMillis
         FROM photo_entries AS entries
         INNER JOIN local_assets AS assets ON assets.entryId = entries.id
+        ORDER BY entries.localDate DESC, entries.createdAtMillis DESC
+        """,
+    )
+    abstract suspend fun getAllEntryRows(): List<PhotoEntryRow>
+
+    @Query(
+        """
+        SELECT
+            entries.id AS id,
+            entries.localDate AS localDate,
+            assets.originalRelativePath AS originalRelativePath,
+            assets.thumbnailRelativePath AS thumbnailRelativePath,
+            entries.note AS note,
+            entries.emotionTagId AS emotionTagId,
+            entries.createdAtMillis AS createdAtMillis
+        FROM photo_entries AS entries
+        INNER JOIN local_assets AS assets ON assets.entryId = entries.id
         WHERE entries.id = :entryId
         LIMIT 1
         """,
@@ -66,6 +83,9 @@ abstract class PhotoEntryDao {
 
     @Query("DELETE FROM photo_entries WHERE id = :entryId")
     abstract suspend fun deleteEntry(entryId: String): Int
+
+    @Query("DELETE FROM photo_entries")
+    abstract suspend fun deleteAllEntries(): Int
 
     @Insert
     protected abstract suspend fun insertEntry(entry: PhotoEntryEntity)

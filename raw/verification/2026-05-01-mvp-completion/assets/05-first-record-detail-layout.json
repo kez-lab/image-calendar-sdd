@@ -1,0 +1,309 @@
+[
+  {
+    "interactions": [
+      "scrollable"
+    ],
+    "center": "[540,1146]",
+    "bounds": "[53,195][1027,2098]",
+    "key": 3506402
+  },
+  {
+    "text": "오늘의 기록",
+    "center": "[229,248]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Stored only on this phone",
+    "center": "[200,364]",
+    "resource-id": "local_storage_badge",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[540,2123]",
+    "resource-id": "add_save",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[127,2256]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "focusable"
+    ],
+    "state": [
+      "selected"
+    ],
+    "center": "[403,2256]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[678,2256]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[953,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "내 폰에만 저장됨",
+    "center": "[200,364]",
+    "key": 3506402
+  },
+  {
+    "text": "사진 (필수)",
+    "center": "[197,520]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[540,642]",
+    "resource-id": "add_photo_picker",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[540,789]",
+    "resource-id": "add_debug_fixture_photo",
+    "key": 3506402
+  },
+  {
+    "text": "사진이 선택됐어요. 저장하면 앱 안에 복사본을 보관해요.",
+    "center": "[540,940]",
+    "key": 3506402
+  },
+  {
+    "text": "날짜",
+    "center": "[135,1160]",
+    "key": 3506402
+  },
+  {
+    "text": "2026-05-01",
+    "content-desc": "Record date",
+    "interactions": [
+      "clickable",
+      "focusable",
+      "long-clickable"
+    ],
+    "center": "[540,1265]",
+    "resource-id": "add_local_date",
+    "key": 3506402
+  },
+  {
+    "text": "메모 (선택)",
+    "center": "[197,1496]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable",
+      "long-clickable"
+    ],
+    "center": "[540,1601]",
+    "resource-id": "add_note",
+    "key": 3506402
+  },
+  {
+    "text": "감정 태그 (선택)",
+    "center": "[243,1832]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[171,1948]",
+    "resource-id": "add_emotion_calm",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[344,1948]",
+    "resource-id": "add_emotion_happy",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[517,1948]",
+    "resource-id": "add_emotion_tired",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[690,1948]",
+    "resource-id": "add_emotion_cozy",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[863,1948]",
+    "resource-id": "add_emotion_busy",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Save record",
+    "center": "[540,2096]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Calendar tab",
+    "center": "[127,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "Calendar",
+    "center": "[127,2298]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Add record tab",
+    "center": "[403,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "Add",
+    "center": "[402,2298]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Archive tab",
+    "center": "[678,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "Archive",
+    "center": "[678,2298]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Settings tab",
+    "center": "[953,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "Settings",
+    "center": "[953,2298]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Select photo from gallery",
+    "center": "[540,641]",
+    "key": 3506402
+  },
+  {
+    "text": "다른 사진 선택",
+    "center": "[540,641]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Use QA test photo",
+    "center": "[540,788]",
+    "key": 3506402
+  },
+  {
+    "text": "QA 테스트 사진 사용",
+    "center": "[540,788]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Optional note",
+    "center": "[540,1601]",
+    "key": 3506402
+  },
+  {
+    "text": "짧게 남겨보세요",
+    "center": "[284,1601]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Emotion 차분",
+    "center": "[171,1948]",
+    "key": 3506402
+  },
+  {
+    "text": "차분",
+    "center": "[171,1948]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Emotion 기쁨",
+    "center": "[344,1948]",
+    "key": 3506402
+  },
+  {
+    "text": "기쁨",
+    "center": "[344,1948]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Emotion 피곤",
+    "center": "[517,1948]",
+    "key": 3506402
+  },
+  {
+    "text": "피곤",
+    "center": "[517,1948]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Emotion 포근",
+    "center": "[690,1948]",
+    "key": 3506402
+  },
+  {
+    "text": "포근",
+    "center": "[690,1948]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Emotion 바쁨",
+    "center": "[863,1948]",
+    "key": 3506402
+  },
+  {
+    "text": "바쁨",
+    "center": "[863,1948]",
+    "key": 3506402
+  }
+]

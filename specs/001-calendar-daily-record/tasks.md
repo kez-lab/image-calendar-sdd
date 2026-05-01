@@ -21,7 +21,7 @@ Status: draft
 - [x] Add dot/mini-stack record markers for populated dates.
 - [x] Add compact always-visible `내 폰에만 저장됨` badge.
 - [ ] Add Floating Add Button entry to Add Record.
-- [ ] Add empty date state and add-record entry for selected empty dates.
+- [x] Add empty date state and add-record entry for selected empty dates.
 - [x] Add navigation from date selection to Day Record Detail.
 - [x] Add Day Detail edit/delete actions for populated dates.
 - [x] Replace letter-only bottom navigation icons with distinct accessible icons or labels.
@@ -34,7 +34,7 @@ Status: draft
 
 - [x] Test app opens calendar without login. Verified 2026-04-29 with official `android run`.
 - [x] Test current day highlight. Verified 2026-04-29 screenshot.
-- [ ] Test empty date behavior.
+- [x] Test empty date behavior. Verified 2026-05-01 with `calendar_empty_add` Android CLI evidence.
 - [x] Test record marker rendering. Verified 2026-04-29 after Room fixture save.
 - [x] Test date selection navigation. Verified 2026-05-01 by opening `2026-04-29` Day Detail from April calendar.
 - [x] Test Day Detail edit action. Verified 2026-05-01 with Android CLI edit dialog capture.
@@ -43,4 +43,4 @@ Status: draft
 - [x] Test local-storage badge is visible and does not imply upload/sync. Verified 2026-04-29 screenshot and static string scan.
 - [x] Test calendar screen contains no server/account/social UI.
 - [ ] Test Calendar does not load original images for date markers.
-- [ ] Add Android CLI smoke test for Calendar launch, local badge, month navigation, Add entry, Day Detail return, and marker after persistence.
+- [x] Add Android CLI smoke evidence for Calendar launch, local badge, Add entry, Day Detail return, marker after persistence, and empty state after deletion.

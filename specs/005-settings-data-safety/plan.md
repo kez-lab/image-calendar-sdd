@@ -19,6 +19,8 @@ Settings writes:
 - no photo quality setting in MVP
 - no week-start setting in MVP
 - deletion action can remove records/assets after confirmation
+- backup export writes a user-selected local zip package with `manifest.json`, originals, and thumbnails
+- full deletion preserves onboarding completion and app preferences
 
 ## UI Impact
 

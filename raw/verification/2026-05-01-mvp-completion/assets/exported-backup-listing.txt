@@ -1,0 +1,10 @@
+Archive:  raw/verification/2026-05-01-mvp-completion/assets/exported-backup.zip
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+      781  05-01-2026 17:06   manifest.json
+     6903  05-01-2026 17:06   assets/2c0105a6-c4e7-45ef-9492-9be8eaa6c767/original.jpg
+     2295  05-01-2026 17:06   assets/2c0105a6-c4e7-45ef-9492-9be8eaa6c767/thumb.jpg
+     6903  05-01-2026 17:06   assets/6ada6f01-7845-42b3-b486-03b3286bcfcd/original.jpg
+     2295  05-01-2026 17:06   assets/6ada6f01-7845-42b3-b486-03b3286bcfcd/thumb.jpg
+---------                     -------
+    19177                     5 files

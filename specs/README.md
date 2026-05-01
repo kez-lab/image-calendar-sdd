@@ -9,6 +9,7 @@
 3. `003-archive-search-filter`: 아카이브, 메모/날짜 검색, 감정 태그 필터
 4. `004-local-backup-restore`: 백업 파일 내보내기 우선, 가져오기/복원 후속 검토
 5. `005-settings-data-safety`: 설정, 로컬 저장 안내, 전체 데이터 삭제
+6. `006-onboarding`: 첫 실행 가치 설명과 로컬 저장 안내
 
 각 spec은 최소한 아래 파일을 가진다.
 
@@ -24,3 +25,4 @@ Current implementation-ready drafts:
 - `002-photo-entry-creation`
 - `003-archive-search-filter`
 - `005-settings-data-safety`
+- `006-onboarding`

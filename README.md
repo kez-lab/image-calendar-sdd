@@ -27,35 +27,41 @@ Product promise:
 | Android App | Kotlin + Jetpack Compose app builds and runs |
 | Persistence | Room-backed `PhotoEntry` + `LocalAsset` persistence implemented |
 | Record Lifecycle | Day Detail edit/delete implemented and Android CLI verified |
+| MVP Surfaces | Onboarding, Calendar, Add, Day Detail, Archive, Settings implemented |
 | Verification | Android CLI build/run/layout/screenshot evidence is stored in `raw/verification` |
-| Release Readiness | Not ready: Archive, Settings, Onboarding, backup/delete-all flows remain blockers |
+| Release Readiness | MVP feature-complete for internal QA; external design/privacy review still recommended before public release |
 
 Latest verified slice:
 
-- 2026-05-01 - Day Detail edit/delete and Calendar marker removal
+- 2026-05-01 - MVP completion: onboarding, archive, settings backup/delete, restart verification
 
 ## App Implementation
 
 Implemented:
 
+- Onboarding with local-only value proposition and start/skip actions
 - Calendar tab with month grid, today highlight, local-only badge, and record marker
+- Empty-date add CTA from Calendar
 - Add tab with gallery picker entry, debug QA fixture, required photo validation, date validation, memo, emotion tags, and local save
 - Day Detail view after save
 - Day Detail edit dialog for date, memo, and emotion metadata
 - Day Detail delete confirmation and repository-backed record deletion
+- Archive tab with month grouping, memo/date search, emotion filters, no-result state, and Day Detail navigation
+- Settings tab with local trust card, backup zip export, restore follow-up row, app info, danger zone, and delete-all confirmation
 - Room database schema export under `app/schemas/`
 - Internal image copy and thumbnail generation
+- Backup zip export with `manifest.json`, originals, and thumbnails
+- Full data deletion for local records and internal entry assets
 - Repository rollback cleanup on metadata insert failure
+- Repository cleanup failure detection on record deletion
 - Android CLI-friendly content descriptions and test tags for touched controls
 
 Not yet implemented:
 
-- Onboarding
-- Archive search/filter/month grouping
-- Settings backup/delete data-safety flows
-- Delete-all confirmation modal
-- Real backup export package
 - Camera capture
+- Restore/import
+- Stable long-term backup migration contract
+- Automated Android CLI smoke script
 
 ## Repository Map
 
@@ -88,8 +94,10 @@ Not yet implemented:
 | Room persistence smoke | [raw/verification/2026-04-29-room-persistence-smoke](raw/verification/2026-04-29-room-persistence-smoke/README.md) |
 | Overall behavior/design review | [raw/verification/2026-04-29-overall-behavior-design-review](raw/verification/2026-04-29-overall-behavior-design-review/README.md) |
 | Day Detail edit/delete | [raw/verification/2026-05-01-day-detail-edit-delete](raw/verification/2026-05-01-day-detail-edit-delete/README.md) |
+| MVP completion | [raw/verification/2026-05-01-mvp-completion](raw/verification/2026-05-01-mvp-completion/README.md) |
 | QA summary | [wiki/05-qa/verification-report-2026-04-29.md](wiki/05-qa/verification-report-2026-04-29.md) |
 | QA summary | [wiki/05-qa/verification-report-2026-05-01.md](wiki/05-qa/verification-report-2026-05-01.md) |
+| QA summary | [wiki/05-qa/verification-report-2026-05-01-mvp-completion.md](wiki/05-qa/verification-report-2026-05-01-mvp-completion.md) |
 
 Verification rules:
 
@@ -126,9 +134,9 @@ Before a feature is considered done:
 
 ## Next Work
 
-P0 sequence:
+Post-MVP sequence:
 
-1. Replace Archive placeholder with search, emotion filters, monthly grouping/list, and empty states.
-2. Replace Settings placeholder with local trust card, backup export shell, restore follow-up row, danger zone, and delete-all confirmation.
-3. Harden record deletion so file cleanup failures are surfaced or retried.
-4. Re-run overall behavior and design sync verification with raw evidence.
+1. Convert the Android CLI MVP journey into a reusable smoke script/checklist.
+2. Run external designer review against the MVP screenshot evidence.
+3. Review backup/delete copy with privacy/legal perspective before public release.
+4. Decide whether Camera capture or restore/import is the next product increment.

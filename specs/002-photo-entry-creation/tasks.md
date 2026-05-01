@@ -14,7 +14,7 @@ Status: draft
 - [x] Define thumbnail generation at save time.
 - [x] Define save failure rollback cleanup requirement.
 - [x] Define delete cleanup requirement for app-specific internal image files.
-- [ ] Define fixed MVP emotion tag list.
+- [x] Define fixed MVP emotion tag list: `차분`, `기쁨`, `피곤`, `포근`, `바쁨`.
 - [ ] Define exact thumbnail dimensions and compression format. Current prototype uses 512px square JPEG quality 82.
 
 ## Implementation

@@ -65,7 +65,22 @@ class PhotoEntryRepository(
         }
         val deleted = dao.deleteEntry(entryId)
         check(deleted == 1) { "Photo entry not found: $entryId" }
-        imageStore.deleteEntryDirectory(asset.originalRelativePath)
+        check(imageStore.deleteEntryDirectory(asset.originalRelativePath)) {
+            "Unable to delete local files for entry: $entryId"
+        }
+    }
+
+    suspend fun exportBackup(destination: Uri): Int {
+        val entries = dao.getAllEntryRows().map { it.toDomain() }
+        return imageStore.exportBackup(destination, entries)
+    }
+
+    suspend fun deleteAllUserData(): Int {
+        val deleted = dao.deleteAllEntries()
+        check(imageStore.deleteAllEntryDirectories()) {
+            "Unable to delete local entry files."
+        }
+        return deleted
     }
 
     private suspend fun insertStoredEntry(

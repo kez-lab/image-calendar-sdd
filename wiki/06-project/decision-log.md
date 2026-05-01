@@ -148,3 +148,21 @@ Rationale:
 - 사진 교체는 picker 재진입, 기존 파일 교체/rollback, 썸네일 재생성, 삭제 실패 처리까지 범위가 커져 Archive/Settings보다 우선순위가 낮다.
 - 홈 요약 카드에 destructive action을 섞으면 Calendar 탐색 화면의 정보 구조가 흐려진다.
 - Full Day Detail에 mutation을 모으면 사용자가 어떤 날짜/기록을 바꾸는지 더 명확하게 이해할 수 있다.
+
+## [2026-05-01] MVP completion decisions
+
+Decision:
+
+- Archive는 in-memory filtering으로 구현하고, 대용량 최적화/FTS는 후속으로 둔다.
+- Archive 검색은 메모, `YYYY-MM-DD`, `YYYY-MM`, `YYYY.MM`를 지원한다.
+- 백업 내보내기는 MVP v1 zip package로 구현한다.
+- 백업 zip은 `manifest.json`, original images, thumbnails를 포함한다.
+- 가져오기/복원은 `준비 중`으로 표시하고 MVP 동작으로 제공하지 않는다.
+- 전체 데이터 삭제는 Room records/assets와 앱 내부 entry files만 삭제한다.
+- 전체 데이터 삭제는 onboarding completion과 app preferences를 유지한다.
+
+Rationale:
+
+- MVP는 "기록, 선택한 날짜로 다시 보기, 로컬 보관 신뢰"를 검증하는 릴리즈이므로 restore/import와 camera capture보다 Archive/Settings 완성도가 우선이다.
+- 백업 export는 사용자가 직접 파일 위치를 고르는 방식이 로컬 전용 제품 약속과 가장 잘 맞는다.
+- 온보딩 완료 상태는 사용자의 개인 기록이 아니므로 전체 기록 삭제 후에도 유지하는 편이 UX 혼란이 적다.

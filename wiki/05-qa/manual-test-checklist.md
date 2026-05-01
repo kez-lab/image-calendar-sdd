@@ -6,6 +6,7 @@ updated: 2026-05-01
 sources:
   - raw/sources/0002-claude-design-prompt.md
   - raw/verification/2026-05-01-day-detail-edit-delete/README.md
+  - raw/verification/2026-05-01-mvp-completion/README.md
 ---
 
 # Manual Test Checklist
@@ -68,3 +69,7 @@ sources:
 - 캡처 결과가 `raw/verification/{date-topic}/assets/`에 raw evidence로 보관된다.
 - `app/src/main`과 Gradle 파일에 `INTERNET`, login, upload, sync, cloud, share, social/feed/like/comment/follow 표현이 없다.
 - 핵심 액션은 좌표 의존 없이 layout semantics 또는 안정적인 test tag로 식별 가능하다.
+
+## Latest MVP Evidence
+
+- 2026-05-01 MVP completion evidence covers onboarding, add, day detail, archive, settings, backup export, delete-all, and restart after deletion.

@@ -1,0 +1,244 @@
+[
+  {
+    "text": "Archive",
+    "center": "[174,242]",
+    "key": 3506402
+  },
+  {
+    "text": "저장된 기록을 월별로 모아보고 빠르게 찾아요.",
+    "center": "[471,321]",
+    "key": 3506402
+  },
+  {
+    "text": "MemoSearch",
+    "interactions": [
+      "clickable",
+      "focusable",
+      "long-clickable"
+    ],
+    "state": [
+      "focused"
+    ],
+    "center": "[540,468]",
+    "resource-id": "archive_search",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[129,647]",
+    "resource-id": "archive_emotion_calm",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[302,647]",
+    "resource-id": "archive_emotion_happy",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[475,647]",
+    "resource-id": "archive_emotion_tired",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[648,647]",
+    "resource-id": "archive_emotion_cozy",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[821,647]",
+    "resource-id": "archive_emotion_busy",
+    "key": 3506402
+  },
+  {
+    "text": "2026.05",
+    "center": "[135,783]",
+    "key": 3506402
+  },
+  {
+    "text": "이 기기에 저장된 기록 1개",
+    "center": "[290,846]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[288,1187]",
+    "resource-id": "archive_record_4fe7ffa9-3445-4dcf-a6eb-bc2ec46811f6",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[127,2256]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[403,2256]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "focusable"
+    ],
+    "state": [
+      "selected"
+    ],
+    "center": "[678,2256]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[953,2256]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Archive memo and date search",
+    "center": "[540,468]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Archive emotion 차분",
+    "center": "[129,647]",
+    "key": 3506402
+  },
+  {
+    "text": "차분",
+    "center": "[129,647]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Archive emotion 기쁨",
+    "center": "[302,647]",
+    "key": 3506402
+  },
+  {
+    "text": "기쁨",
+    "center": "[302,647]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Archive emotion 피곤",
+    "center": "[475,647]",
+    "key": 3506402
+  },
+  {
+    "text": "피곤",
+    "center": "[475,647]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Archive emotion 포근",
+    "center": "[648,647]",
+    "key": 3506402
+  },
+  {
+    "text": "포근",
+    "center": "[648,647]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Archive emotion 바쁨",
+    "center": "[821,647]",
+    "key": 3506402
+  },
+  {
+    "text": "바쁨",
+    "center": "[821,647]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Archive record 2026-05-01",
+    "center": "[288,1187]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Archive record photo",
+    "center": "[288,1114]",
+    "key": 3506402
+  },
+  {
+    "text": "2026-05-01",
+    "center": "[198,1334]",
+    "key": 3506402
+  },
+  {
+    "text": "MemoSearch",
+    "center": "[210,1397]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Calendar tab",
+    "center": "[127,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "Calendar",
+    "center": "[127,2298]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Add record tab",
+    "center": "[403,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "Add",
+    "center": "[402,2298]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Archive tab",
+    "center": "[678,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "Archive",
+    "center": "[678,2298]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Settings tab",
+    "center": "[953,2256]",
+    "key": 3506402
+  },
+  {
+    "text": "Settings",
+    "center": "[953,2298]",
+    "key": 3506402
+  }
+]
