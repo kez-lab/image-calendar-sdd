@@ -11,6 +11,7 @@ sources:
   - raw/meetings/2026-04-29-weekly-app-review/final-notes.md
   - raw/verification/2026-05-01-day-detail-edit-delete/README.md
   - raw/verification/2026-05-01-mvp-completion/README.md
+  - raw/meetings/2026-05-01-web-feasibility-council/final-notes.md
 ---
 
 # Current State
@@ -71,6 +72,8 @@ sources:
 - 2026-05-01 기준으로는 internal QA용 MVP feature-complete 상태로 승격되었다.
 - Archive와 Settings placeholder는 제거되었다.
 - Android CLI smoke test는 weekly/release verification gate로 사용한다.
+- Web Feasibility Council에서 웹 확장은 조건부 가능하지만, full web app 착수가 아니라 `local-only web feasibility spike` 또는 read-only Android backup viewer부터 진행하기로 결론냈다.
+- 웹에서는 `서버 없음`을 `기록 데이터는 서버에 저장되거나 전송되지 않음`으로 정교화해야 하며, `내 폰에만 저장됨` 대신 `현재 기기의 이 브라우저에만 저장됨` 계열 문구를 사용한다.
 
 ## Next Actions
 
@@ -78,3 +81,4 @@ sources:
 2. 구현 화면 스크린샷을 외부 디자이너에게 전달해 v2 디자인 싱크를 검수한다.
 3. 백업/삭제 문구는 public release 전에 privacy/legal 관점 검토를 받는다.
 4. 다음 제품 increment를 Camera capture 또는 restore/import 중에서 선택한다.
+5. 웹을 진행한다면 먼저 `007-web-storage-feasibility-spike` spec을 작성하고 storage durability, backup compatibility, network non-leakage를 검증한다.

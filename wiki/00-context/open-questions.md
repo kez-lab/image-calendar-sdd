@@ -14,6 +14,7 @@ sources:
 ## Product
 
 - 로컬 알림은 MVP에서 제외할지 선택형으로 둘 것인가?
+- 첫 웹 산출물을 storage durability spike로 할 것인가, read-only Android backup viewer로 할 것인가?
 
 ## Local Data
 
@@ -26,11 +27,20 @@ sources:
 - Android 구현 시 iPhone 15 Pro 디자인 비율을 어떻게 변환할 것인가?
 - Archive의 기록 표현은 현재 디자인처럼 이미지 그리드 중심으로 확정할 것인가?
 - Onboarding의 최종 CTA와 보조 CTA 문구를 디자인 v2에 어떻게 반영할 것인가?
+- 웹/PWA에서 `현재 기기의 이 브라우저에만 저장됨` trust UX를 어떤 화면/컴포넌트로 고정할 것인가?
 
 ## Engineering
 
 - Android CLI 검증용 fixture는 debug-only app behavior로 둘 것인가, test-code-only setup으로 둘 것인가?
 - 파일 복사 성공 후 Room insert 실패 시 orphan file cleanup 재시도 정책은 어떻게 둘 것인가?
+- Android backup zip manifest를 지금 cross-platform contract로 고정할 것인가?
+- 웹 prototype의 정적 호스팅 origin을 무엇으로 둘 것인가?
+- 웹 storage abstraction은 OPFS-first + IndexedDB Blob fallback으로 갈 것인가?
+
+## Privacy / QA
+
+- 웹 public release 전 최소 브라우저 매트릭스를 어디까지 둘 것인가?
+- 웹에서 analytics, crash logging, remote font, third-party script를 전면 금지할 것인가?
 
 ## SDD
 

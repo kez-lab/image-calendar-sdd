@@ -13,6 +13,7 @@
 
 - [0001-llm-wiki-pattern.md](sources/0001-llm-wiki-pattern.md)
 - [0002-claude-design-prompt.md](sources/0002-claude-design-prompt.md)
+- [0003-web-storage-reference.md](sources/0003-web-storage-reference.md)
 - [2026-04-28 App Image Calendar Design](design/2026-04-28-app-image-calendar/README.md)
 - [2026-04-29 Room Persistence Smoke Verification](verification/2026-04-29-room-persistence-smoke/README.md)
 - [2026-04-29 Overall Behavior and Design Review](verification/2026-04-29-overall-behavior-design-review/README.md)
@@ -23,3 +24,4 @@
 
 - [2026-04-28-product-planning-kickoff](meetings/2026-04-28-product-planning-kickoff/brief.md)
 - [2026-04-29-weekly-app-review](meetings/2026-04-29-weekly-app-review/brief.md)
+- [2026-05-01-web-feasibility-council](meetings/2026-05-01-web-feasibility-council/brief.md)

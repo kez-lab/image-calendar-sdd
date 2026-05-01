@@ -166,3 +166,21 @@ Rationale:
 - MVP는 "기록, 선택한 날짜로 다시 보기, 로컬 보관 신뢰"를 검증하는 릴리즈이므로 restore/import와 camera capture보다 Archive/Settings 완성도가 우선이다.
 - 백업 export는 사용자가 직접 파일 위치를 고르는 방식이 로컬 전용 제품 약속과 가장 잘 맞는다.
 - 온보딩 완료 상태는 사용자의 개인 기록이 아니므로 전체 기록 삭제 후에도 유지하는 편이 UX 혼란이 적다.
+
+## [2026-05-01] Web feasibility strategy
+
+Decision:
+
+- 웹 확장은 조건부 가능하지만, 지금은 full web app으로 착수하지 않는다.
+- 첫 웹 산출물은 `local-only web feasibility spike` 또는 read-only Android backup viewer로 제한한다.
+- 웹에서는 broad `서버 없음`보다 `기록 데이터는 서버에 저장되거나 전송되지 않음`으로 표현한다.
+- 웹 trust copy는 `내 폰에만 저장됨`을 쓰지 않고, `현재 기기의 이 브라우저에만 저장됨` 계열 문구를 사용한다.
+- 후보 저장 구조는 IndexedDB metadata, OPFS assets, IndexedDB Blob fallback이다.
+- public web release는 storage durability, backup/import, network non-leakage, private browsing, browser matrix, privacy/legal, security review 통과 전까지 보류한다.
+
+Rationale:
+
+- 브라우저 로컬 저장은 가능하지만 Android app-specific internal storage와 같은 보존 신뢰를 약속하기 어렵다.
+- 웹은 정적 호스팅 origin이 필요하므로 `서버 없음` 표현이 사용자를 혼란스럽게 만들 수 있다.
+- XSS와 third-party script는 서버 저장이 없어도 로컬 기록 유출 위험을 만든다.
+- Android backup zip 호환성을 먼저 검증하면 웹이 제품 범위를 흐리지 않고 유용한 보조 도구가 될 수 있다.

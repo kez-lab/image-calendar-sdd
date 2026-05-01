@@ -119,3 +119,10 @@
 - Source: [Project Custom Skills](07-llm/skills/project-custom-skills.md)
 - Action: 별도 기여 가이드 파일 없이 PR 템플릿, Git convention, Android MVP verification skill, wiki/SDD sync skill을 추가해 반복 운영 절차를 고정.
 - Updated: `.github/pull_request_template.md`, `docs/conventions/git.md`, `.codex/skills/android-mvp-verification/SKILL.md`, `.codex/skills/wiki-sdd-sync/SKILL.md`, `wiki/07-llm/skills/*`, `wiki/index.md`, `README.md`.
+
+## [2026-05-01] meeting | Web feasibility council
+
+- Source: [Meeting Minutes](08-meetings/2026-05-01-web-feasibility-council.md)
+- Evidence: [Web Storage Reference](../raw/sources/0003-web-storage-reference.md)
+- Action: 기획, 디자인, 웹/플랫폼, QA/privacy 관점으로 웹 확장 가능성을 검토하고 full web app이 아니라 local-only web feasibility spike 또는 Android backup viewer부터 진행하기로 결론.
+- Updated: `raw/meetings/2026-05-01-web-feasibility-council/*`, `raw/sources/0003-web-storage-reference.md`, `raw/README.md`, `wiki/08-meetings/2026-05-01-web-feasibility-council.md`, `wiki/06-project/web-expansion-strategy.md`, `wiki/06-project/decision-log.md`, `wiki/00-context/*`, `wiki/index.md`.

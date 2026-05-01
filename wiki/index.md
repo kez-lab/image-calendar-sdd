@@ -58,6 +58,7 @@ Updated: 2026-05-01
 - [Roadmap](06-project/roadmap.md): 프로젝트 단계.
 - [Milestones](06-project/milestones.md): 마일스톤 초안.
 - [Release Plan](06-project/release-plan.md): 릴리즈 기준.
+- [Web Expansion Strategy](06-project/web-expansion-strategy.md): 웹 확장 가능성과 local-only web feasibility spike 전략.
 - [Git Conventions](../docs/conventions/git.md): 브랜치, 커밋, PR, local-only guard 운영 규칙.
 - [Decision Log](06-project/decision-log.md): 의사결정 기록.
 - [Implementation Log](06-project/implementation-log.md): CEO 구현 사이클 결과 기록.
@@ -74,6 +75,7 @@ Updated: 2026-05-01
 - [2026-04-28 MVP Decision Lock](08-meetings/2026-04-28-mvp-decision-lock.md): 구현 태스크 전환 전 남은 제품/디자인 결정을 확정한 회의.
 - [2026-04-28 Tech Implementation Council](08-meetings/2026-04-28-tech-implementation-council.md): 기술 스택과 첫 구현 수직 슬라이스를 확정한 회의.
 - [2026-04-29 Weekly App Review](08-meetings/2026-04-29-weekly-app-review.md): Android CLI 캡처/검증으로 현재 prototype 상태와 다음 구현 우선순위를 확정한 회의.
+- [2026-05-01 Web Feasibility Council](08-meetings/2026-05-01-web-feasibility-council.md): 웹 확장 가능성과 첫 web spike 범위를 확정한 회의.
 
 ## LLM Ops
 
@@ -98,6 +100,7 @@ Updated: 2026-05-01
 
 - [LLM Wiki Pattern](../raw/sources/0001-llm-wiki-pattern.md)
 - [Claude Design Prompt](../raw/sources/0002-claude-design-prompt.md)
+- [Web Storage Reference](../raw/sources/0003-web-storage-reference.md)
 - [Room Persistence Smoke Verification](../raw/verification/2026-04-29-room-persistence-smoke/README.md)
 - [Overall Behavior and Design Review](../raw/verification/2026-04-29-overall-behavior-design-review/README.md)
 - [Day Detail Edit/Delete Verification](../raw/verification/2026-05-01-day-detail-edit-delete/README.md)
@@ -109,3 +112,4 @@ Updated: 2026-05-01
 - [MVP Decision Lock Meeting Raw](../raw/meetings/2026-04-28-mvp-decision-lock/brief.md)
 - [Tech Implementation Council Meeting Raw](../raw/meetings/2026-04-28-tech-implementation-council/brief.md)
 - [Weekly App Review Meeting Raw](../raw/meetings/2026-04-29-weekly-app-review/brief.md)
+- [Web Feasibility Council Raw](../raw/meetings/2026-05-01-web-feasibility-council/brief.md)

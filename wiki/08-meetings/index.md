@@ -2,7 +2,7 @@
 type: project
 status: active
 owner: llm
-updated: 2026-04-29
+updated: 2026-05-01
 sources: []
 ---
 
@@ -26,3 +26,4 @@ sources: []
 - [2026-04-28 MVP Decision Lock](2026-04-28-mvp-decision-lock.md): 구현 태스크 전환 전 남은 제품/디자인 결정을 확정한 회의.
 - [2026-04-28 Tech Implementation Council](2026-04-28-tech-implementation-council.md): 기술 스택과 첫 구현 수직 슬라이스를 확정한 회의.
 - [2026-04-29 Weekly App Review](2026-04-29-weekly-app-review.md): Android CLI 캡처/검증 결과를 기반으로 prototype 상태와 다음 P0 구현 범위를 확정한 회의.
+- [2026-05-01 Web Feasibility Council](2026-05-01-web-feasibility-council.md): 웹 확장 가능성과 local-only web feasibility spike 결론을 확정한 회의.
