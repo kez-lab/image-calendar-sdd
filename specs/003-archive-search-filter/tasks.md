@@ -6,9 +6,11 @@ Status: draft
 
 - [x] Confirm Archive search covers memo and local date only.
 - [x] Confirm emotion tags are chip filters, not free-text search.
-- [ ] Define supported MVP date query formats.
-- [ ] Define Archive navigation target from selected record.
-- [ ] Define empty state copy.
+- [x] Define supported MVP date query formats: `YYYY-MM-DD`, `YYYY-MM`, `YYYY.MM`.
+- [x] Define Archive navigation target from selected record: open existing Day Detail for the record's `localDate`.
+- [x] Define empty state copy.
+- [x] Confirm no external engineering blocker for Archive implementation.
+- [ ] Confirm fixed MVP emotion tag list before release.
 
 ## Implementation
 
@@ -19,11 +21,13 @@ Status: draft
 - [ ] Implement search bar with placeholder `메모, 날짜로 검색하기`.
 - [ ] Implement memo text search.
 - [ ] Implement local date label search.
+- [ ] Implement month query search for `YYYY-MM` and `YYYY.MM`.
 - [ ] Implement fixed emotion tag chip filters.
 - [ ] Combine search query and emotion filter with AND semantics.
 - [ ] Add no-results empty state.
 - [ ] Add first-record empty state CTA when there are no records.
 - [ ] Add navigation from Archive record to the appropriate detail context.
+- [ ] Add clear-filter affordance for no-result state.
 - [ ] Add Compose semantics/content descriptions/test tags for search, emotion chips, record cards, empty state CTA, and filters.
 - [ ] Ensure Archive contains no social feed/account/upload/share UI.
 
@@ -33,6 +37,7 @@ Status: draft
 - [ ] Test recent-month-first ordering.
 - [ ] Test memo search.
 - [ ] Test supported date search formats.
+- [ ] Test month query search.
 - [ ] Test emotion chip filtering.
 - [ ] Test combined search plus emotion filter.
 - [ ] Test no-result empty state.

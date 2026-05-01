@@ -17,9 +17,10 @@ As a user, I want to browse and search my saved records by month, memo, date, an
 - Archive shows saved records grouped by recent month first.
 - Archive provides image-centered record browsing.
 - Search covers memo text and local date only.
+- MVP date query formats are `YYYY-MM-DD`, `YYYY-MM`, and `YYYY.MM`.
 - Emotion tags are handled through explicit chip filters, not free-text search.
 - Search and emotion filters can be combined.
-- Selecting an archived record opens its Day Detail or record detail context.
+- Selecting an archived record opens the existing Day Detail for that record's local date.
 - Archive contains no infinite social feed, public activity, likes, comments, or friend content.
 
 ## Local Data Requirements
@@ -33,6 +34,7 @@ As a user, I want to browse and search my saved records by month, memo, date, an
 - Given records exist across multiple months, when Archive opens, then recent months appear first.
 - Given the user searches memo text, then matching local records appear.
 - Given the user searches a date label, then records from matching local dates appear.
+- Given the user searches `YYYY-MM` or `YYYY.MM`, then records from that month appear.
 - Given the user selects an emotion chip, then records with that emotion tag appear.
 - Given the user combines search and emotion filter, then results satisfy both conditions.
 - Given no result matches, then an empty state is shown.
@@ -40,5 +42,5 @@ As a user, I want to browse and search my saved records by month, memo, date, an
 
 ## Open Questions
 
-- What date query formats should MVP support?
-- Should Archive open a Day Detail anchored to the selected record or a single-record detail view?
+- Whether a later single-record detail view should replace Day Detail navigation.
+- Whether large local collections require DAO-level filtering or paging.

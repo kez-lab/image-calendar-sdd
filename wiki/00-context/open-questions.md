@@ -2,10 +2,11 @@
 type: context
 status: active
 owner: llm
-updated: 2026-04-29
+updated: 2026-05-01
 sources:
   - raw/sources/0002-claude-design-prompt.md
   - raw/meetings/2026-04-29-weekly-app-review/final-notes.md
+  - ../06-project/next-work-plan-2026-05-01.md
 ---
 
 # Open Questions
@@ -14,7 +15,6 @@ sources:
 
 - 고정 감정 태그 5개(`차분`, `기쁨`, `피곤`, `포근`, `바쁨`)를 MVP 최종 목록으로 확정할 것인가?
 - 로컬 알림은 MVP에서 제외할지 선택형으로 둘 것인가?
-- Day Detail 수정 범위는 메모/감정/날짜만 포함할 것인가, 사진 교체까지 포함할 것인가?
 
 ## Local Data
 
@@ -39,3 +39,10 @@ sources:
 ## SDD
 
 - Spec Kit을 언제 설치하고 어떤 integration 옵션으로 초기화할 것인가?
+
+## Resolved
+
+- Day Detail 수정 범위는 MVP에서 날짜, 메모, 감정 태그 metadata로 제한한다. 사진 교체는 후속으로 둔다.
+- Archive MVP date query는 `YYYY-MM-DD`, `YYYY-MM`, `YYYY.MM`만 지원한다.
+- Archive record tap은 기존 Day Detail을 해당 `localDate`로 여는 방식으로 처리한다.
+- Archive empty copy는 `아직 저장된 기록이 없어요` / `사진 한 장으로 하루를 캘린더에 남겨보세요.`로 시작한다.

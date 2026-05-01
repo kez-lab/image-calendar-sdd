@@ -59,6 +59,7 @@ Updated: 2026-05-01
 - [Release Plan](06-project/release-plan.md): 릴리즈 기준.
 - [Decision Log](06-project/decision-log.md): 의사결정 기록.
 - [Implementation Log](06-project/implementation-log.md): CEO 구현 사이클 결과 기록.
+- [Next Work Plan 2026-05-01](06-project/next-work-plan-2026-05-01.md): Archive 구현 전 계획과 TODO.
 
 ## Meetings
 

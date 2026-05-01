@@ -100,3 +100,9 @@
 - Evidence: [Day Detail Edit/Delete Verification](../raw/verification/2026-05-01-day-detail-edit-delete/README.md)
 - Action: Day Detail metadata edit, destructive delete confirmation, repository update/delete operations, and local image cleanup invocation were added and verified with official Android CLI evidence.
 - Updated: `app/*`, `raw/verification/2026-05-01-day-detail-edit-delete/*`, `wiki/05-qa/verification-report-2026-05-01.md`, `wiki/03-engineering/api-contracts.md`, `wiki/06-project/implementation-log.md`, `wiki/06-project/decision-log.md`, `wiki/00-context/current-state.md`, `specs/001-calendar-daily-record/tasks.md`, `specs/002-photo-entry-creation/tasks.md`, `README.md`.
+
+## [2026-05-01] planning | Archive next work plan
+
+- Source: [Next Work Plan 2026-05-01](06-project/next-work-plan-2026-05-01.md)
+- Action: Archive MVP scope, date query formats, navigation target, empty state copy, external manpower assessment, and implementation TODO were locked before coding.
+- Updated: `wiki/06-project/next-work-plan-2026-05-01.md`, `wiki/00-context/open-questions.md`, `wiki/index.md`, `wiki/log.md`, `specs/003-archive-search-filter/*`.
