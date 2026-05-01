@@ -1,0 +1,48 @@
+[
+  {
+    "text": "이 기록을 삭제할까요?",
+    "center": "[475,1083]",
+    "key": 3506402
+  },
+  {
+    "text": "2026-04-29 기록의 사진과 메모가 이 기기에서 삭제돼요. 삭제 후에는 복구할 수 없어요.",
+    "center": "[540,1224]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[606,1404]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[800,1404]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Cancel delete record",
+    "center": "[606,1403]",
+    "key": 3506402
+  },
+  {
+    "text": "취소",
+    "center": "[606,1403]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Confirm delete record",
+    "center": "[800,1403]",
+    "key": 3506402
+  },
+  {
+    "text": "삭제",
+    "center": "[800,1403]",
+    "key": 3506402
+  }
+]

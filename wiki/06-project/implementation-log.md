@@ -2,9 +2,10 @@
 type: project
 status: active
 owner: llm
-updated: 2026-04-29
+updated: 2026-05-01
 sources:
   - ../08-meetings/2026-04-28-tech-implementation-council.md
+  - ../../raw/verification/2026-05-01-day-detail-edit-delete/README.md
 ---
 
 # Implementation Log
@@ -93,4 +94,31 @@ Known gaps:
 - Gallery-picker save success still needs manual/device-level verification; debug fixture covers deterministic automation only.
 - Reusable smoke test script is not yet checked in.
 - Record edit/delete and repository file cleanup on deletion are not implemented yet.
+- Archive and Settings remain release-blocking placeholders.
+
+## [2026-05-01] cycle-003 | Day Detail edit/delete lifecycle
+
+Scope:
+
+- Added repository update/delete operations for existing photo entries.
+- Added Room DAO queries for entry lookup, asset lookup, metadata update, and entry deletion.
+- Added Day Detail edit dialog for date, memo, and emotion tag metadata.
+- Added Day Detail delete confirmation dialog with irreversible local-delete copy.
+- Added edit/delete semantics and stable test tags for Android CLI layout inspection.
+- Added internal image directory cleanup invocation after record deletion.
+
+Verification:
+
+- `./gradlew assembleDebug` passed.
+- Official `android describe --project_dir=.` found the debug APK.
+- Official `android run --device=emulator-5554 --apks=app/build/outputs/apk/debug/app-debug.apk --activity=.app.MainActivity` installed and launched the app on `Pixel_9`.
+- Android CLI layout/screenshot evidence verified Day Detail edit/delete controls.
+- Edit dialog saved updated memo/emotion and returned to Day Detail with updated values visible.
+- Delete confirmation displayed irreversible local deletion copy.
+- After delete, Day Detail showed empty state and April 29 Calendar cell announced `2026-04-29, no records`.
+
+Known gaps:
+
+- The home Calendar summary card remains read-only; mutation actions require opening full Day Detail.
+- File cleanup failures are not surfaced after metadata deletion.
 - Archive and Settings remain release-blocking placeholders.

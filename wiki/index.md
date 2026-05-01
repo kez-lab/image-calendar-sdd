@@ -1,6 +1,6 @@
 # Wiki Index
 
-Updated: 2026-04-29
+Updated: 2026-05-01
 
 ## Context
 
@@ -50,6 +50,7 @@ Updated: 2026-04-29
 - [Acceptance Criteria](05-qa/acceptance-criteria.md): MVP 인수 기준.
 - [Manual Test Checklist](05-qa/manual-test-checklist.md): 수동 테스트 체크리스트.
 - [2026-04-29 Verification Report](05-qa/verification-report-2026-04-29.md): Android CLI 전체 동작 검증과 디자인 싱크 리포트.
+- [2026-05-01 Verification Report](05-qa/verification-report-2026-05-01.md): Day Detail 수정/삭제와 캘린더 marker 제거 검증 리포트.
 
 ## Project
 
@@ -94,6 +95,7 @@ Updated: 2026-04-29
 - [Claude Design Prompt](../raw/sources/0002-claude-design-prompt.md)
 - [Room Persistence Smoke Verification](../raw/verification/2026-04-29-room-persistence-smoke/README.md)
 - [Overall Behavior and Design Review](../raw/verification/2026-04-29-overall-behavior-design-review/README.md)
+- [Day Detail Edit/Delete Verification](../raw/verification/2026-05-01-day-detail-edit-delete/README.md)
 - [App Image Calendar Design Raw](../raw/design/2026-04-28-app-image-calendar/README.md)
 - [App Image Calendar Design v2 Raw](../raw/design/2026-04-28-app-image-calendar-v2/README.md)
 - [Designer Feedback Request](../raw/design/2026-04-28-app-image-calendar/designer-feedback-request.md)

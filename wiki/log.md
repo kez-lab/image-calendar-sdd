@@ -93,3 +93,10 @@
 - Evidence: [Overall Behavior and Design Review](../raw/verification/2026-04-29-overall-behavior-design-review/README.md)
 - Action: Calendar, Day Detail, Add, Add validation, Archive, and Settings were captured with screenshot/layout/annotated evidence; design v2 sync was reviewed and release blockers were recorded.
 - Updated: `raw/verification/2026-04-29-overall-behavior-design-review/*`, `wiki/05-qa/verification-report-2026-04-29.md`, `wiki/index.md`, `wiki/log.md`, `raw/README.md`.
+
+## [2026-05-01] implementation | Day Detail edit/delete lifecycle
+
+- Source: [Implementation Log](06-project/implementation-log.md)
+- Evidence: [Day Detail Edit/Delete Verification](../raw/verification/2026-05-01-day-detail-edit-delete/README.md)
+- Action: Day Detail metadata edit, destructive delete confirmation, repository update/delete operations, and local image cleanup invocation were added and verified with official Android CLI evidence.
+- Updated: `app/*`, `raw/verification/2026-05-01-day-detail-edit-delete/*`, `wiki/05-qa/verification-report-2026-05-01.md`, `wiki/03-engineering/api-contracts.md`, `wiki/06-project/implementation-log.md`, `wiki/06-project/decision-log.md`, `wiki/00-context/current-state.md`, `specs/001-calendar-daily-record/tasks.md`, `specs/002-photo-entry-creation/tasks.md`, `README.md`.

@@ -19,6 +19,12 @@ data class CreatePhotoEntryInput(
     val emotionTag: EmotionTag?,
 )
 
+data class UpdatePhotoEntryInput(
+    val localDate: String,
+    val note: String,
+    val emotionTag: EmotionTag?,
+)
+
 class PhotoEntryRepository(
     private val dao: PhotoEntryDao,
     private val imageStore: LocalImageStore,
@@ -37,6 +43,29 @@ class PhotoEntryRepository(
         val entryId = UUID.randomUUID().toString()
         val stored = imageStore.createDebugFixture(entryId)
         return insertStoredEntry(entryId, stored, input)
+    }
+
+    suspend fun updatePhotoEntry(entryId: String, input: UpdatePhotoEntryInput): PhotoEntry {
+        val updated = dao.updateEntry(
+            entryId = entryId,
+            localDate = input.localDate,
+            note = input.note.trim(),
+            emotionTagId = input.emotionTag?.name,
+            updatedAtMillis = System.currentTimeMillis(),
+        )
+        check(updated == 1) { "Photo entry not found: $entryId" }
+        return requireNotNull(dao.getEntryRow(entryId)) {
+            "Photo entry missing after update: $entryId"
+        }.toDomain()
+    }
+
+    suspend fun deletePhotoEntry(entryId: String) {
+        val asset = requireNotNull(dao.getAssetForEntry(entryId)) {
+            "Local asset not found for entry: $entryId"
+        }
+        val deleted = dao.deleteEntry(entryId)
+        check(deleted == 1) { "Photo entry not found: $entryId" }
+        imageStore.deleteEntryDirectory(asset.originalRelativePath)
     }
 
     private suspend fun insertStoredEntry(

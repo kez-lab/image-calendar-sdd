@@ -2,9 +2,10 @@
 type: qa
 status: draft
 owner: llm
-updated: 2026-04-29
+updated: 2026-05-01
 sources:
   - raw/sources/0002-claude-design-prompt.md
+  - raw/verification/2026-05-01-day-detail-edit-delete/README.md
 ---
 
 # Manual Test Checklist
@@ -40,6 +41,9 @@ sources:
 
 - 여러 기록 카드가 자연스럽게 표시된다.
 - 수정/삭제 동작이 명확하다.
+- 수정은 날짜, 메모, 감정 태그를 저장하고 사진 교체를 요구하지 않는다.
+- 삭제는 되돌릴 수 없는 로컬 삭제 확인 모달을 거친다.
+- 삭제 후 해당 날짜는 빈 상태가 되고 Calendar marker가 제거된다.
 - 빈 날짜는 빈 상태와 추가 CTA를 제공한다.
 
 ## Archive
@@ -61,6 +65,6 @@ sources:
 - `./gradlew assembleDebug`가 통과한다.
 - 공식 `android run`으로 APK 설치와 앱 실행이 성공한다.
 - Calendar, Add, Archive, Settings, validation 화면을 `android layout`과 `android screen capture`로 저장한다.
-- 캡처 결과가 `raw/meetings/{date-topic}/assets/`에 raw evidence로 보관된다.
+- 캡처 결과가 `raw/verification/{date-topic}/assets/`에 raw evidence로 보관된다.
 - `app/src/main`과 Gradle 파일에 `INTERNET`, login, upload, sync, cloud, share, social/feed/like/comment/follow 표현이 없다.
 - 핵심 액션은 좌표 의존 없이 layout semantics 또는 안정적인 test tag로 식별 가능하다.

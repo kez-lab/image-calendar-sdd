@@ -26,12 +26,13 @@ Product promise:
 | Design | Claude Design v2 ingested as implementation reference |
 | Android App | Kotlin + Jetpack Compose app builds and runs |
 | Persistence | Room-backed `PhotoEntry` + `LocalAsset` persistence implemented |
+| Record Lifecycle | Day Detail edit/delete implemented and Android CLI verified |
 | Verification | Android CLI build/run/layout/screenshot evidence is stored in `raw/verification` |
-| Release Readiness | Not ready: Archive, Settings, Onboarding, edit/delete, delete modals remain blockers |
+| Release Readiness | Not ready: Archive, Settings, Onboarding, backup/delete-all flows remain blockers |
 
-Latest verified app commit:
+Latest verified slice:
 
-- `390e547` - Room persistence and Android CLI fixture
+- 2026-05-01 - Day Detail edit/delete and Calendar marker removal
 
 ## App Implementation
 
@@ -40,6 +41,8 @@ Implemented:
 - Calendar tab with month grid, today highlight, local-only badge, and record marker
 - Add tab with gallery picker entry, debug QA fixture, required photo validation, date validation, memo, emotion tags, and local save
 - Day Detail view after save
+- Day Detail edit dialog for date, memo, and emotion metadata
+- Day Detail delete confirmation and repository-backed record deletion
 - Room database schema export under `app/schemas/`
 - Internal image copy and thumbnail generation
 - Repository rollback cleanup on metadata insert failure
@@ -48,10 +51,9 @@ Implemented:
 Not yet implemented:
 
 - Onboarding
-- Day Detail edit/delete
 - Archive search/filter/month grouping
 - Settings backup/delete data-safety flows
-- Delete confirmation modals
+- Delete-all confirmation modal
 - Real backup export package
 - Camera capture
 
@@ -85,7 +87,9 @@ Not yet implemented:
 | --- | --- |
 | Room persistence smoke | [raw/verification/2026-04-29-room-persistence-smoke](raw/verification/2026-04-29-room-persistence-smoke/README.md) |
 | Overall behavior/design review | [raw/verification/2026-04-29-overall-behavior-design-review](raw/verification/2026-04-29-overall-behavior-design-review/README.md) |
+| Day Detail edit/delete | [raw/verification/2026-05-01-day-detail-edit-delete](raw/verification/2026-05-01-day-detail-edit-delete/README.md) |
 | QA summary | [wiki/05-qa/verification-report-2026-04-29.md](wiki/05-qa/verification-report-2026-04-29.md) |
+| QA summary | [wiki/05-qa/verification-report-2026-05-01.md](wiki/05-qa/verification-report-2026-05-01.md) |
 
 Verification rules:
 
@@ -124,7 +128,7 @@ Before a feature is considered done:
 
 P0 sequence:
 
-1. Implement Day Detail edit/delete and local file cleanup.
-2. Replace Archive placeholder with search, emotion filters, monthly grouping/list, and empty states.
-3. Replace Settings placeholder with local trust card, backup export shell, restore follow-up row, danger zone, and delete confirmation.
+1. Replace Archive placeholder with search, emotion filters, monthly grouping/list, and empty states.
+2. Replace Settings placeholder with local trust card, backup export shell, restore follow-up row, danger zone, and delete-all confirmation.
+3. Harden record deletion so file cleanup failures are surfaced or retried.
 4. Re-run overall behavior and design sync verification with raw evidence.

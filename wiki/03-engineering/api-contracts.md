@@ -2,10 +2,11 @@
 type: engineering
 status: draft
 owner: llm
-updated: 2026-04-29
+updated: 2026-05-01
 sources:
   - raw/sources/0002-claude-design-prompt.md
   - ../../raw/verification/2026-04-29-room-persistence-smoke/README.md
+  - ../../raw/verification/2026-05-01-day-detail-edit-delete/README.md
 ---
 
 # Local Repository Contracts
@@ -23,8 +24,8 @@ sources:
 
 - `createPhotoEntryFromUri(uri, input)`: Android Photo Picker URI, 날짜, 메모, 감정 태그를 저장한다.
 - `createDebugFixtureEntry(input)`: debug/test 검증용 고정 이미지를 생성하고 저장한다. Release user flow가 아니다.
-- `updatePhotoEntry(id, input)`: 기존 기록을 수정한다.
-- `deletePhotoEntry(id)`: 기록과 연결된 로컬 이미지/썸네일을 삭제한다.
+- `updatePhotoEntry(id, input)`: 기존 기록의 `localDate`, `note`, `emotionTag`를 수정한다. MVP에서는 사진 교체를 포함하지 않는다.
+- `deletePhotoEntry(id)`: 기록 metadata를 삭제하고 연결된 로컬 이미지/썸네일 디렉터리 cleanup을 요청한다.
 
 Create flow contract:
 
@@ -36,6 +37,20 @@ Create flow contract:
 - Repository owns the copy, thumbnail, Room insert, and rollback cleanup sequence.
 - On copy, thumbnail, or DB failure, partial files are cleaned up before surfacing failure.
 - The source gallery URI is not stored.
+
+Update flow contract:
+
+- Only metadata fields are updated in MVP: date, memo, emotion tag.
+- `updatedAtMillis` is refreshed on successful update.
+- Updated entries are re-read from Room and returned to the UI.
+- If `localDate` changes, Day Detail moves to the updated date.
+
+Delete flow contract:
+
+- Repository resolves the linked `LocalAsset` before deleting metadata.
+- Room metadata deletion is the user-visible source of truth.
+- After metadata deletion, app-specific internal image directory cleanup is invoked.
+- Current implementation does not surface a filesystem cleanup failure; hardening is required before release.
 
 ## Archive Repository
 

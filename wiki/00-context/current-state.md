@@ -2,13 +2,14 @@
 type: context
 status: active
 owner: llm
-updated: 2026-04-29
+updated: 2026-05-01
 sources:
   - raw/sources/0001-llm-wiki-pattern.md
   - raw/sources/0002-claude-design-prompt.md
   - raw/design/2026-04-28-app-image-calendar/ImageCalendar.html
   - raw/design/2026-04-28-app-image-calendar-v2/ImageCalendar v2.html
   - raw/meetings/2026-04-29-weekly-app-review/final-notes.md
+  - raw/verification/2026-05-01-day-detail-edit-delete/README.md
 ---
 
 # Current State
@@ -61,13 +62,15 @@ sources:
 - 공식 Android CLI로 debug APK 설치/실행, layout dump, screen capture가 확인되었다.
 - 기록 상태는 Room `photo_entries`/`local_assets`와 repository-backed Flow로 전환되었다.
 - Android CLI debug fixture로 저장한 기록이 앱 재실행 후 Calendar와 Day Detail에 유지되는 것을 확인했다.
+- Day Detail에서 기록의 날짜/메모/감정 태그 수정과 삭제 확인 모달을 구현했다.
+- 삭제 후 해당 날짜가 빈 상태로 전환되고 Calendar marker가 제거되는 것을 Android CLI로 검증했다.
 - 2026-04-29 주간 앱 리뷰에서 현재 앱은 release-ready MVP가 아니라 directionally valid prototype으로 분류되었다.
 - Archive와 Settings placeholder는 release blocker로 확정되었다.
 - Android CLI smoke test는 weekly/release verification gate로 사용한다.
 
 ## Next Actions
 
-1. Day Detail 수정/삭제와 로컬 파일 삭제 cleanup을 구현한다.
-2. Archive placeholder를 검색/감정 필터/월별 목록으로 교체한다.
-3. Settings placeholder를 백업 내보내기 shell, restore 안내, danger zone, 삭제 확인으로 교체한다.
+1. Archive placeholder를 검색/감정 필터/월별 목록으로 교체한다.
+2. Settings placeholder를 백업 내보내기 shell, restore 안내, danger zone, 삭제 확인으로 교체한다.
+3. 기록 삭제의 파일 cleanup 실패를 감지/보고하거나 재시도할 수 있게 강화한다.
 4. Android CLI smoke journey를 재사용 가능한 스크립트 또는 문서화된 절차로 고정한다.

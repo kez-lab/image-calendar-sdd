@@ -1,0 +1,182 @@
+[
+  {
+    "text": "기록 수정",
+    "center": "[307,744]",
+    "key": 3506402
+  },
+  {
+    "text": "사진은 유지하고 날짜, 메모, 감정 태그만 수정합니다.",
+    "center": "[540,885]",
+    "key": 3506402
+  },
+  {
+    "text": "2026-04-29",
+    "interactions": [
+      "clickable",
+      "focusable",
+      "long-clickable"
+    ],
+    "center": "[540,1045]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable",
+      "long-clickable"
+    ],
+    "center": "[540,1226]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[259,1395]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[432,1395]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[605,1395]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[259,1553]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "checkable",
+      "clickable",
+      "focusable"
+    ],
+    "center": "[432,1553]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[606,1743]",
+    "key": 3506402
+  },
+  {
+    "interactions": [
+      "clickable",
+      "focusable"
+    ],
+    "center": "[800,1743]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Edit record date",
+    "center": "[540,1045]",
+    "key": 3506402
+  },
+  {
+    "text": "날짜",
+    "center": "[255,1014]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Edit note",
+    "center": "[540,1226]",
+    "key": 3506402
+  },
+  {
+    "text": "메모",
+    "center": "[265,1226]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Edit emotion 차분",
+    "center": "[259,1395]",
+    "key": 3506402
+  },
+  {
+    "text": "차분",
+    "center": "[259,1395]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Edit emotion 기쁨",
+    "center": "[432,1395]",
+    "key": 3506402
+  },
+  {
+    "text": "기쁨",
+    "center": "[432,1395]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Edit emotion 피곤",
+    "center": "[605,1395]",
+    "key": 3506402
+  },
+  {
+    "text": "피곤",
+    "center": "[605,1395]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Edit emotion 포근",
+    "center": "[259,1553]",
+    "key": 3506402
+  },
+  {
+    "text": "포근",
+    "center": "[259,1553]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Edit emotion 바쁨",
+    "center": "[432,1553]",
+    "key": 3506402
+  },
+  {
+    "text": "바쁨",
+    "center": "[432,1553]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Cancel edit",
+    "center": "[606,1742]",
+    "key": 3506402
+  },
+  {
+    "text": "취소",
+    "center": "[606,1742]",
+    "key": 3506402
+  },
+  {
+    "content-desc": "Save edited record",
+    "center": "[800,1742]",
+    "key": 3506402
+  },
+  {
+    "text": "저장",
+    "center": "[800,1742]",
+    "key": 3506402
+  }
+]

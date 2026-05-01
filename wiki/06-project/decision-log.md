@@ -132,3 +132,19 @@ Rationale:
 - in-memory 상태에서는 앱 재시작 후 기록 유지, 아카이브 탐색, 설정 데이터 액션을 신뢰성 있게 검증할 수 없다.
 - placeholder 화면은 로컬 저장 신뢰와 출시 가능한 MVP 인상을 훼손한다.
 - Android CLI layout evidence에서 주요 clickable node의 라벨/description이 부족해 자동 회귀 검증이 좌표 의존으로 굳어질 위험이 있다.
+
+## [2026-05-01] Day Detail mutation boundaries
+
+Decision:
+
+- MVP의 기록 수정은 날짜, 메모, 감정 태그 metadata만 다룬다.
+- 사진 교체는 MVP 수정 범위에서 제외한다.
+- 홈 Calendar의 최근 기록 요약 카드는 읽기 전용으로 유지한다.
+- 수정/삭제 같은 변경 동작은 기록이 있는 날짜 셀에서 진입한 full Day Detail 화면에만 둔다.
+- 삭제는 반드시 되돌릴 수 없는 로컬 삭제 확인 모달을 거친다.
+
+Rationale:
+
+- 사진 교체는 picker 재진입, 기존 파일 교체/rollback, 썸네일 재생성, 삭제 실패 처리까지 범위가 커져 Archive/Settings보다 우선순위가 낮다.
+- 홈 요약 카드에 destructive action을 섞으면 Calendar 탐색 화면의 정보 구조가 흐려진다.
+- Full Day Detail에 mutation을 모으면 사용자가 어떤 날짜/기록을 바꾸는지 더 명확하게 이해할 수 있다.

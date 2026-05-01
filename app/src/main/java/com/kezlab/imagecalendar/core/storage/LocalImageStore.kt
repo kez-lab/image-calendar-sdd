@@ -56,7 +56,11 @@ class LocalImageStore(private val context: Context) {
     }
 
     fun deleteStoredImage(storedImage: StoredImage) {
-        File(context.filesDir, storedImage.originalRelativePath)
+        deleteEntryDirectory(storedImage.originalRelativePath)
+    }
+
+    fun deleteEntryDirectory(originalRelativePath: String) {
+        File(context.filesDir, originalRelativePath)
             .parentFile
             ?.deleteRecursively()
     }

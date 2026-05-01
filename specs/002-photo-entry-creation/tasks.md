@@ -13,6 +13,7 @@ Status: draft
 - [x] Define asset path storage as relative paths.
 - [x] Define thumbnail generation at save time.
 - [x] Define save failure rollback cleanup requirement.
+- [x] Define delete cleanup requirement for app-specific internal image files.
 - [ ] Define fixed MVP emotion tag list.
 - [ ] Define exact thumbnail dimensions and compression format. Current prototype uses 512px square JPEG quality 82.
 
@@ -34,6 +35,8 @@ Status: draft
 - [x] Clean up copied files when save fails before commit.
 - [x] Update local date summary so Calendar marker appears.
 - [x] Navigate to saved date Day Detail after successful save.
+- [x] Add repository update flow for existing entry date, memo, and emotion.
+- [x] Add repository delete flow for entry metadata and internal image directory cleanup.
 - [ ] Show save failure state without implying network/server failure.
 - [x] Move no-photo validation message under the photo section as inline error.
 - [x] Label inputs as required or optional: photo required, memo optional, emotion optional.
@@ -52,5 +55,7 @@ Status: draft
 - [x] Test Calendar marker appears after returning from Day Detail. Verified 2026-04-29 with Android CLI capture.
 - [x] Test Add Record contains no account/upload/sync/share language. Verified 2026-04-29 static string scan.
 - [ ] Test failed save does not create a partial visible record.
+- [x] Test update persists metadata changes. Verified 2026-05-01 with Android CLI layout after edit.
+- [x] Test delete removes visible record. Verified 2026-05-01 with Android CLI empty state after delete.
 - [x] Test manifest has no `INTERNET` permission.
 - [ ] Add Android CLI smoke test for photo fixture save, Day Detail card, app restart persistence, and Calendar marker.

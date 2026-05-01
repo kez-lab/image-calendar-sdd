@@ -28,6 +28,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -70,6 +71,7 @@ import com.kezlab.imagecalendar.core.model.PhotoEntry
 import com.kezlab.imagecalendar.core.repository.AppContainer
 import com.kezlab.imagecalendar.core.repository.CreatePhotoEntryInput
 import com.kezlab.imagecalendar.core.repository.PhotoEntryRepository
+import com.kezlab.imagecalendar.core.repository.UpdatePhotoEntryInput
 import java.io.File
 import java.time.LocalDate
 import java.time.YearMonth
@@ -139,9 +141,14 @@ private fun ImageCalendarApp() {
                 DayDetailScreen(
                     localDate = detailDate,
                     entries = entries.filter { it.localDate == detailDate },
+                    repository = repository,
                     onBack = {
                         dayDetailDate = null
                         currentTab = AppTab.Calendar
+                    },
+                    onEntryUpdated = { updated ->
+                        selectedDate = updated.localDate
+                        dayDetailDate = updated.localDate
                     },
                 )
             } else when (currentTab) {
@@ -561,8 +568,15 @@ private fun DayDetailCard(localDate: String, dayEntries: List<PhotoEntry>) {
 private fun DayDetailScreen(
     localDate: String,
     entries: List<PhotoEntry>,
+    repository: PhotoEntryRepository,
     onBack: () -> Unit,
+    onEntryUpdated: (PhotoEntry) -> Unit,
 ) {
+    val scope = rememberCoroutineScope()
+    var editingEntry by remember { mutableStateOf<PhotoEntry?>(null) }
+    var deletingEntry by remember { mutableStateOf<PhotoEntry?>(null) }
+    var actionError by remember { mutableStateOf<String?>(null) }
+
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -576,6 +590,10 @@ private fun DayDetailScreen(
             Text(localDate, style = MaterialTheme.typography.headlineMedium, color = AppColors.Text)
             Spacer(Modifier.height(8.dp))
             LocalBadge()
+            actionError?.let {
+                Spacer(Modifier.height(8.dp))
+                Text(it, color = AppColors.Danger)
+            }
         }
         if (entries.isEmpty()) {
             item {
@@ -586,14 +604,69 @@ private fun DayDetailScreen(
                 Text("이 기기에 저장된 기록 ${entries.size}개", color = AppColors.Text2)
             }
             items(entries.sortedBy { it.createdAtMillis }) { entry ->
-                RecordCard(entry)
+                RecordCard(
+                    entry = entry,
+                    onEdit = {
+                        actionError = null
+                        editingEntry = entry
+                    },
+                    onDelete = {
+                        actionError = null
+                        deletingEntry = entry
+                    },
+                )
             }
         }
+    }
+
+    editingEntry?.let { entry ->
+        EditRecordDialog(
+            entry = entry,
+            onDismiss = { editingEntry = null },
+            onSave = { input ->
+                scope.launch {
+                    runCatching {
+                        withContext(Dispatchers.IO) {
+                            repository.updatePhotoEntry(entry.id, input)
+                        }
+                    }.onSuccess { updated ->
+                        editingEntry = null
+                        onEntryUpdated(updated)
+                    }.onFailure {
+                        actionError = "기록을 수정하지 못했어요. 다시 시도해주세요."
+                    }
+                }
+            },
+        )
+    }
+
+    deletingEntry?.let { entry ->
+        DeleteRecordDialog(
+            entry = entry,
+            onDismiss = { deletingEntry = null },
+            onConfirm = {
+                scope.launch {
+                    runCatching {
+                        withContext(Dispatchers.IO) {
+                            repository.deletePhotoEntry(entry.id)
+                        }
+                    }.onSuccess {
+                        deletingEntry = null
+                    }.onFailure {
+                        actionError = "기록을 삭제하지 못했어요. 다시 시도해주세요."
+                    }
+                }
+            },
+        )
     }
 }
 
 @Composable
-private fun RecordCard(entry: PhotoEntry) {
+private fun RecordCard(
+    entry: PhotoEntry,
+    onEdit: (() -> Unit)? = null,
+    onDelete: (() -> Unit)? = null,
+) {
     val context = LocalContext.current
     val thumbnailFile = remember(entry.thumbnailRelativePath) { File(context.filesDir, entry.thumbnailRelativePath) }
     var bitmap by remember(entry.thumbnailRelativePath) { mutableStateOf<android.graphics.Bitmap?>(null) }
@@ -612,7 +685,7 @@ private fun RecordCard(entry: PhotoEntry) {
             bitmap?.let {
                 Image(
                     bitmap = it.asImageBitmap(),
-                    contentDescription = null,
+                    contentDescription = "Stored record photo",
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(180.dp)
@@ -627,8 +700,173 @@ private fun RecordCard(entry: PhotoEntry) {
             entry.emotionTag?.let {
                 Text(it.label, color = AppColors.Accent, fontWeight = FontWeight.Bold)
             }
+            if (onEdit != null || onDelete != null) {
+                Spacer(Modifier.height(10.dp))
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    onEdit?.let {
+                        TextButton(
+                            onClick = it,
+                            modifier = Modifier
+                                .testTag("record_edit_${entry.id}")
+                                .semantics { contentDescription = "Edit record" },
+                        ) {
+                            Text("수정")
+                        }
+                    }
+                    onDelete?.let {
+                        TextButton(
+                            onClick = it,
+                            modifier = Modifier
+                                .testTag("record_delete_${entry.id}")
+                                .semantics { contentDescription = "Delete record" },
+                        ) {
+                            Text("삭제", color = AppColors.Danger)
+                        }
+                    }
+                }
+            }
         }
     }
+}
+
+@Composable
+private fun EditRecordDialog(
+    entry: PhotoEntry,
+    onDismiss: () -> Unit,
+    onSave: (UpdatePhotoEntryInput) -> Unit,
+) {
+    var localDate by remember(entry.id) { mutableStateOf(entry.localDate) }
+    var note by remember(entry.id) { mutableStateOf(entry.note) }
+    var emotion by remember(entry.id) { mutableStateOf(entry.emotionTag) }
+    var error by remember(entry.id) { mutableStateOf<String?>(null) }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("기록 수정") },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                Text("사진은 유지하고 날짜, 메모, 감정 태그만 수정합니다.", color = AppColors.Text2)
+                TextField(
+                    value = localDate,
+                    onValueChange = { localDate = it },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("edit_local_date")
+                        .semantics { contentDescription = "Edit record date" },
+                    singleLine = true,
+                    label = { Text("날짜") },
+                    colors = TextFieldDefaults.colors(
+                        focusedContainerColor = AppColors.Bg2,
+                        unfocusedContainerColor = AppColors.Bg2,
+                    ),
+                )
+                TextField(
+                    value = note,
+                    onValueChange = { note = it },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("edit_note")
+                        .semantics { contentDescription = "Edit note" },
+                    label = { Text("메모") },
+                    colors = TextFieldDefaults.colors(
+                        focusedContainerColor = AppColors.Bg2,
+                        unfocusedContainerColor = AppColors.Bg2,
+                    ),
+                )
+                EmotionTag.entries.chunked(3).forEach { rowTags ->
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        rowTags.forEach { tag ->
+                            FilterChip(
+                                modifier = Modifier
+                                    .testTag("edit_emotion_${tag.name.lowercase()}")
+                                    .semantics { contentDescription = "Edit emotion ${tag.label}" },
+                                selected = emotion == tag,
+                                onClick = { emotion = if (emotion == tag) null else tag },
+                                label = { Text(tag.label) },
+                            )
+                        }
+                    }
+                }
+                error?.let {
+                    Text(it, color = AppColors.Danger)
+                }
+            }
+        },
+        confirmButton = {
+            Button(
+                onClick = {
+                    val normalizedDate = localDate.toValidIsoDateOrNull()
+                    if (normalizedDate == null) {
+                        error = "날짜는 YYYY-MM-DD 형식으로 입력해주세요."
+                        return@Button
+                    }
+                    error = null
+                    onSave(
+                        UpdatePhotoEntryInput(
+                            localDate = normalizedDate,
+                            note = note,
+                            emotionTag = emotion,
+                        ),
+                    )
+                },
+                modifier = Modifier
+                    .testTag("edit_save")
+                    .semantics { contentDescription = "Save edited record" },
+                colors = ButtonDefaults.buttonColors(containerColor = AppColors.Accent),
+            ) {
+                Text("저장")
+            }
+        },
+        dismissButton = {
+            TextButton(
+                onClick = onDismiss,
+                modifier = Modifier
+                    .testTag("edit_cancel")
+                    .semantics { contentDescription = "Cancel edit" },
+            ) {
+                Text("취소")
+            }
+        },
+    )
+}
+
+@Composable
+private fun DeleteRecordDialog(
+    entry: PhotoEntry,
+    onDismiss: () -> Unit,
+    onConfirm: () -> Unit,
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("이 기록을 삭제할까요?") },
+        text = {
+            Text(
+                text = "${entry.localDate} 기록의 사진과 메모가 이 기기에서 삭제돼요. 삭제 후에는 복구할 수 없어요.",
+                color = AppColors.Text2,
+            )
+        },
+        confirmButton = {
+            Button(
+                onClick = onConfirm,
+                modifier = Modifier
+                    .testTag("delete_confirm")
+                    .semantics { contentDescription = "Confirm delete record" },
+                colors = ButtonDefaults.buttonColors(containerColor = AppColors.Danger),
+            ) {
+                Text("삭제")
+            }
+        },
+        dismissButton = {
+            TextButton(
+                onClick = onDismiss,
+                modifier = Modifier
+                    .testTag("delete_cancel")
+                    .semantics { contentDescription = "Cancel delete record" },
+            ) {
+                Text("취소")
+            }
+        },
+    )
 }
 
 @Composable
